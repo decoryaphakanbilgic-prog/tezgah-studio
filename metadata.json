@@ -1,0 +1,6 @@
+{
+  "name": "StoneSelect",
+  "description": "Premium, sade ve kurumsal tezgah seçim ve teklif alma platformu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
