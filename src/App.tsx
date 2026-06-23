@@ -453,10 +453,10 @@ export default function App() {
             </motion.section>
 
             {/* Section 3: Tezgah Kategorileri */}
-            <motion.section variants={pageItemVariants} className="py-24 bg-[#f0e9d8] relative overflow-hidden">
+            <motion.section variants={pageItemVariants} className="py-12 bg-[#f0e9d8] relative overflow-hidden">
               <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
                 {/* Başlık alanı */}
-                <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+                <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
                   <div className="space-y-3">
                     <span className="font-mono text-[10px] text-amber-600 uppercase tracking-[0.3em]">Ürün Grupları</span>
                     <h2 className="font-serif text-3xl sm:text-4xl font-bold text-neutral-900 leading-tight">
@@ -510,7 +510,7 @@ export default function App() {
                     <div
                       key={cat.num}
                       onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
-                      className="group flex items-center gap-6 py-5 cursor-pointer transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-2xl"
+                      className="group flex items-center gap-6 py-3 cursor-pointer transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-xl"
                     >
                       {/* Yuvarlak fotoğraf */}
                       <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden ring-2 ring-stone-200 group-hover:ring-amber-400 transition-all duration-300 shadow-sm">
