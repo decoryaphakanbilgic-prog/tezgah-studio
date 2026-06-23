@@ -17,6 +17,7 @@ import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
 import CategoryDetailPage from './pages/CategoryDetailPage';
 import LegalPage from './pages/LegalPage';
+import RandevuPage from './pages/RandevuPage';
 import BrandLogoBar from './components/BrandLogoBar';
 import { AuthProvider } from './context/AuthContext';
 import { 
@@ -912,6 +913,11 @@ export default function App() {
               }}
             />
           </motion.div>
+        )}
+
+        {/* Randevu Sayfası */}
+        {activePage === 'randevu' && (
+          <RandevuPage onNavigate={handleNavigate} />
         )}
 
         {/* Kategori Detay Sayfası */}

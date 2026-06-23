@@ -35,6 +35,7 @@ export default function Header({
     { id: 'brands', label: 'Markalar' },
     { id: 'projects', label: 'Projeler' },
     { id: 'tech-info', label: 'Teknik' },
+    { id: 'randevu', label: 'Randevu' },
   ];
 
   return (
