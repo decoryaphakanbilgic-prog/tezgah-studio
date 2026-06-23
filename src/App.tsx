@@ -15,6 +15,7 @@ import Simulator from './components/Simulator';
 import TemplateStudio from './components/TemplateStudio';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
+import CategoryDetailPage from './pages/CategoryDetailPage';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -73,6 +74,7 @@ export default function App() {
   const [selectedBrandForWizard, setSelectedBrandForWizard] = useState<string | null>(null);
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
   // Home Hero slider states
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -465,30 +467,35 @@ export default function App() {
                   {[
                     {
                       num: '01',
+                      id: 'dogal-tas',
                       title: 'Doğal Taş Tezgahlar',
                       desc: 'Mermer, granit, kuvarsit, oniks, traverten.',
                       image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=200&q=80',
                     },
                     {
                       num: '02',
+                      id: 'kuvars',
                       title: 'Kuvars Tezgahlar',
                       desc: 'Çimstone, Belenco, Silestone, Caesarstone ve benzeri markalar.',
                       image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=200&q=80',
                     },
                     {
                       num: '03',
+                      id: 'porselen',
                       title: 'Porselen & Seramik Tezgahlar',
                       desc: 'Dekton, Laminam, Neolith, SapienStone, büyük ebat seramikler.',
                       image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=200&q=80',
                     },
                     {
                       num: '04',
+                      id: 'akrilik',
                       title: 'Akrilik / Solid Surface Tezgahlar',
                       desc: 'Corian, Hi-Macs, Staron, Tristone.',
                       image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=200&q=80',
                     },
                     {
                       num: '05',
+                      id: 'ekonomik',
                       title: 'Ekonomik & Alternatif Tezgahlar',
                       desc: 'Laminat, kompakt laminat, ahşap, beton, paslanmaz çelik.',
                       image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=80',
@@ -496,7 +503,8 @@ export default function App() {
                   ].map((cat) => (
                     <div
                       key={cat.num}
-                      className="group flex items-center gap-6 py-5 cursor-default transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-2xl"
+                      onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
+                      className="group flex items-center gap-6 py-5 cursor-pointer transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-2xl"
                     >
                       {/* Yuvarlak fotoğraf */}
                       <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden ring-2 ring-stone-200 group-hover:ring-amber-400 transition-all duration-300 shadow-sm">
@@ -1637,6 +1645,17 @@ export default function App() {
 
       {/* Auth Modal */}
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
+
+      {/* Kategori Detay Sayfası */}
+      {activePage === 'category-detail' && selectedCategoryId && (
+        <div className="fixed inset-0 z-[90] overflow-y-auto bg-white">
+          <CategoryDetailPage
+            categoryId={selectedCategoryId}
+            onNavigate={handleNavigate}
+            onQuote={() => handleNavigate('quote-wizard')}
+          />
+        </div>
+      )}
 
       {/* Admin Panel — tam sayfa overlay */}
       {activePage === 'admin' && (
