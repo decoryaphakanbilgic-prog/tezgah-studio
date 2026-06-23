@@ -951,12 +951,6 @@ export default function App() {
         )}
 
         {/* 6.5 INTERACTIVE SIMULATOR VIEW */}
-        {activePage === 'simulator' && (
-          <motion.div variants={pageContainerVariants} initial="hidden" animate="visible" exit="hidden" className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12" id="simulator-page">
-            <Simulator onSelectCombination={handleSimulatorCombo} />
-          </motion.div>
-        )}
-
         {/* 7. STEPPER WIZARD PATH */}
         {activePage === 'quote-wizard' && (
           <motion.div variants={pageContainerVariants} initial="hidden" animate="visible" exit="hidden" className="mx-auto max-w-5xl px-6 py-6 sm:px-8" id="wizard-segment">
