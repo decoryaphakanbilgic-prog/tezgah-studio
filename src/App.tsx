@@ -468,77 +468,80 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* Kategori listesi */}
-                <div className="divide-y divide-stone-200">
+                {/* Kategori kartları */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[
                     {
                       num: '01',
                       id: 'dogal-tas',
                       title: 'Doğal Taş Tezgahlar',
                       desc: 'Mermer, granit, kuvarsit, oniks, traverten.',
-                      image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=200&q=80',
+                      image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=600&q=80',
                     },
                     {
                       num: '02',
                       id: 'kuvars',
                       title: 'Kuvars Tezgahlar',
                       desc: 'Çimstone, Belenco, Silestone, Caesarstone ve benzeri markalar.',
-                      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=200&q=80',
+                      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80',
                     },
                     {
                       num: '03',
                       id: 'porselen',
                       title: 'Porselen & Seramik Tezgahlar',
                       desc: 'Dekton, Laminam, Neolith, SapienStone, büyük ebat seramikler.',
-                      image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=200&q=80',
+                      image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=600&q=80',
                     },
                     {
                       num: '04',
                       id: 'akrilik',
                       title: 'Akrilik / Solid Surface Tezgahlar',
                       desc: 'Corian, Hi-Macs, Staron, Tristone.',
-                      image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=200&q=80',
+                      image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&q=80',
                     },
                     {
                       num: '05',
                       id: 'ekonomik',
                       title: 'Ekonomik & Alternatif Tezgahlar',
                       desc: 'Laminat, kompakt laminat, ahşap, beton, paslanmaz çelik.',
-                      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=80',
+                      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
                     },
                   ].map((cat) => (
-                    <div
+                    <button
                       key={cat.num}
                       onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
-                      className="group flex items-center gap-6 py-3 cursor-pointer transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-xl"
+                      className="group relative bg-white/40 backdrop-blur-sm border border-white/60 hover:border-amber-400 rounded-2xl overflow-hidden text-left transition-all duration-300 hover:bg-white/60 hover:shadow-lg focus:outline-none"
                     >
-                      {/* Yuvarlak fotoğraf */}
-                      <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden ring-2 ring-stone-200 group-hover:ring-amber-400 transition-all duration-300 shadow-sm">
+                      {/* Fotoğraf */}
+                      <div className="relative h-40 overflow-hidden">
                         <img
                           src={cat.image}
                           alt={cat.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           referrerPolicy="no-referrer"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                        {/* Numara */}
+                        <span className="absolute top-3 left-4 font-mono text-[10px] text-white/70 tracking-widest">{cat.num}</span>
+                        {/* Ok */}
+                        <div className="absolute top-3 right-3 h-7 w-7 rounded-full border border-white/30 flex items-center justify-center text-white/50 group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500 transition-all duration-300">
+                          <ChevronRight className="h-3.5 w-3.5" />
+                        </div>
                       </div>
 
-                      {/* Numara */}
-                      <span className="shrink-0 font-mono text-[11px] text-stone-400 tracking-widest w-6">{cat.num}</span>
-
-                      {/* Ayırıcı çizgi */}
-                      <div className="shrink-0 h-8 w-px bg-stone-200" />
-
-                      {/* Başlık + Açıklama */}
-                      <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-8">
-                        <h4 className="text-sm font-semibold text-neutral-800 tracking-tight group-hover:text-amber-600 transition-colors duration-300">
+                      {/* İçerik */}
+                      <div className="p-5">
+                        <h4 className="font-serif text-base font-bold text-neutral-900 group-hover:text-amber-700 transition-colors duration-300 leading-snug">
                           {cat.title}
                         </h4>
-                        <p className="text-xs text-stone-400 font-light sm:text-right max-w-xs">{cat.desc}</p>
+                        <p className="text-[11px] text-stone-500 font-light mt-1.5 leading-relaxed">
+                          {cat.desc}
+                        </p>
+                        <span className="inline-block mt-3 text-[9px] font-mono tracking-widest text-amber-600 uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          Detayları Gör →
+                        </span>
                       </div>
-
-                      {/* Ok ikonu */}
-                      <ArrowRight className="shrink-0 h-4 w-4 text-stone-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-300" />
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
