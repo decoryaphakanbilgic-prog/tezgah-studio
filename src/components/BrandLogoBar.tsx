@@ -18,10 +18,10 @@ const brands = [
 function LogoItem({ name, sub }: { name: string; sub: string }) {
   return (
     <div className="flex flex-col items-center justify-center px-10 shrink-0 select-none group">
-      <span className="font-serif text-[15px] font-bold tracking-widest text-neutral-400 group-hover:text-neutral-700 transition-colors duration-300 uppercase whitespace-nowrap">
+      <span className="font-serif text-[14px] font-bold tracking-widest text-white/40 group-hover:text-white/90 transition-colors duration-300 uppercase whitespace-nowrap">
         {name}
       </span>
-      <span className="font-mono text-[8px] tracking-[0.2em] text-neutral-300 group-hover:text-amber-500 transition-colors duration-300 uppercase mt-0.5">
+      <span className="font-mono text-[8px] tracking-[0.2em] text-white/20 group-hover:text-amber-400 transition-colors duration-300 uppercase mt-0.5">
         {sub}
       </span>
     </div>
@@ -30,11 +30,11 @@ function LogoItem({ name, sub }: { name: string; sub: string }) {
 
 export default function BrandLogoBar() {
   return (
-    <div className="w-full bg-white border-y border-stone-100 py-5 overflow-hidden relative">
+    <div className="w-full bg-neutral-950 border-t border-white/5 py-5 overflow-hidden relative">
       {/* sol fade */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-neutral-950 to-transparent z-10 pointer-events-none" />
       {/* sağ fade */}
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-neutral-950 to-transparent z-10 pointer-events-none" />
 
       <div
         className="flex"
@@ -43,7 +43,6 @@ export default function BrandLogoBar() {
           width: 'max-content',
         }}
       >
-        {/* iki kopya → seamless loop */}
         {[...brands, ...brands].map((b, i) => (
           <LogoItem key={i} name={b.name} sub={b.sub} />
         ))}
