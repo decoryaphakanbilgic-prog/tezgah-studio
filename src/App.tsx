@@ -1258,16 +1258,16 @@ export default function App() {
         )}
 
         {/* Yasal Sayfalar */}
-        {legalPage && (
+        {activePage === 'legal' && legalPage && (
           <div className="min-h-screen bg-neutral-50">
-            <LegalPage page={legalPage} onBack={() => { setLegalPage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+            <LegalPage page={legalPage} onBack={() => { setLegalPage(null); handleNavigate('home'); }} />
           </div>
         )}
 
       </main>
 
       {/* FOOTER */}
-      <Footer onNavigate={handleNavigate} onLegal={(p) => { setLegalPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+      <Footer onNavigate={handleNavigate} onLegal={(p) => { setLegalPage(p); handleNavigate('legal'); }} />
 
       {/* FAVORITES DRAWER SLIDEOUT SHEET */}
       {isFavoritesDrawerOpen && (
