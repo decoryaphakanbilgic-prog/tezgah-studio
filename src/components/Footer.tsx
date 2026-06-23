@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Mail, Phone, MapPin, Award, ArrowUpRight, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Award, Instagram, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -12,10 +12,10 @@ export default function Footer({ onNavigate }: FooterProps) {
     <footer className="border-t border-neutral-200 bg-neutral-950 text-stone-200">
       {/* Upper footer */}
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-          
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+
           {/* Column 1: Brand intro */}
-          <div className="md:col-span-1 space-y-4">
+          <div className="space-y-4">
             <div className="flex flex-col">
               <span className="font-serif text-2xl font-bold tracking-tight text-white">
                 Tezgah<span className="text-gold-400"> Studio</span>
@@ -33,80 +33,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             </div>
           </div>
 
-          {/* Column 2: Navigation links */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-base font-semibold text-white tracking-wide">
-              Koleksiyonlar
-            </h4>
-            <ul className="space-y-2.5 text-xs font-light text-neutral-400">
-              <li>
-                <button 
-                  onClick={() => onNavigate('colors')} 
-                  className="hover:text-gold-300 transition-colors flex items-center justify-between w-full text-left"
-                >
-                  <span>Tüm Yüzeyler</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-30 group-hover:opacity-100" />
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('categories')} 
-                  className="hover:text-gold-300 transition-colors flex items-center justify-between w-full text-left"
-                >
-                  <span>Porselen & Sintre Taş</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-30" />
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('categories')} 
-                  className="hover:text-gold-300 transition-colors flex items-center justify-between w-full text-left"
-                >
-                  <span>Kuvars Mühendisliği</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-30" />
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('categories')} 
-                  className="hover:text-gold-300 transition-colors flex items-center justify-between w-full text-left"
-                >
-                  <span>Yekpare Akrilik</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-30" />
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('categories')} 
-                  className="hover:text-gold-300 transition-colors flex items-center justify-between w-full text-left"
-                >
-                  <span>Lüks Mermer & Kuvarsit</span>
-                  <ArrowUpRight className="h-3 w-3 opacity-30" />
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Premium Brands */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-base font-semibold text-white tracking-wide">
-              Lüks Markalar
-            </h4>
-            <ul className="grid grid-cols-2 gap-x-2 gap-y-2 text-xs font-light text-neutral-400">
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Dekton</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Silestone</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Çimstone</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Belenco</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Neolith</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Laminam</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Corian</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">HI-MACS</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Coante</button></li>
-              <li><button onClick={() => onNavigate('brands')} className="hover:text-gold-300 transition-colors">Doğal Taş</button></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Contact & Studio Info */}
+          {/* Column 2: Contact & Studio Info */}
           <div className="space-y-4">
             <h4 className="font-serif text-base font-semibold text-white tracking-wide">
               Merkez Ofis
