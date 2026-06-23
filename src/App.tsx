@@ -15,6 +15,7 @@ import Simulator from './components/Simulator';
 import TemplateStudio from './components/TemplateStudio';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
+import AdminSetup from './pages/AdminSetup';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -1643,6 +1644,11 @@ export default function App() {
       {activePage === 'admin' && (
         <div className="fixed inset-0 z-[100] overflow-y-auto">
           <AdminPanel onNavigate={handleNavigate} />
+        </div>
+      )}
+      {activePage === 'admin-setup' && (
+        <div className="fixed inset-0 z-[100] overflow-y-auto">
+          <AdminSetup onNavigate={handleNavigate} />
         </div>
       )}
     </div>
