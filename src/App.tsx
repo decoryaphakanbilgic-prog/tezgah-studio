@@ -17,6 +17,7 @@ import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
 import CategoryDetailPage from './pages/CategoryDetailPage';
 import LegalPage from './pages/LegalPage';
+import BrandLogoBar from './components/BrandLogoBar';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -377,6 +378,9 @@ export default function App() {
                 ))}
               </div>
             </div>
+
+            {/* Brand Logo Marquee */}
+            <BrandLogoBar />
 
             {/* Section: Showcase Video */}
             <motion.section variants={pageItemVariants} className="relative w-full bg-neutral-950 overflow-hidden">
