@@ -453,91 +453,42 @@ export default function App() {
             </motion.section>
 
             {/* Section 3: Tezgah Kategorileri */}
-            <motion.section variants={pageItemVariants} className="py-12 bg-[#f0e9d8] relative overflow-hidden">
-              <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+            <motion.section variants={pageItemVariants} className="py-7 bg-[#f0e9d8] relative overflow-hidden">
+              <div className="relative mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
                 {/* Başlık alanı */}
-                <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
-                  <div className="space-y-3">
-                    <span className="font-mono text-[10px] text-amber-600 uppercase tracking-[0.3em]">Ürün Grupları</span>
-                    <h2 className="font-serif text-3xl sm:text-4xl font-bold text-neutral-900 leading-tight">
-                      Tezgah<br className="hidden sm:block" /> Kategorileri
-                    </h2>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[9px] text-amber-600 uppercase tracking-[0.3em]">Ürün Grupları</span>
+                    <span className="w-px h-3 bg-stone-300" />
+                    <h2 className="font-serif text-base font-bold text-neutral-900">Tezgah Kategorileri</h2>
                   </div>
-                  <p className="text-sm text-stone-500 font-light max-w-sm leading-relaxed">
-                    Her kullanım alanı ve bütçeye uygun premium tezgah çözümleri için geniş kategori yelpazemizi keşfedin.
-                  </p>
+                  <p className="hidden md:block text-[11px] text-stone-400 font-light">Her bütçeye uygun premium çözümler</p>
                 </div>
 
                 {/* Kategori listesi */}
-                <div className="divide-y divide-stone-200">
+                <div className="divide-y divide-stone-200/70">
                   {[
-                    {
-                      num: '01',
-                      id: 'dogal-tas',
-                      title: 'Doğal Taş Tezgahlar',
-                      desc: 'Mermer, granit, kuvarsit, oniks, traverten.',
-                      image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=200&q=80',
-                    },
-                    {
-                      num: '02',
-                      id: 'kuvars',
-                      title: 'Kuvars Tezgahlar',
-                      desc: 'Çimstone, Belenco, Silestone, Caesarstone ve benzeri markalar.',
-                      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=200&q=80',
-                    },
-                    {
-                      num: '03',
-                      id: 'porselen',
-                      title: 'Porselen & Seramik Tezgahlar',
-                      desc: 'Dekton, Laminam, Neolith, SapienStone, büyük ebat seramikler.',
-                      image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=200&q=80',
-                    },
-                    {
-                      num: '04',
-                      id: 'akrilik',
-                      title: 'Akrilik / Solid Surface Tezgahlar',
-                      desc: 'Corian, Hi-Macs, Staron, Tristone.',
-                      image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=200&q=80',
-                    },
-                    {
-                      num: '05',
-                      id: 'ekonomik',
-                      title: 'Ekonomik & Alternatif Tezgahlar',
-                      desc: 'Laminat, kompakt laminat, ahşap, beton, paslanmaz çelik.',
-                      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=80',
-                    },
+                    { num: '01', id: 'dogal-tas', title: 'Doğal Taş Tezgahlar', desc: 'Mermer, granit, kuvarsit, oniks, traverten.', image: 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=200&q=80' },
+                    { num: '02', id: 'kuvars', title: 'Kuvars Tezgahlar', desc: 'Çimstone, Belenco, Silestone, Caesarstone ve benzeri markalar.', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=200&q=80' },
+                    { num: '03', id: 'porselen', title: 'Porselen & Seramik Tezgahlar', desc: 'Dekton, Laminam, Neolith, SapienStone, büyük ebat seramikler.', image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=200&q=80' },
+                    { num: '04', id: 'akrilik', title: 'Akrilik / Solid Surface Tezgahlar', desc: 'Corian, Hi-Macs, Staron, Tristone.', image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=200&q=80' },
+                    { num: '05', id: 'ekonomik', title: 'Ekonomik & Alternatif Tezgahlar', desc: 'Laminat, kompakt laminat, ahşap, beton, paslanmaz çelik.', image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=200&q=80' },
                   ].map((cat) => (
                     <div
                       key={cat.num}
                       onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
-                      className="group flex items-center gap-6 py-5 cursor-pointer transition-all duration-300 hover:bg-white px-5 -mx-5 rounded-2xl"
+                      className="group flex items-center gap-4 py-2.5 cursor-pointer transition-all duration-200 hover:bg-white/70 px-3 -mx-3 rounded-xl"
                     >
-                      {/* Yuvarlak fotoğraf */}
-                      <div className="shrink-0 h-14 w-14 rounded-full overflow-hidden ring-2 ring-stone-200 group-hover:ring-amber-400 transition-all duration-300 shadow-sm">
-                        <img
-                          src={cat.image}
-                          alt={cat.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          referrerPolicy="no-referrer"
-                        />
+                      <div className="shrink-0 h-9 w-9 rounded-full overflow-hidden ring-1 ring-stone-200 group-hover:ring-amber-400 transition-all duration-200 shadow-sm">
+                        <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
                       </div>
-
-                      {/* Numara */}
-                      <span className="shrink-0 font-mono text-[11px] text-stone-400 tracking-widest w-6">{cat.num}</span>
-
-                      {/* Ayırıcı çizgi */}
-                      <div className="shrink-0 h-8 w-px bg-stone-200" />
-
-                      {/* Başlık + Açıklama */}
-                      <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-8">
-                        <h4 className="text-sm font-semibold text-neutral-800 tracking-tight group-hover:text-amber-600 transition-colors duration-300">
-                          {cat.title}
-                        </h4>
-                        <p className="text-xs text-stone-400 font-light sm:text-right max-w-xs">{cat.desc}</p>
+                      <span className="shrink-0 font-mono text-[10px] text-stone-300 tracking-widest w-5">{cat.num}</span>
+                      <div className="shrink-0 h-5 w-px bg-stone-200" />
+                      <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-6">
+                        <h4 className="text-[13px] font-semibold text-neutral-800 tracking-tight group-hover:text-amber-600 transition-colors duration-200">{cat.title}</h4>
+                        <p className="text-[11px] text-stone-400 font-light sm:text-right">{cat.desc}</p>
                       </div>
-
-                      {/* Ok ikonu */}
-                      <ArrowRight className="shrink-0 h-4 w-4 text-stone-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-300" />
+                      <ArrowRight className="shrink-0 h-3.5 w-3.5 text-stone-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-200" />
                     </div>
                   ))}
                 </div>
