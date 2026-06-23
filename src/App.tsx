@@ -837,18 +837,26 @@ export default function App() {
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => {
-                          setSelectedCategoryForWizard(null);
-                          setSelectedMaterialForWizard(cat.name);
-                          setSelectedBrandForWizard(null);
-                          setActivePage('quote-wizard');
-                        }}
-                        className="rounded-full bg-neutral-950 text-white hover:bg-gold-600 font-semibold px-6 py-3 text-xs tracking-widest uppercase transition-colors shrink-0 text-center"
-                        id={`cat-cta-${cat.id}`}
-                      >
-                        Fiyat Talebi Al
-                      </button>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <button
+                          onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
+                          className="rounded-full border border-neutral-300 text-neutral-700 hover:border-amber-500 hover:text-amber-600 font-semibold px-5 py-3 text-xs tracking-widest uppercase transition-colors"
+                        >
+                          Detayları Gör
+                        </button>
+                        <button
+                          onClick={() => {
+                            setSelectedCategoryForWizard(null);
+                            setSelectedMaterialForWizard(cat.name);
+                            setSelectedBrandForWizard(null);
+                            setActivePage('quote-wizard');
+                          }}
+                          className="rounded-full bg-neutral-950 text-white hover:bg-gold-600 font-semibold px-6 py-3 text-xs tracking-widest uppercase transition-colors text-center"
+                          id={`cat-cta-${cat.id}`}
+                        >
+                          Fiyat Talebi Al
+                        </button>
+                      </div>
                     </div>
 
                   </div>
