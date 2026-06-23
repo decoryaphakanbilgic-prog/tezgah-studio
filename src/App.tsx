@@ -457,7 +457,7 @@ export default function App() {
               <div className="relative mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
                 {/* Başlık alanı */}
                 <div className="mb-4">
-                  <h2 className="font-serif text-xl font-bold text-amber-800/70 tracking-tight">Tezgah Kategorileri</h2>
+                  <h2 className="font-mono text-sm font-bold text-neutral-800 tracking-[0.2em] uppercase">Tezgah Kategorileri</h2>
                   <p className="text-[11px] text-amber-800/70 font-medium italic mt-1 leading-relaxed">Doğal taştan akrilik yüzeylere, her kullanım alanı ve bütçeye özel premium tezgah çözümleri</p>
                 </div>
 
@@ -473,18 +473,18 @@ export default function App() {
                     <div
                       key={cat.num}
                       onClick={() => { setSelectedCategoryId(cat.id); handleNavigate('category-detail'); }}
-                      className="group flex items-center gap-4 py-2.5 cursor-pointer transition-all duration-200 hover:bg-white/70 px-3 -mx-3 rounded-xl"
+                      className="group flex items-center gap-4 py-3 cursor-pointer transition-all duration-200 hover:bg-white/80 px-4 -mx-4 rounded-xl"
                     >
-                      <div className="shrink-0 h-9 w-9 rounded-full overflow-hidden ring-1 ring-stone-200 group-hover:ring-amber-400 transition-all duration-200 shadow-sm">
+                      <div className="shrink-0 h-11 w-11 rounded-full overflow-hidden ring-2 ring-stone-300 group-hover:ring-amber-400 transition-all duration-200 shadow-sm">
                         <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
                       </div>
-                      <span className="shrink-0 font-mono text-[10px] text-stone-500 tracking-widest w-5">{cat.num}</span>
-                      <div className="shrink-0 h-5 w-px bg-stone-200" />
+                      <span className="shrink-0 font-mono text-[11px] font-semibold text-stone-600 tracking-widest w-5">{cat.num}</span>
+                      <div className="shrink-0 h-5 w-px bg-stone-300" />
                       <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-6">
-                        <h4 className="text-[13px] font-semibold text-neutral-800 tracking-tight group-hover:text-amber-600 transition-colors duration-200">{cat.title}</h4>
-                        <p className="text-[11px] text-stone-600 sm:text-right">{cat.desc}</p>
+                        <h4 className="text-sm font-bold text-neutral-900 tracking-tight group-hover:text-amber-600 transition-colors duration-200">{cat.title}</h4>
+                        <p className="text-[11px] text-stone-700 sm:text-right">{cat.desc}</p>
                       </div>
-                      <ArrowRight className="shrink-0 h-3.5 w-3.5 text-stone-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-200" />
+                      <ArrowRight className="shrink-0 h-4 w-4 text-stone-500 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-200" />
                     </div>
                   ))}
                 </div>
