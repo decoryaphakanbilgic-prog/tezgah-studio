@@ -453,7 +453,7 @@ export default function App() {
             </motion.section>
 
             {/* Section 3: Tezgah Kategorileri */}
-            <motion.section variants={pageItemVariants} className="py-24 bg-amber-50 relative overflow-hidden">
+            <motion.section variants={pageItemVariants} className="py-24 bg-[#f0e9d8] relative overflow-hidden">
               <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
                 {/* Başlık alanı */}
                 <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
