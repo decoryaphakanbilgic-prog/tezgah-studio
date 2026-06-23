@@ -18,11 +18,11 @@ const brands = [
 function LogoItem({ name, sub }: { name: string; sub: string }) {
   return (
     <div className="flex flex-col items-center justify-center px-10 shrink-0 select-none group">
+      <span className="font-mono text-[8px] tracking-[0.2em] text-white/20 group-hover:text-amber-400 transition-colors duration-300 uppercase mb-0.5">
+        {sub}
+      </span>
       <span className="font-serif text-[14px] font-bold tracking-widest text-white/40 group-hover:text-white/90 transition-colors duration-300 uppercase whitespace-nowrap">
         {name}
-      </span>
-      <span className="font-mono text-[8px] tracking-[0.2em] text-white/20 group-hover:text-amber-400 transition-colors duration-300 uppercase mt-0.5">
-        {sub}
       </span>
     </div>
   );
