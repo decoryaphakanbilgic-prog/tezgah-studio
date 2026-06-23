@@ -478,11 +478,11 @@ export default function App() {
                       <div className="shrink-0 h-9 w-9 rounded-full overflow-hidden ring-1 ring-stone-200 group-hover:ring-amber-400 transition-all duration-200 shadow-sm">
                         <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
                       </div>
-                      <span className="shrink-0 font-mono text-[10px] text-stone-300 tracking-widest w-5">{cat.num}</span>
+                      <span className="shrink-0 font-mono text-[10px] text-stone-500 tracking-widest w-5">{cat.num}</span>
                       <div className="shrink-0 h-5 w-px bg-stone-200" />
                       <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-6">
                         <h4 className="text-[13px] font-semibold text-neutral-800 tracking-tight group-hover:text-amber-600 transition-colors duration-200">{cat.title}</h4>
-                        <p className="text-[11px] text-stone-400 font-light sm:text-right">{cat.desc}</p>
+                        <p className="text-[11px] text-stone-600 sm:text-right">{cat.desc}</p>
                       </div>
                       <ArrowRight className="shrink-0 h-3.5 w-3.5 text-stone-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-200" />
                     </div>
