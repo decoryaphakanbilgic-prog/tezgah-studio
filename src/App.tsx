@@ -15,7 +15,6 @@ import Simulator from './components/Simulator';
 import TemplateStudio from './components/TemplateStudio';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
-import AdminSetup from './pages/AdminSetup';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -100,13 +99,6 @@ export default function App() {
       setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (window.location.hash === '#admin-setup') {
-      setActivePage('admin-setup');
-      window.history.replaceState(null, '', window.location.pathname);
-    }
   }, []);
 
   useEffect(() => {
@@ -1651,11 +1643,6 @@ export default function App() {
       {activePage === 'admin' && (
         <div className="fixed inset-0 z-[100] overflow-y-auto">
           <AdminPanel onNavigate={handleNavigate} />
-        </div>
-      )}
-      {activePage === 'admin-setup' && (
-        <div className="fixed inset-0 z-[100] overflow-y-auto">
-          <AdminSetup onNavigate={handleNavigate} />
         </div>
       )}
     </div>
