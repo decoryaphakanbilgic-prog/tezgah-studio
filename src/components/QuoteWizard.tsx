@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../lib/firebase';
 import { 
   ArrowLeft, ArrowRight, Check, Sparkles, UploadCloud, 
   MapPin, Phone, Mail, FileText, CheckCircle, ShieldAlert,
@@ -106,27 +108,46 @@ export default function QuoteWizard({
       if (validateStep5()) {
         setSubmitted(true);
         const data = { category, material: selectedMaterial, brand: selectedBrand, colorGroup: selectedColorGroup, ...formData };
-        emailjs.send(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_TEKLIF,
-          {
-            proje_turu: data.category ?? '—',
-            malzeme: data.material ?? '—',
-            marka: data.brand ?? '—',
-            renk_grubu: data.colorGroup ?? '—',
-            ad_soyad: data.fullName,
-            telefon: data.phone,
-            email: data.email,
-            ilce: data.district,
-            olcu: data.approxMeasure,
-            uygulama: data.applicationArea,
-            kesif: data.discoveryRequested ? 'Evet' : 'Hayır',
-            montaj: data.installRequested ? 'Evet' : 'Hayır',
-            notlar: data.notes || '—',
-            to_email: 'hakan.bilgic@decoryap.com',
-          },
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-        ).catch(() => {});
+
+        const sendEmail = async () => {
+          let dosyaLink = '—';
+          if (data.attachment && storage) {
+            try {
+              const timestamp = Date.now();
+              const safeName = data.attachment.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+              const storageRef = ref(storage, `teklifler/${timestamp}_${safeName}`);
+              await uploadBytes(storageRef, data.attachment);
+              dosyaLink = await getDownloadURL(storageRef);
+            } catch {
+              dosyaLink = 'Dosya yüklenemedi';
+            }
+          }
+
+          await emailjs.send(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID_TEKLIF,
+            {
+              proje_turu: data.category ?? '—',
+              malzeme: data.material ?? '—',
+              marka: data.brand ?? '—',
+              renk_grubu: data.colorGroup ?? '—',
+              ad_soyad: data.fullName,
+              telefon: data.phone,
+              email: data.email,
+              ilce: data.district,
+              olcu: data.approxMeasure,
+              uygulama: data.applicationArea,
+              kesif: data.discoveryRequested ? 'Evet' : 'Hayır',
+              montaj: data.installRequested ? 'Evet' : 'Hayır',
+              notlar: data.notes || '—',
+              dosya_link: dosyaLink,
+              to_email: 'hakan.bilgic@decoryap.com',
+            },
+            import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+          );
+        };
+
+        sendEmail().catch(() => {});
         onComplete(data);
       }
       return;
@@ -623,14 +644,14 @@ export default function QuoteWizard({
                   <div className="relative border border-dashed border-stone-300 bg-stone-50/50 rounded-lg p-3 text-center hover:border-gold-400 transition-colors cursor-pointer">
                     <input
                       type="file"
-                      accept=".pdf,.jpg,.jpeg,.png"
+                      accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf,.skp,.rvt,.ifc,.zip,.rar,.docx,.xlsx"
                       onChange={handleFileChange}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       id="input-file-upload"
                     />
                     <UploadCloud className="h-5 w-5 text-stone-400 mx-auto mb-1" />
                     <span className="text-[10px] text-stone-600 font-light block">
-                      {formData.attachmentName ? formData.attachmentName : "Çizim sürükleyin veya göz atın (PDF, JPG, PNG)"}
+                      {formData.attachmentName ? formData.attachmentName : "PDF, JPG, PNG, DWG, DXF, SKP ve diğerleri"}
                     </span>
                   </div>
                 </div>
