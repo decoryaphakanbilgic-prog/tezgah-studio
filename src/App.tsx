@@ -1246,10 +1246,28 @@ export default function App() {
           </motion.div>
         )}
 
+        {/* Kategori Detay Sayfası */}
+        {activePage === 'category-detail' && selectedCategoryId && (
+          <div className="min-h-screen bg-white">
+            <CategoryDetailPage
+              categoryId={selectedCategoryId}
+              onNavigate={handleNavigate}
+              onQuote={() => handleNavigate('quote-wizard')}
+            />
+          </div>
+        )}
+
+        {/* Yasal Sayfalar */}
+        {legalPage && (
+          <div className="min-h-screen bg-neutral-50">
+            <LegalPage page={legalPage} onBack={() => { setLegalPage(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+          </div>
+        )}
+
       </main>
 
       {/* FOOTER */}
-      <Footer onNavigate={handleNavigate} onLegal={(p) => setLegalPage(p)} />
+      <Footer onNavigate={handleNavigate} onLegal={(p) => { setLegalPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
 
       {/* FAVORITES DRAWER SLIDEOUT SHEET */}
       {isFavoritesDrawerOpen && (
@@ -1530,24 +1548,6 @@ export default function App() {
 
       {/* Auth Modal */}
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
-
-      {/* Kategori Detay Sayfası */}
-      {activePage === 'category-detail' && selectedCategoryId && (
-        <div className="fixed inset-0 z-[90] overflow-y-auto bg-white">
-          <CategoryDetailPage
-            categoryId={selectedCategoryId}
-            onNavigate={handleNavigate}
-            onQuote={() => handleNavigate('quote-wizard')}
-          />
-        </div>
-      )}
-
-      {/* Yasal Sayfalar */}
-      {legalPage && (
-        <div className="fixed inset-0 z-[95] overflow-y-auto bg-neutral-50">
-          <LegalPage page={legalPage} onBack={() => setLegalPage(null)} />
-        </div>
-      )}
 
       {/* Admin Panel — tam sayfa overlay */}
       {activePage === 'admin' && (
