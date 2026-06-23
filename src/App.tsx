@@ -103,6 +103,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (window.location.hash === '#admin-setup') {
+      setActivePage('admin-setup');
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem('tezgahstudio_favs', JSON.stringify(favorites));
   }, [favorites]);
 
