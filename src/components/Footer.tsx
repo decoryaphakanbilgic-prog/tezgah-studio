@@ -3,9 +3,10 @@ import { Mail, Phone, MapPin, Award, Instagram, MessageCircle } from 'lucide-rea
 
 interface FooterProps {
   onNavigate: (page: string) => void;
+  onLegal: (page: 'gizlilik' | 'kullanim' | 'kvkk') => void;
 }
 
-export default function Footer({ onNavigate }: FooterProps) {
+export default function Footer({ onNavigate, onLegal }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -90,9 +91,9 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between px-6 py-6 sm:px-8 md:flex-row lg:px-12 text-xs text-neutral-500 font-light">
           <p>© {currentYear} Tezgah Studio. Tüm Hakları Saklıdır.</p>
           <div className="mt-3 flex space-x-6 md:mt-0">
-            <span className="hover:text-neutral-400 transition-colors">Gizlilik Politikası</span>
-            <span className="hover:text-neutral-400 transition-colors">Kullanım Şartları</span>
-            <span className="hover:text-neutral-400 transition-colors">KVKK Aydınlatma Metni</span>
+            <button onClick={() => onLegal('gizlilik')} className="hover:text-neutral-300 transition-colors">Gizlilik Politikası</button>
+            <button onClick={() => onLegal('kullanim')} className="hover:text-neutral-300 transition-colors">Kullanım Şartları</button>
+            <button onClick={() => onLegal('kvkk')} className="hover:text-neutral-300 transition-colors">KVKK Aydınlatma Metni</button>
           </div>
         </div>
       </div>

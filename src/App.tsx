@@ -16,6 +16,7 @@ import TemplateStudio from './components/TemplateStudio';
 import AuthModal from './components/AuthModal';
 import AdminPanel from './pages/AdminPanel';
 import CategoryDetailPage from './pages/CategoryDetailPage';
+import LegalPage from './pages/LegalPage';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -75,6 +76,7 @@ export default function App() {
   const [isFavoritesDrawerOpen, setIsFavoritesDrawerOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+  const [legalPage, setLegalPage] = useState<'gizlilik' | 'kullanim' | 'kvkk' | null>(null);
 
   // Home Hero slider states
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -1240,7 +1242,7 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} onLegal={(p) => setLegalPage(p)} />
 
       {/* FAVORITES DRAWER SLIDEOUT SHEET */}
       {isFavoritesDrawerOpen && (
@@ -1530,6 +1532,13 @@ export default function App() {
             onNavigate={handleNavigate}
             onQuote={() => handleNavigate('quote-wizard')}
           />
+        </div>
+      )}
+
+      {/* Yasal Sayfalar */}
+      {legalPage && (
+        <div className="fixed inset-0 z-[95] overflow-y-auto bg-neutral-50">
+          <LegalPage page={legalPage} onBack={() => setLegalPage(null)} />
         </div>
       )}
 
