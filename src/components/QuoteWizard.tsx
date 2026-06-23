@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   ArrowLeft, ArrowRight, Check, Sparkles, UploadCloud, 
   MapPin, Phone, Mail, FileText, CheckCircle, ShieldAlert,
@@ -104,13 +105,29 @@ export default function QuoteWizard({
     if (step === 5) {
       if (validateStep5()) {
         setSubmitted(true);
-        onComplete({
-          category,
-          material: selectedMaterial,
-          brand: selectedBrand,
-          colorGroup: selectedColorGroup,
-          ...formData
-        });
+        const data = { category, material: selectedMaterial, brand: selectedBrand, colorGroup: selectedColorGroup, ...formData };
+        emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_TEKLIF,
+          {
+            proje_turu: data.category ?? '—',
+            malzeme: data.material ?? '—',
+            marka: data.brand ?? '—',
+            renk_grubu: data.colorGroup ?? '—',
+            ad_soyad: data.fullName,
+            telefon: data.phone,
+            email: data.email,
+            ilce: data.district,
+            olcu: data.approxMeasure,
+            uygulama: data.applicationArea,
+            kesif: data.discoveryRequested ? 'Evet' : 'Hayır',
+            montaj: data.installRequested ? 'Evet' : 'Hayır',
+            notlar: data.notes || '—',
+            to_email: 'hakan.bilgic@decoryap.com',
+          },
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        ).catch(() => {});
+        onComplete(data);
       }
       return;
     }
