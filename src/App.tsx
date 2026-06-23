@@ -427,25 +427,25 @@ export default function App() {
                 </div>
 
                 <div className="lg:col-span-7 grid grid-cols-3 gap-4">
-                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96">
+                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96 group">
                     <img
                       src="/banyo-tezgah.jpg"
                       alt="Banyo Tezgah Modelleri"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96">
+                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96 group">
                     <img
                       src="/mutfak-tezgah.jpg"
                       alt="Mutfak Tezgahları"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
-                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96">
+                  <div className="relative rounded-2xl overflow-hidden shadow-md h-96 group">
                     <img
                       src="/gri-tezgah.jpg"
                       alt="Tezgah Üretimi"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                 </div>
