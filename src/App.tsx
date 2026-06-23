@@ -458,9 +458,7 @@ export default function App() {
                 {/* Başlık alanı */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[9px] text-amber-600 uppercase tracking-[0.3em]">Tezgah Kategorileri</span>
-                    <span className="w-px h-3 bg-stone-300" />
-                    <h2 className="font-serif text-base font-bold text-neutral-900">Ürün Grupları</h2>
+                    <h2 className="font-serif text-xl font-bold text-neutral-900 tracking-tight">Tezgah Kategorileri</h2>
                   </div>
                   <p className="hidden md:block text-[11px] text-amber-800/70 font-medium italic max-w-xs text-right leading-relaxed">Doğal taştan akrilik yüzeylere, her kullanım alanı ve bütçeye özel premium tezgah çözümleri</p>
                 </div>
