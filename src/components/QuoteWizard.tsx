@@ -490,7 +490,7 @@ export default function QuoteWizard({
                       placeholder="Örn: Ahmet Yılmaz"
                       value={formData.fullName}
                       onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                      className={`w-full text-xs border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.fullName ? 'border-red-400' : 'border-stone-300'}`}
+                      className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.fullName ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-fullname"
                     />
                     {errors.fullName && <p className="text-[10px] text-red-500 mt-0.5">{errors.fullName}</p>}
@@ -505,7 +505,7 @@ export default function QuoteWizard({
                       placeholder="0532..."
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      className={`w-full text-xs border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.phone ? 'border-red-400' : 'border-stone-300'}`}
+                      className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.phone ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-phone"
                     />
                     {errors.phone && <p className="text-[10px] text-red-500 mt-0.5">{errors.phone}</p>}
@@ -517,7 +517,7 @@ export default function QuoteWizard({
                       placeholder="ahmet@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className={`w-full text-xs border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.email ? 'border-red-400' : 'border-stone-300'}`}
+                      className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.email ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-email"
                     />
                     {errors.email && <p className="text-[10px] text-red-500 mt-0.5">{errors.email}</p>}
@@ -530,7 +530,7 @@ export default function QuoteWizard({
                     <select
                       value={formData.city}
                       onChange={(e) => setFormData({...formData, city: e.target.value})}
-                      className="w-full text-xs border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500"
+                      className="w-full text-xs text-neutral-900 border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500"
                       id="select-city"
                     >
                       <option value="İstanbul">İstanbul</option>
@@ -549,7 +549,7 @@ export default function QuoteWizard({
                       placeholder="Örn: Beşiktaş"
                       value={formData.district}
                       onChange={(e) => setFormData({...formData, district: e.target.value})}
-                      className={`w-full text-xs border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.district ? 'border-red-400' : 'border-stone-300'}`}
+                      className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.district ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-district"
                     />
                     {errors.district && <p className="text-[10px] text-red-500 mt-0.5">{errors.district}</p>}
@@ -561,7 +561,7 @@ export default function QuoteWizard({
                   <select
                     value={formData.applicationArea}
                     onChange={(e) => setFormData({...formData, applicationArea: e.target.value})}
-                    className="w-full text-xs border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500"
+                    className="w-full text-xs text-neutral-900 border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500"
                     id="select-application-area"
                   >
                     <option value="Mutfak Tezgahı">Mutfak Tezgahı</option>
@@ -583,7 +583,7 @@ export default function QuoteWizard({
                     placeholder="Örn: 3.5 Metretül veya L mutfak (60x320 cm + 60x150 cm)"
                     value={formData.approxMeasure}
                     onChange={(e) => setFormData({...formData, approxMeasure: e.target.value})}
-                    className={`w-full text-xs border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.approxMeasure ? 'border-red-400' : 'border-stone-300'}`}
+                    className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.approxMeasure ? 'border-red-400' : 'border-stone-300'}`}
                     id="input-measure"
                   />
                   {errors.approxMeasure && <p className="text-[10px] text-red-500 mt-0.5">{errors.approxMeasure}</p>}
@@ -643,7 +643,7 @@ export default function QuoteWizard({
                   placeholder="Lavabo tipi (alttan yapıştırma / tezgahüstü), evye markası, süpürgelik yüksekliği veya özel kenar pahı isteklerinizi buraya yazabilirsiniz..."
                   value={formData.notes}
                   onChange={(e) => setFormData({...formData, notes: e.target.value})}
-                  className="w-full text-xs border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500 h-16 resize-none"
+                  className="w-full text-xs text-neutral-900 border border-stone-300 bg-stone-50 rounded-lg px-3 py-2.5 outline-none focus:bg-white focus:border-gold-500 h-16 resize-none"
                   id="textarea-notes"
                 />
               </div>
