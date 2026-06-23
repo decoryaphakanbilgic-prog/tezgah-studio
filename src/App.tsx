@@ -1343,7 +1343,6 @@ export default function App() {
               initialBrand={selectedBrandForWizard}
               onCancel={() => handleNavigate('home')}
               onComplete={(quoteData) => {
-                console.log("Success Proposal Collected!", quoteData);
                 // Clear state on submission
                 setQuoteCart([]);
                 setSelectedCategoryForWizard(null);
