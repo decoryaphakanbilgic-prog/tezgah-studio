@@ -572,12 +572,12 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
                   key={proj.id}
                   className="group relative bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300"
                 >
-                  {/* Logo area — full card height, plenty of breathing room */}
-                  <div className="flex items-center justify-center bg-white px-8 py-10 h-[160px]">
+                  {/* Logo area */}
+                  <div className="bg-white px-5 py-4 h-[130px]">
                     <img
                       src={proj.logo}
                       alt={proj.client}
-                      className="max-h-[56px] max-w-[160px] w-auto h-auto object-contain"
+                      className="w-full h-full object-contain"
                       referrerPolicy="no-referrer"
                       loading="lazy"
                     />
