@@ -19,7 +19,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Konutlar',
     subtitle: 'Yaşam Alanlarınız İçin',
     description: 'Mutfaktan banyoya, pencere denizliklerinden duş teknelerine kadar evinizin her noktasında estetik ve dayanıklı tezgah çözümleri sunuyoruz. Günlük kullanımın yoğunluğuna karşı yıllarca ilk günkü görünümünü koruyan yüzeyler.',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80',
+    image: '/usage-areas/konut.jpg',
     applications: [
       'Mutfak tezgahları ve arka paneller',
       'Banyo tezgahları ve lavabo bankoları',
@@ -36,7 +36,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Sağlık Merkezleri',
     subtitle: 'Hijyen ve Sterilite Önce Gelir',
     description: 'Hastane, klinik ve laboratuvarlarda hijyen en kritik gerekliliktir. Gözeneksiz ve antimikrobiyal yüzeyler bakteri barındırmaz, dezenfektan kimyasallara karşı tam direnç gösterir. Sağlık alanları için TSE ve uluslararası hijyen sertifikalı seçenekler sunuyoruz.',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80',
+    image: '/usage-areas/hastane.jpg',
     applications: [
       'Karşılama ve hemşire bankoları',
       'Laboratuvar tezgahları',
@@ -53,7 +53,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Alışveriş & Eğlence Merkezleri',
     subtitle: 'Yüksek Trafik, Üstün Dayanıklılık',
     description: 'Binlerce kişinin günlük kullandığı AVM ve eğlence merkezlerinde darbe, çizik ve yoğun temizlik kimyasallarına karşı üstün direnç şarttır. Estetik görünümü uzun yıllar boyu koruyan ultra kompakt ve kuvars yüzeyleri bu ortamlar için ideal seçenektir.',
-    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=900&q=80',
+    image: '/usage-areas/avm.jpg',
     applications: [
       'Karşılama ve bilgilendirme bankoları',
       'Genel WC tezgahları',
@@ -87,7 +87,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Havalimanları',
     subtitle: 'Kesintisiz Servis Ortamları',
     description: '7/24 kesintisiz hizmet veren havalimanlarında aşınmaya, darbeye ve güçlü temizlik ürünlerine karşı maksimum direnç sunan tezgah çözümleri. Büyük yüzey alanları için renk ve desen sürekliliği sağlayan plaka eşleştirme hizmeti de sunulmaktadır.',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80',
+    image: '/usage-areas/havalimanı.jpg',
     applications: [
       'Genel WC tezgahları',
       'Karşılama ve tanıtım bankoları',
