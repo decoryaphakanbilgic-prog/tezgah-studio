@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, Compass, Ruler, Award, SlidersHorizontal, Sparkles, 
@@ -72,12 +72,28 @@ export default function App() {
       setShowIntroVideo(false);
     }
   }, [activePage]);
-  const closeIntroVideo = () => { setShowIntroVideo(false); setIntroMuted(true); };
   const [introMuted, setIntroMuted] = useState(true);
+  const introMutedRef = React.useRef(true);
   const introVideoRef = React.useRef<HTMLVideoElement>(null);
+
+  // React re-sets video.muted on every render due to the `muted` JSX prop.
+  // useLayoutEffect runs after each render (before paint) and corrects it.
+  useLayoutEffect(() => {
+    if (introVideoRef.current) {
+      introVideoRef.current.muted = introMutedRef.current;
+      introVideoRef.current.volume = 1;
+    }
+  });
+
+  const closeIntroVideo = () => {
+    introMutedRef.current = true;
+    setShowIntroVideo(false);
+    setIntroMuted(true);
+  };
   const toggleIntroMute = () => {
     if (!introVideoRef.current) return;
     const newMuted = !introMuted;
+    introMutedRef.current = newMuted;
     introVideoRef.current.muted = newMuted;
     introVideoRef.current.volume = 1;
     setIntroMuted(newMuted);
@@ -1163,10 +1179,7 @@ export default function App() {
             {/* 16:9 iframe */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
               <video
-                ref={(el) => {
-                  (introVideoRef as React.MutableRefObject<HTMLVideoElement | null>).current = el;
-                  if (el) { el.muted = true; el.volume = 1; }
-                }}
+                ref={introVideoRef}
                 className="absolute inset-0 w-full h-full object-cover"
                 src="/intro.mp4"
                 autoPlay
