@@ -19,6 +19,7 @@ import CategoryDetailPage from './pages/CategoryDetailPage';
 import LegalPage from './pages/LegalPage';
 import RandevuPage from './pages/RandevuPage';
 import UsageAreasPage from './pages/UsageAreasPage';
+import ProjectsPage from './pages/ProjectsPage';
 import BrandLogoBar from './components/BrandLogoBar';
 import CustomCursor from './components/CustomCursor';
 import SoundManager from './components/SoundManager';
@@ -685,89 +686,10 @@ export default function App() {
         {/* 4. COLORS VIEW */}
         {/* 5. PROJECTS INSPIRATION VIEW */}
         {activePage === 'projects' && (
-          <motion.div variants={pageContainerVariants} initial="hidden" animate="visible" exit="hidden" className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 space-y-10" id="projects-page">
-            <motion.div variants={pageItemVariants} className="text-center md:text-left space-y-2">
-              <span className="font-mono text-xs text-gold-600 uppercase tracking-widest block">Galeri & Vizyon</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">Uygulama Alanları & Proje İlhamı</h2>
-              <p className="text-xs sm:text-sm text-stone-500 font-light max-w-2xl">
-                Seçkin mimarlarımızın imzasını taşıyan, mutfak adalarından monolitik ticari bankolara kadar lüks referanslarımız.
-              </p>
-            </motion.div>
-
-            {/* Category selection chips */}
-            <motion.div variants={pageItemVariants} className="flex flex-wrap justify-center sm:justify-start gap-1 pb-4 border-b border-stone-200">
-              {['Tümü', 'Mutfak', 'Banyo', 'Ticari', 'Özel Tasarım'].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setInspirationCategoryFilter(cat)}
-                  className={`px-5 py-2 text-xs font-semibold tracking-wider rounded-full border transition-all ${
-                    inspirationCategoryFilter === cat
-                      ? 'bg-neutral-950 text-white border-neutral-950'
-                      : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'
-                  }`}
-                  id={`btn-proj-filter-${cat}`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </motion.div>
-
-            {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {INSPIRATIONS.filter(p => inspirationCategoryFilter === 'Tümü' || p.category === inspirationCategoryFilter).map((proj) => (
-                <motion.div
-                  key={proj.id}
-                  variants={pageItemVariants}
-                  className="group bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-luxury flex flex-col interactive-card hover-gold-glow"
-                  id={`proj-card-${proj.id}`}
-                >
-                  <div className="relative h-64 overflow-hidden bg-stone-150">
-                    <img 
-                      src={proj.image} 
-                      alt={proj.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-neutral-850 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase border border-white/20">
-                      {proj.category}
-                    </div>
-                  </div>
-                  
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-stone-400 tracking-wider block uppercase">{proj.location}</span>
-                      <h4 className="font-serif text-lg font-bold text-neutral-900 group-hover:text-gold-600 transition-colors">
-                        {proj.title}
-                      </h4>
-                      <p className="text-xs text-neutral-500 font-light italic">
-                        Tasarımcı: {proj.designer}
-                      </p>
-                    </div>
-
-                    <div className="border-t border-stone-100 pt-3 flex items-center justify-between">
-                      <div>
-                        <span className="text-[11px] text-stone-400 uppercase font-bold block mb-0.5">Kullanılan Malzeme</span>
-                        <span className="text-xs font-medium text-neutral-850">{proj.materialUsed}</span>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          setSelectedCategoryForWizard(null);
-                          setSelectedMaterialForWizard(proj.materialUsed.split(' ')[0]); // Preselect category/material family
-                          setSelectedBrandForWizard(null);
-                          setActivePage('quote-wizard');
-                        }}
-                        className="text-xs font-bold text-white bg-neutral-950 hover:bg-gold-600 px-3 py-1.5 rounded transition-colors uppercase"
-                        id={`proj-cta-${proj.id}`}
-                      >
-                        Benzer Teklif Al
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <ProjectsPage
+            onNavigate={handleNavigate}
+            onQuote={() => handleNavigate('quote-wizard')}
+          />
         )}
 
         {/* 6.5 INTERACTIVE SIMULATOR VIEW */}
