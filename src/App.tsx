@@ -70,12 +70,11 @@ export default function App() {
   }, [activePage]);
   const closeIntroVideo = () => { setShowIntroVideo(false); setIntroMuted(true); };
   const [introMuted, setIntroMuted] = useState(true);
-  const introIframeRef = React.useRef<HTMLIFrameElement>(null);
+  const introVideoRef = React.useRef<HTMLVideoElement>(null);
   const toggleIntroMute = () => {
-    const cmd = introMuted ? 'unMute' : 'mute';
-    introIframeRef.current?.contentWindow?.postMessage(
-      JSON.stringify({ event: 'command', func: cmd, args: [] }), '*'
-    );
+    if (introVideoRef.current) {
+      introVideoRef.current.muted = !introMuted;
+    }
     setIntroMuted(!introMuted);
   };
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
@@ -1119,15 +1118,14 @@ export default function App() {
             </button>
             {/* 16:9 iframe */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
-              <iframe
-                ref={introIframeRef}
-                className="absolute"
-                style={{ top: '-8%', left: '-5%', width: '110%', height: '116%' }}
-                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&enablejsapi=1"
-                title="Tezgah Studio"
-                frameBorder="0"
-                allow="autoplay; encrypted-media; fullscreen"
-                allowFullScreen
+              <video
+                ref={introVideoRef}
+                className="absolute inset-0 w-full h-full object-cover"
+                src="/intro.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
               />
               {/* Her türlü etkileşimi engelle */}
               <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default', pointerEvents: 'all' }} />
