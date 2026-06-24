@@ -552,7 +552,7 @@ export default function App() {
             </motion.div>
 
             {/* Brands Grid — logo odaklı */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {filteredBrands.map((brand) => (
                 <motion.div
                   key={brand.id}
@@ -562,8 +562,8 @@ export default function App() {
                 >
                   {/* Logo alanı */}
                   <div
-                    className="flex items-center justify-start px-4 bg-stone-50 border-b border-stone-100 cursor-pointer"
-                    style={{ height: '88px' }}
+                    className="flex items-center justify-start px-6 bg-stone-50 border-b border-stone-100 cursor-pointer"
+                    style={{ height: '120px' }}
                     onClick={() => setSelectedBrand(brand)}
                   >
                     {brand.logoSrc ? (
@@ -571,7 +571,7 @@ export default function App() {
                         src={brand.logoSrc}
                         alt={brand.name}
                         className="object-contain group-hover:scale-105 transition-transform duration-300"
-                        style={{ width: `${(brand.logoScale ?? 1) * 110}px`, height: `${(brand.logoScale ?? 1) * 50}px`, objectFit: 'contain' }}
+                        style={{ width: `${(brand.logoScale ?? 1) * 140}px`, height: `${(brand.logoScale ?? 1) * 64}px`, objectFit: 'contain' }}
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).style.display = 'none';
                           (e.currentTarget.nextElementSibling as HTMLElement | null)?.style.setProperty('display', 'flex');
@@ -588,7 +588,7 @@ export default function App() {
                   </div>
 
                   {/* Bilgi */}
-                  <div className="p-2.5 flex flex-col gap-1.5 flex-1">
+                  <div className="p-4 flex flex-col gap-2 flex-1">
                     {/* İsim + origin */}
                     <div className="flex items-start justify-between gap-1">
                       <h3 className="font-bold text-neutral-900 text-[13px] leading-tight">{brand.name}</h3>
