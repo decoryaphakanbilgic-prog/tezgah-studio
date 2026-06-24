@@ -87,7 +87,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's7',
-        logo: svgLogo('Medicine', 'Hospital'),
+        logo: '/logos/medicine.jpeg',
         client: 'Medicine Hospital',
         title: 'Medicine Hospital Güneşli',
         location: 'Güneşli, İstanbul',
