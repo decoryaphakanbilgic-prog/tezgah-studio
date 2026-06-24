@@ -68,7 +68,16 @@ export default function App() {
       setShowIntroVideo(false);
     }
   }, [activePage]);
-  const closeIntroVideo = () => setShowIntroVideo(false);
+  const closeIntroVideo = () => { setShowIntroVideo(false); setIntroMuted(true); };
+  const [introMuted, setIntroMuted] = useState(true);
+  const introIframeRef = React.useRef<HTMLIFrameElement>(null);
+  const toggleIntroMute = () => {
+    const cmd = introMuted ? 'unMute' : 'mute';
+    introIframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func: cmd, args: [] }), '*'
+    );
+    setIntroMuted(!introMuted);
+  };
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   
   // Favorites system saved in localStorage
@@ -1111,8 +1120,9 @@ export default function App() {
             {/* 16:9 iframe */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
               <iframe
+                ref={introIframeRef}
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&enablejsapi=0"
+                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&enablejsapi=1"
                 title="Tezgah Studio"
                 frameBorder="0"
                 allow="autoplay; encrypted-media; fullscreen"
@@ -1120,6 +1130,17 @@ export default function App() {
               />
               {/* Her türlü etkileşimi engelle */}
               <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default', pointerEvents: 'all' }} />
+              {/* Ses butonu */}
+              <button
+                onClick={toggleIntroMute}
+                className="absolute bottom-4 right-4 z-20 flex items-center gap-2 bg-black/60 hover:bg-black/80 text-white text-xs font-semibold px-4 py-2 rounded-full backdrop-blur-sm transition-all"
+              >
+                {introMuted ? (
+                  <><span>🔇</span><span>Sesi Aç</span></>
+                ) : (
+                  <><span>🔊</span><span>Sesi Kapat</span></>
+                )}
+              </button>
             </div>
           </div>
         </div>
