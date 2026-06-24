@@ -243,7 +243,9 @@ export default function CategoryDetailPage({ categoryId, onNavigate, onQuote }: 
 
           <div className="space-y-4">
             {category.brands.map((brand) => (
-              <BrandCard key={brand.id} brand={brand} onQuote={onQuote} />
+              <React.Fragment key={brand.id}>
+                <BrandCard brand={brand} onQuote={onQuote} />
+              </React.Fragment>
             ))}
           </div>
         </section>

@@ -49,7 +49,9 @@ export default function BrandLogoBar() {
         }}
       >
         {[...brands, ...brands].map((b, i) => (
-          <LogoItem key={i} name={b.name} sub={b.sub} />
+          <React.Fragment key={i}>
+            <LogoItem name={b.name} sub={b.sub} />
+          </React.Fragment>
         ))}
       </div>
 
