@@ -308,6 +308,7 @@ export const BRANDS: Brand[] = [
     websiteUrl: "https://www.corian.com",
     colorsUrl: "https://www.corian.com/en/products/colors",
     documents: [
+      { title: "2026 Corian Inspirational Brochure Emea", size: "—", url: "https://www.corian.com.tr/sites/corian.com.tr/IMG/pdf/corian_inspirational_brochure_emea.pdf" },
       { title: "Corian Tasarım & Renk Kataloğu 2025", size: "—", url: "/catalogs/corian-katalog.pdf" },
       { title: "Teknik Uygulama Kılavuzu", size: "—", url: "/catalogs/corian-teknik.pdf" }
     ]
