@@ -169,14 +169,14 @@ export default function UsageAreasPage({ onNavigate, onQuote }: Props) {
         >
           <ArrowLeft className="h-4 w-4" /> Ana Sayfa
         </button>
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <span className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] block mb-3">
             Tezgah & Yüzey Çözümleri
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
             Uygulama Alanları
           </h1>
-          <p className="text-white/60 text-base leading-relaxed max-w-2xl">
+          <p className="text-white/60 text-base leading-relaxed max-w-2xl mx-auto">
             Konuttan hastaneye, havalimanından eğitim kurumuna kadar her ortamda doğru malzeme seçimi hem estetiği hem de uzun ömürlülüğü belirler. Projenizin gereksinimlerine özel çözüm sunuyoruz.
           </p>
         </div>
