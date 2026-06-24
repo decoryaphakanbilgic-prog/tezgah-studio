@@ -552,18 +552,18 @@ export default function App() {
             </motion.div>
 
             {/* Brands Grid — logo odaklı */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
               {filteredBrands.map((brand) => (
                 <motion.div
                   key={brand.id}
                   variants={pageItemVariants}
-                  className="group bg-white border border-stone-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
+                  className="group bg-white border border-stone-200/80 rounded-xl overflow-hidden shadow-xs hover:shadow-md hover:border-amber-200 transition-all duration-300 flex flex-col"
                   id={`brand-card-${brand.id}`}
                 >
                   {/* Logo alanı */}
                   <div
                     className="flex items-center justify-center bg-stone-50 border-b border-stone-100 cursor-pointer"
-                    style={{ height: '120px' }}
+                    style={{ height: '88px' }}
                     onClick={() => setSelectedBrand(brand)}
                   >
                     {brand.logoSrc ? (
@@ -571,7 +571,7 @@ export default function App() {
                         src={brand.logoSrc}
                         alt={brand.name}
                         className="object-contain group-hover:scale-105 transition-transform duration-300"
-                        style={{ width: `${(brand.logoScale ?? 1) * 140}px`, height: `${(brand.logoScale ?? 1) * 64}px`, objectFit: 'contain' }}
+                        style={{ width: `${(brand.logoScale ?? 1) * 110}px`, height: `${(brand.logoScale ?? 1) * 50}px`, objectFit: 'contain' }}
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).style.display = 'none';
                           (e.currentTarget.nextElementSibling as HTMLElement | null)?.style.setProperty('display', 'flex');
@@ -580,7 +580,7 @@ export default function App() {
                     ) : null}
                     {/* Fallback harf */}
                     <div
-                      className="h-14 w-14 rounded-full bg-neutral-950 text-white flex items-center justify-center font-serif font-bold text-lg"
+                      className="h-12 w-12 rounded-full bg-neutral-950 text-white flex items-center justify-center font-serif font-bold text-base"
                       style={{ display: brand.logoSrc ? 'none' : 'flex' }}
                     >
                       {brand.logo}
@@ -588,19 +588,41 @@ export default function App() {
                   </div>
 
                   {/* Bilgi */}
-                  <div className="p-3 flex flex-col gap-2 flex-1">
-                    <div>
-                      <h3 className="font-bold text-neutral-900 text-xs leading-tight">{brand.name}</h3>
-                      <div className="flex flex-wrap gap-1 mt-1">
-                        {brand.materials.slice(0, 2).map((m) => (
-                          <span key={m} className="bg-stone-100 text-stone-600 text-[9px] font-medium px-1.5 py-0.5 rounded">
-                            {m}
-                          </span>
-                        ))}
-                      </div>
+                  <div className="p-2.5 flex flex-col gap-1.5 flex-1">
+                    {/* İsim + origin */}
+                    <div className="flex items-start justify-between gap-1">
+                      <h3 className="font-bold text-neutral-900 text-[11px] leading-tight">{brand.name}</h3>
+                      <span className={`shrink-0 text-[8px] font-semibold px-1.5 py-0.5 rounded-full leading-none ${
+                        brand.origin === 'Yerli' ? 'bg-green-50 text-green-700' : 'bg-blue-50 text-blue-700'
+                      }`}>
+                        {brand.origin}
+                      </span>
                     </div>
 
-                    {/* Butonlar */}
+                    {/* Kısa açıklama */}
+                    <p className="text-[10px] text-stone-500 leading-relaxed line-clamp-2">{brand.description}</p>
+
+                    {/* Tier + renk sayısı */}
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full ${
+                        brand.tier === 'Premium' ? 'bg-amber-50 text-amber-600 border border-amber-100' : 'bg-stone-100 text-stone-500'
+                      }`}>
+                        {brand.tier}
+                      </span>
+                      <span className="text-stone-300 text-[9px]">·</span>
+                      <span className="text-[9px] text-stone-500 font-medium">{brand.colorsCount}+ renk</span>
+                    </div>
+
+                    {/* Malzeme etiketleri */}
+                    <div className="flex flex-wrap gap-1">
+                      {brand.materials.slice(0, 2).map((m) => (
+                        <span key={m} className="bg-stone-100 text-stone-600 text-[8px] font-medium px-1.5 py-0.5 rounded">
+                          {m}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Butonlar — değiştirilmedi */}
                     <div className="mt-auto grid grid-cols-2 gap-1.5 pt-1">
                       <button
                         onClick={() => setSelectedBrand(brand)}
