@@ -57,6 +57,19 @@ const pageItemVariants = {
 export default function App() {
   const [theme, setTheme] = useState<'milano' | 'nordic' | 'obsidian'>('obsidian');
   const [activePage, setActivePage] = useState<string>('home');
+
+  // Intro video popup — sadece ilk ziyarette göster
+  const [showIntroVideo, setShowIntroVideo] = useState(false);
+  useEffect(() => {
+    if (!localStorage.getItem('tezgahstudio_intro_seen')) {
+      const t = setTimeout(() => setShowIntroVideo(true), 800);
+      return () => clearTimeout(t);
+    }
+  }, []);
+  const closeIntroVideo = () => {
+    setShowIntroVideo(false);
+    localStorage.setItem('tezgahstudio_intro_seen', '1');
+  };
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   
   // Favorites system saved in localStorage
@@ -1077,6 +1090,41 @@ export default function App() {
         </div>
       )}
 
+
+      {/* Intro Video Popup */}
+      {showIntroVideo && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-neutral-950/80 backdrop-blur-sm"
+            onClick={closeIntroVideo}
+          />
+          {/* Video kutusu */}
+          <div className="relative z-10 w-full max-w-4xl mx-4">
+            {/* Kapat butonu */}
+            <button
+              onClick={closeIntroVideo}
+              className="absolute -top-10 right-0 h-8 w-8 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+              aria-label="Kapat"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            {/* 16:9 iframe */}
+            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
+                title="Tezgah Studio"
+                frameBorder="0"
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+              />
+              {/* Tıklamayı engelle */}
+              <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default' }} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Auth Modal */}
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
