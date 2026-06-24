@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { MessageSquare, ChevronRight } from 'lucide-react';
 
-// ── Wix CDN logo URLs (from akriliktezgah.net/referans) ──────────────────────
-const W = 'https://static.wixstatic.com/media/';
+// ── CDN helpers ────────────────────────────────────────────────────────────────
+const W  = 'https://static.wixstatic.com/media/';
+const WM = 'https://upload.wikimedia.org/wikipedia/';
+
+// Inline SVG text logo for brands without a public logo URL
+const svgLogo = (text: string, sub?: string) => {
+  const body = sub
+    ? `<text x='120' y='34' text-anchor='middle' font-family='Arial,sans-serif' font-size='17' font-weight='700' fill='%23222'>${text}</text><text x='120' y='56' text-anchor='middle' font-family='Arial,sans-serif' font-size='13' fill='%23777'>${sub}</text>`
+    : `<text x='120' y='48' text-anchor='middle' font-family='Arial,sans-serif' font-size='20' font-weight='700' fill='%23222'>${text}</text>`;
+  return `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 80'>${body}</svg>`;
+};
 
 interface Project {
   id: string;
@@ -26,7 +35,7 @@ const SECTIONS: Section[] = [
     projects: [
       {
         id: 's1',
-        logo: W + '8d8965_f9f15484adf44d958cbc9941b8345f3d~mv2.png/v1/fill/w_312,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/acibadem-saglik-grubu-1200x675.png',
+        logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Atakent Halkalı Hastanesi',
         location: 'Halkalı, İstanbul',
@@ -50,7 +59,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's4',
-        logo: W + '8d8965_0b7fb6ca1db9495a9900dd55b4c64601~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo2.png',
+        logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Bakırköy Klinik',
         location: 'Bakırköy, İstanbul',
@@ -66,7 +75,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's6',
-        logo: W + '8d8965_f9f15484adf44d958cbc9941b8345f3d~mv2.png/v1/fill/w_312,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/acibadem-saglik-grubu-1200x675.png',
+        logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Zekeriyaköy',
         location: 'Zekeriyaköy, İstanbul',
@@ -74,7 +83,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's7',
-        logo: W + '8d8965_70999ea9d3c7435bba363b691db7cd3c~mv2.jpg/v1/fill/w_267,h_140,al_c,q_80,enc_avif,quality_auto/Ekran%20Al%C4%B1nt%C4%B1s%C4%B1_JPG.jpg',
+        logo: svgLogo('Medicine', 'Hospital'),
         client: 'Medicine Hospital',
         title: 'Medicine Hospital Güneşli',
         location: 'Güneşli, İstanbul',
@@ -82,7 +91,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's8',
-        logo: W + '8d8965_94d26eaa43d847909bb655266b935dc7~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/960_acibadem_universitesi.jpg',
+        logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
         client: 'Acıbadem Üniversitesi',
         title: 'Kerem Aydınlar Kampüsü',
         location: 'İstanbul',
@@ -90,7 +99,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 's9',
-        logo: W + '8d8965_3a2424f6bb9440b1a85487f24d0bb8e8~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/medipol-saglik-beyaz-30ba23d4-c6b5-4ab1-99df-c3fac8cb9e6f.png',
+        logo: WM + 'en/thumb/e/e5/Istanbul_Medipol_University_Logo.png/250px-Istanbul_Medipol_University_Logo.png',
         client: 'Medipol Acıbadem',
         title: 'Medipol Acıbadem Hastanesi',
         location: 'İstanbul',
@@ -161,7 +170,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k5',
-        logo: W + '8d8965_11150d597a244498988b3c26e33e244c~mv2.jpg/v1/fill/w_244,h_140,al_c,q_80,enc_avif,quality_auto/tim-towers.jpg',
+        logo: svgLogo('TIMTAŞ'),
         client: 'Timtaş',
         title: 'Tim Towers İncek',
         location: 'İncek, Ankara',
@@ -169,7 +178,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k6',
-        logo: W + '8d8965_21de3fc3ad28401f82153def587c7b12~mv2.png/v1/fill/w_251,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir.png',
+        logo: 'https://www.mesa.com.tr/img/mesa-logo3.png',
         client: 'Mesa',
         title: 'Mesa Cadde Projesi',
         location: 'İstanbul',
@@ -177,7 +186,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k7',
-        logo: W + '8d8965_fed1dfbb31944531b032c21d14d4dea2~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo-vadistanbulbahce.jpg',
+        logo: 'https://www.artas.com.tr/assets/img/logo.png',
         client: 'Artaş',
         title: 'Vadi İstanbul Park',
         location: 'Kâğıthane, İstanbul',
@@ -193,7 +202,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k9',
-        logo: W + '8d8965_7a7eca2617254360a13924d78b5fd1a3~mv2.jpeg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir.jpeg',
+        logo: WM + 'en/thumb/1/1a/Istanbul_Technical_University_logo.svg/250px-Istanbul_Technical_University_logo.svg.png',
         client: 'İstanbul Teknik Üniversitesi',
         title: 'İTÜ Gölet Yurtları',
         location: 'Maslak, İstanbul',
@@ -209,7 +218,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k11',
-        logo: W + '8d8965_3ef45c7925ce45fd901b4171793860c2~mv2.jpg/v1/fill/w_410,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/cd1a2169-63e1-4e7c-b25e-cad70ec14bcb_edited.jpg',
+        logo: svgLogo('INNSA', 'Tower'),
         client: 'INNSA Tower',
         title: 'Zeytindalı Konakları Zekeriyaköy',
         location: 'Zekeriyaköy, İstanbul',
@@ -217,7 +226,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k12',
-        logo: W + '8d8965_e011e4d6d97940f3988eb648655b735b~mv2.jpeg/v1/fill/w_234,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/images%20(1).jpeg',
+        logo: 'https://www.artas.com.tr/assets/img/logo.png',
         client: 'Artaş',
         title: 'Avrupa Konutları Atakent 4',
         location: 'Atakent, İstanbul',
@@ -225,7 +234,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k13',
-        logo: W + '8d8965_18b58d15b5954039969a0f3fde2333e8~mv2.png/v1/fill/w_210,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/logo-menu.png',
+        logo: 'https://www.artas.com.tr/assets/img/logo.png',
         client: 'Artaş',
         title: 'Avrupa Konutları Başakşehir',
         location: 'Başakşehir, İstanbul',
@@ -233,7 +242,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'k14',
-        logo: W + '8d8965_c3c1842bc9544253abbf703cfcc70118~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(5).png',
+        logo: WM + 'commons/f/f3/Ko%C3%A7_University.png',
         client: 'Koç Üniversitesi',
         title: 'Koç Üniversitesi Yurtları',
         location: 'Sarıyer, İstanbul',
@@ -248,7 +257,7 @@ const SECTIONS: Section[] = [
     projects: [
       {
         id: 'm1',
-        logo: W + '8d8965_e296ee97fbc24352a89d53acfc7f4043~mv2.jpg/v1/fill/w_213,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5c8c0a1807291c1d74f8d4d0.jpg',
+        logo: WM + 'en/thumb/6/6d/Istanbul_Metropolitan_Municipality_emblem.png/250px-Istanbul_Metropolitan_Municipality_emblem.png',
         client: 'İstanbul Büyükşehir Belediyesi',
         title: 'M7 Mecidiyeköy–Mahmutbey Hattı',
         location: 'İstanbul Metro Ağı',
@@ -256,7 +265,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'm2',
-        logo: W + '8d8965_d598668526f04e199304154b08bf3213~mv2.png/v1/fill/w_354,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/alarko-kombi.png',
+        logo: WM + 'commons/thumb/4/4c/Alarko_Holding_logo_2024.svg/250px-Alarko_Holding_logo_2024.svg.png',
         client: 'Alarko (Ana Yüklenici)',
         title: 'M7 Hattı İstasyon Uygulamaları',
         location: 'İstanbul',
@@ -264,7 +273,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'm3',
-        logo: W + '8d8965_95d344270a0d4efca4850ea945855af9~mv2.jpg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-03-10%20074408.jpg',
+        logo: WM + 'en/thumb/6/6d/Istanbul_Metropolitan_Municipality_emblem.png/250px-Istanbul_Metropolitan_Municipality_emblem.png',
         client: 'İBB Ulaşım',
         title: 'M7 Yıldız & Fulya İstasyonları',
         location: 'Beşiktaş, İstanbul',
@@ -272,7 +281,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'm4',
-        logo: W + '8d8965_04039fbb023148de9afe95ccf1647189~mv2.jpg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-03-10%20074714.jpg',
+        logo: WM + 'en/thumb/6/6d/Istanbul_Metropolitan_Municipality_emblem.png/250px-Istanbul_Metropolitan_Municipality_emblem.png',
         client: 'İBB Ulaşım',
         title: 'M9 Masko & Bahariye İstasyonları',
         location: 'İstanbul',
@@ -288,7 +297,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'm6',
-        logo: W + '8d8965_4b045ec3a9b3460abae0e7bb0ba7dc97~mv2.jpeg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/202210041515161-img.jpeg',
+        logo: WM + 'en/thumb/6/6d/Istanbul_Metropolitan_Municipality_emblem.png/250px-Istanbul_Metropolitan_Municipality_emblem.png',
         client: 'İBB Ulaşım',
         title: 'M9 Hattı Devam İstasyonları',
         location: 'İstanbul',
@@ -303,7 +312,7 @@ const SECTIONS: Section[] = [
     projects: [
       {
         id: 'o1',
-        logo: W + '8d8965_a1bc5120552a457393bd1b93a17bd7d2~mv2.webp/v1/fill/w_250,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/i.webp',
+        logo: WM + 'commons/thumb/0/00/Turkish_Airlines_logo_2019_compact.svg/250px-Turkish_Airlines_logo_2019_compact.svg.png',
         client: 'Türk Hava Yolları',
         title: 'THY Satış Gişe Tezgahları',
         location: 'Dünya Geneli',
@@ -311,7 +320,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o2',
-        logo: W + '8d8965_2b8e3f1e5934472bad222c7466211f7e~mv2.png/v1/fill/w_393,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(4).png',
+        logo: WM + 'commons/thumb/0/08/IST_airport_logo.svg/250px-IST_airport_logo.svg.png',
         client: 'İstanbul Havalimanı',
         title: 'İstanbul Havalimanı',
         location: 'Arnavutköy, İstanbul',
@@ -327,7 +336,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o4',
-        logo: W + '8d8965_3b521a78c7bd43dcb264bbbd59fe6f83~mv2.png/v1/fill/w_239,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo-kapak%2C6224_medium.png',
+        logo: WM + 'commons/thumb/c/c8/Havelsan_logo.svg/250px-Havelsan_logo.svg.png',
         client: 'Havelsan',
         title: 'Havelsan Genel Merkezi',
         location: 'Ankara',
@@ -343,7 +352,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o6',
-        logo: W + '8d8965_a7692a2933284a36987571c2d6f21f9a~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/index.png',
+        logo: WM + 'en/thumb/4/4d/Garanti_BBVA_Logo.svg/250px-Garanti_BBVA_Logo.svg.png',
         client: 'Garanti BBVA',
         title: 'Garanti BBVA Şubeleri',
         location: 'Türkiye Geneli',
@@ -351,7 +360,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o7',
-        logo: W + '8d8965_69dd69c0873945c282ed76fb84dd6433~mv2.png/v1/fill/w_480,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ziraat_Bankas%C4%B1_logo.png',
+        logo: WM + 'commons/thumb/5/5f/Ziraat_Bankas%C4%B1_2025_Logo.svg/250px-Ziraat_Bankas%C4%B1_2025_Logo.svg.png',
         client: 'Ziraat Bankası',
         title: 'Ziraat Bankası Şubeleri',
         location: 'Türkiye Geneli',
@@ -367,7 +376,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o9',
-        logo: W + '8d8965_11f7aede7de7493099f15c68266b094a~mv2.png/v1/fill/w_260,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir%20(3).png',
+        logo: WM + 'commons/thumb/0/0c/DenizBank_logo.svg/250px-DenizBank_logo.svg.png',
         client: 'Denizbank',
         title: 'Denizbank Genel Merkezi',
         location: 'İstanbul',
@@ -375,7 +384,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o10',
-        logo: W + '8d8965_1fef3899f8c54f9eb6ae207ae78d9245~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/vakifbank_logo.png',
+        logo: WM + 'commons/thumb/0/04/Vak%C4%B1fbank_logo.svg/250px-Vak%C4%B1fbank_logo.svg.png',
         client: 'Vakıfbank',
         title: 'Vakıfbank Şubeleri',
         location: 'Türkiye Geneli',
@@ -399,7 +408,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o13',
-        logo: W + '8d8965_270babd2dfef41768d43ded490428d63~mv2.jpg/v1/fill/w_234,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/sabiha-gokcen-uluslararasi-havaalani_7zhqy.jpg',
+        logo: WM + 'commons/thumb/0/05/ISG_logo.svg/250px-ISG_logo.svg.png',
         client: 'Sabiha Gökçen Havalimanı',
         title: 'SGH "Yöresel Tatlar" Dükkanı',
         location: 'Pendik, İstanbul',
@@ -423,7 +432,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o16',
-        logo: W + '8d8965_4a43828e00d548c7af66e40d45774655~mv2.png/v1/fill/w_540,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/header-tablet.png',
+        logo: 'https://www.mallofistanbul.com.tr/assets/images/frontend/svg/logo.svg',
         client: 'Mall of Istanbul',
         title: 'Mall of Istanbul Kayseri Mutfak',
         location: 'İstanbul',
@@ -431,7 +440,7 @@ const SECTIONS: Section[] = [
       },
       {
         id: 'o17',
-        logo: W + '8d8965_c2f0968168884f08a8443ed103349457~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ttnet-musteri-hizmetleri-direk-baglanma_2529605_414x414.jpg',
+        logo: WM + 'commons/thumb/9/9f/T%C3%BCrk_Telekom_logo.svg/250px-T%C3%BCrk_Telekom_logo.svg.png',
         client: 'TTNET',
         title: 'TTNET Genel Merkezi',
         location: 'İstanbul',
@@ -616,13 +625,14 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
             onClick={onQuote}
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl px-8 py-4 transition-colors"
           >
-            <MessageSquare className="h-5 w-5" /> Teklif Al
+            <MessageSquare className="h-4 w-4" />
+            Teklif Al
           </button>
           <button
-            onClick={() => onNavigate('usage-areas')}
-            className="inline-flex items-center gap-2 border border-white/20 text-white/70 hover:text-white hover:border-white/40 rounded-xl px-8 py-4 transition-colors text-sm"
+            onClick={() => onNavigate('home')}
+            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors"
           >
-            Uygulama Alanları <ChevronRight className="h-4 w-4" />
+            Ana Sayfaya Dön <ChevronRight className="h-4 w-4" />
           </button>
         </div>
       </div>
