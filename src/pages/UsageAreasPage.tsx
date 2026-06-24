@@ -204,10 +204,12 @@ export default function UsageAreasPage({ onNavigate, onQuote }: Props) {
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
-                    <span className="font-mono text-xs text-amber-400 tracking-[0.2em] uppercase">{area.num}</span>
-                    <h2 className="font-serif text-xl font-bold text-white mt-0.5">{area.title}</h2>
-                    <p className="text-white/60 text-xs mt-0.5">{area.subtitle}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-center">
+                    <div className="bg-black/50 backdrop-blur-sm rounded-xl px-6 py-3 text-center">
+                      <span className="font-mono text-xs text-amber-400 tracking-[0.2em] uppercase">{area.num}</span>
+                      <h2 className="font-serif text-xl font-bold text-white mt-0.5">{area.title}</h2>
+                      <p className="text-white/70 text-xs mt-0.5">{area.subtitle}</p>
+                    </div>
                   </div>
                 </div>
 
