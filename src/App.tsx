@@ -58,6 +58,9 @@ export default function App() {
   const [theme, setTheme] = useState<'milano' | 'nordic' | 'obsidian'>('obsidian');
   const [activePage, setActivePage] = useState<string>('home');
 
+  // PDF viewer popup
+  const [pdfViewer, setPdfViewer] = useState<{ url: string; title: string } | null>(null);
+
   // Intro video popup — her ana sayfa ziyaretinde göster
   const [showIntroVideo, setShowIntroVideo] = useState(false);
   useEffect(() => {
@@ -1040,15 +1043,13 @@ export default function App() {
                             </div>
                           </div>
                           {doc.url ? (
-                            <a
-                              href={doc.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <button
+                              onClick={() => setPdfViewer({ url: doc.url!, title: doc.title })}
                               className="flex items-center gap-1.5 bg-neutral-900 hover:bg-amber-500 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
                             >
-                              <Download className="h-3.5 w-3.5" />
-                              <span>İndir</span>
-                            </a>
+                              <Eye className="h-3.5 w-3.5" />
+                              <span>Görüntüle</span>
+                            </button>
                           ) : (
                             <span className="text-[10px] text-stone-400 italic px-3">Yakında</span>
                           )}
@@ -1152,6 +1153,29 @@ export default function App() {
                 )}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* PDF Viewer Popup */}
+      {pdfViewer && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center">
+          <div className="absolute inset-0 bg-neutral-950/85 backdrop-blur-sm" onClick={() => setPdfViewer(null)} />
+          <div className="relative z-10 w-full max-w-5xl mx-4 flex flex-col" style={{ height: '90vh' }}>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-white/80 text-sm font-medium truncate pr-4">{pdfViewer.title}</span>
+              <button
+                onClick={() => setPdfViewer(null)}
+                className="shrink-0 h-8 w-8 flex items-center justify-center text-white/60 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <iframe
+              src={`https://docs.google.com/viewer?url=${encodeURIComponent(pdfViewer.url)}&embedded=true`}
+              className="w-full flex-1 rounded-2xl border border-white/10"
+              title={pdfViewer.title}
+            />
           </div>
         </div>
       )}
