@@ -71,11 +71,23 @@ export default function App() {
   const closeIntroVideo = () => { setShowIntroVideo(false); setIntroMuted(true); };
   const [introMuted, setIntroMuted] = useState(true);
   const introVideoRef = React.useRef<HTMLVideoElement>(null);
-  const toggleIntroMute = () => {
-    if (introVideoRef.current) {
-      introVideoRef.current.muted = !introMuted;
+  // Force muted via DOM property (React muted attribute ≠ DOM property in some browsers)
+  useEffect(() => {
+    if (introVideoRef.current && showIntroVideo) {
+      introVideoRef.current.muted = true;
+      introVideoRef.current.volume = 1;
     }
-    setIntroMuted(!introMuted);
+  }, [showIntroVideo]);
+  const toggleIntroMute = async () => {
+    if (!introVideoRef.current) return;
+    const newMuted = !introMuted;
+    introVideoRef.current.muted = newMuted;
+    introVideoRef.current.volume = 1;
+    if (!newMuted) {
+      // Safari requires play() to re-enable audio after muted autoplay
+      try { await introVideoRef.current.play(); } catch {}
+    }
+    setIntroMuted(newMuted);
   };
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   
