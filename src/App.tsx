@@ -75,22 +75,11 @@ export default function App() {
   const closeIntroVideo = () => { setShowIntroVideo(false); setIntroMuted(true); };
   const [introMuted, setIntroMuted] = useState(true);
   const introVideoRef = React.useRef<HTMLVideoElement>(null);
-  // Force muted via DOM property (React muted attribute ≠ DOM property in some browsers)
-  useEffect(() => {
-    if (introVideoRef.current && showIntroVideo) {
-      introVideoRef.current.muted = true;
-      introVideoRef.current.volume = 1;
-    }
-  }, [showIntroVideo]);
-  const toggleIntroMute = async () => {
+  const toggleIntroMute = () => {
     if (!introVideoRef.current) return;
     const newMuted = !introMuted;
     introVideoRef.current.muted = newMuted;
     introVideoRef.current.volume = 1;
-    if (!newMuted) {
-      // Safari requires play() to re-enable audio after muted autoplay
-      try { await introVideoRef.current.play(); } catch {}
-    }
     setIntroMuted(newMuted);
   };
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
@@ -1142,7 +1131,10 @@ export default function App() {
             {/* 16:9 iframe */}
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
               <video
-                ref={introVideoRef}
+                ref={(el) => {
+                  (introVideoRef as React.MutableRefObject<HTMLVideoElement | null>).current = el;
+                  if (el) { el.muted = true; el.volume = 1; }
+                }}
                 className="absolute inset-0 w-full h-full object-cover"
                 src="/intro.mp4"
                 autoPlay
