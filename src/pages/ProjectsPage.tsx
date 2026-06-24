@@ -570,31 +570,28 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
               {section.projects.map(proj => (
                 <div
                   key={proj.id}
-                  className="group bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300 flex flex-col"
+                  className="group relative bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300"
                 >
-                  {/* Logo area */}
-                  <div className="flex items-center justify-center bg-white px-6 py-6 h-[120px]">
+                  {/* Logo area — full card height, plenty of breathing room */}
+                  <div className="flex items-center justify-center bg-white px-8 py-10 h-[160px]">
                     <img
                       src={proj.logo}
                       alt={proj.client}
-                      className="max-h-[80px] max-w-full object-contain"
+                      className="max-h-[56px] max-w-[160px] w-auto h-auto object-contain"
                       referrerPolicy="no-referrer"
                       loading="lazy"
                     />
                   </div>
 
-                  {/* Divider */}
-                  <div className="h-px bg-stone-100 mx-4" />
-
-                  {/* Details */}
-                  <div className="p-4 flex-1 flex flex-col gap-1.5">
-                    <p className="text-[11px] font-semibold text-amber-600 uppercase tracking-wider">
+                  {/* Semi-transparent details bar — 50% opacity */}
+                  <div className="bg-white/50 backdrop-blur-sm border-t border-stone-200/50 px-4 py-3">
+                    <p className="text-[10px] font-bold text-amber-600 uppercase tracking-wider truncate">
                       {proj.client}
                     </p>
-                    <h3 className="font-semibold text-neutral-900 text-sm leading-snug">
+                    <h3 className="font-semibold text-neutral-900 text-xs leading-snug mt-0.5">
                       {proj.title}
                     </h3>
-                    <p className="text-xs text-stone-500 leading-relaxed mt-1 flex-1">
+                    <p className="text-[11px] text-stone-500 leading-relaxed mt-1">
                       {proj.description}
                     </p>
                   </div>
