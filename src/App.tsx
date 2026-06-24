@@ -1113,14 +1113,14 @@ export default function App() {
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl bg-neutral-950" style={{ paddingTop: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
+                src="https://www.youtube.com/embed/Cp-KwTM-cCc?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0&enablejsapi=0"
                 title="Tezgah Studio"
                 frameBorder="0"
                 allow="autoplay; encrypted-media; fullscreen"
                 allowFullScreen
               />
-              {/* Tıklamayı engelle */}
-              <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default' }} />
+              {/* Her türlü etkileşimi engelle */}
+              <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default', pointerEvents: 'all' }} />
             </div>
           </div>
         </div>
