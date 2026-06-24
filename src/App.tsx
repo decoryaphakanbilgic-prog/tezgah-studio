@@ -562,7 +562,7 @@ export default function App() {
                 >
                   {/* Logo alanı */}
                   <div
-                    className="flex items-center justify-center bg-stone-50 border-b border-stone-100 cursor-pointer"
+                    className="flex items-center justify-start px-4 bg-stone-50 border-b border-stone-100 cursor-pointer"
                     style={{ height: '88px' }}
                     onClick={() => setSelectedBrand(brand)}
                   >
