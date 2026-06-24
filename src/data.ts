@@ -1,7 +1,9 @@
 export interface Brand {
   id: string;
   name: string;
-  logo: string; // Will use a luxurious text-symbol placeholder or premium SVG
+  logo: string;
+  logoSrc?: string;
+  logoScale?: number;
   description: string;
   longDescription: string;
   materials: string[];
@@ -11,7 +13,9 @@ export interface Brand {
   advantages: string[];
   disadvantages: string[];
   maintenance: string;
-  documents: { title: string; size: string }[];
+  websiteUrl?: string;
+  colorsUrl?: string;
+  documents: { title: string; size: string; url?: string }[];
 }
 
 export interface MaterialCategory {
@@ -67,176 +71,303 @@ export const BRANDS: Brand[] = [
     id: "cimstone",
     name: "Çimstone",
     logo: "Ç",
-    description: "Kuvars esaslı kompoze taş teknolojisinin Türkiye'deki öncüsü, yüksek aşınma dirençli lüks yüzeyler.",
-    longDescription: "İtalyan Breton teknolojisiyle üretilen Çimstone, kuvars mineralini yüksek teknolojiyle harmanlayarak gözeneksiz, hijyenik ve aşınmaya karşı son derece dayanıklı yüzeyler sunar. Türkiye'nin ve dünyanın en seçkin projelerinde mutfak tezgahı, banyo bankosu ve zemin kaplaması olarak tercih edilmektedir.",
-    materials: ["Kuvars", "Yerleşik Taş"],
+    logoSrc: "/logos/cimstone.png",
+    logoScale: 1.6,
+    description: "Türkiye'nin kuvars tezgah öncüsü; İtalyan Breton teknolojisiyle üretilen gözeneksiz, hijyenik ve dayanıklı yüzeyler.",
+    longDescription: "1997'de kurulan Çimstone, İtalyan Breton teknolojisiyle %93 doğal kuvars mineralini yüksek basınç ve vakumla harmanlayarak Türkiye'nin ilk ve en köklü kuvars marka kimliğini oluşturmuştur. Mohs sertlik skalasında 7 değeriyle çizilmeye karşı son derece dirençlidir. Gözeneksiz yapısı bakteri ve mantar üremesini engeller. Mutfak tezgahından banyo bankosuna, ofis çalışma yüzeyinden zemin kaplamasına kadar geniş kullanım alanına sahiptir. Türkiye genelinde yaygın bayi ağı ve hızlı tedarik imkânıyla öne çıkar.",
+    materials: ["Kuvars"],
     colorsCount: 32,
     origin: "Yerli",
     tier: "Standart",
-    advantages: ["Çizilmelere karşı olağanüstü direnç", "Leke tutmayan gözeneksiz doku", "Geniş yerli bayi ve tedarik ağı"],
-    disadvantages: ["Çok aşırı yüksek sıcaklıklarda direkt temas önerilmez", "Dış mekan güneş ışığına (UV) hassastır"],
-    maintenance: "Sadece ılık su, sabun ve mikrofiber bezle kolayca temizlenir. Asitli ağır kimyasallara gerek duymaz.",
+    advantages: [
+      "Mohs 7 sertlik — çizilmeye karşı üstün direnç",
+      "Gözeneksiz yapı — leke tutmaz, hijyenik",
+      "Geniş Türkiye bayi & servis ağı",
+      "NSF/ANSI gıda güvenliği sertifikası",
+      "UV stabilizan katkı — iç mekanda renk değişmez"
+    ],
+    disadvantages: [
+      "Direkt yüksek ısı temasına (200°C+) karşı koruma önerilir",
+      "Dış mekan uzun süreli UV maruziyetinde solma riski"
+    ],
+    maintenance: "Günlük temizlik için ılık su ve birkaç damla bulaşık deterjanıyla ıslatılmış mikrofiber bez yeterlidir. Asit veya çamaşır suyu içermeyen nötr temizleyiciler tercih edilmelidir.",
+    websiteUrl: "https://www.cimstone.com",
+    colorsUrl: "https://www.cimstone.com/tr/urunler",
     documents: [
-      { title: "Çimstone Ürün Kataloğu 2026", size: "14.2 MB" },
-      { title: "Teknik Bilgi Föyü & Garanti Koşulları", size: "2.4 MB" }
+      { title: "Çimstone Ürün Kataloğu 2025", size: "—", url: "/catalogs/cimstone-katalog.pdf" },
+      { title: "Teknik Bilgi & Garanti Koşulları", size: "—", url: "/catalogs/cimstone-teknik.pdf" }
     ]
   },
   {
     id: "belenco",
     name: "Belenco",
     logo: "B",
-    description: "Doğal kuvarsın mucizevi özelliklerini sanatsal tasarımlarla birleştiren ödüllü kuvars yüzeyler.",
-    longDescription: "Belenco, doğanın en sert yarı değerli minerallerinden kuvarstan ilham alan, çağdaş yaşam alanları için üstün kaliteli kuvars yüzeyler tasarlar. Trend yaratan renk koleksiyonları ve gerçekçi mermer damar efektleri ile premium projelerin vazgeçilmezidir.",
+    logoSrc: "/logos/belenco.png",
+    logoScale: 1.6,
+    description: "Ödüllü Türk kuvars markası; gerçekçi mermer damar efektleri ve NSF sertifikalı hijyenik yüzeyler.",
+    longDescription: "2008'de İstanbul'da kurulan Belenco, %93 doğal kuvars içeriğiyle üretim yapan Türkiye'nin premium kuvars markasıdır. BREF, HAUS ve SIGNATURE koleksiyonlarıyla geniş bir renk ve doku yelpazesi sunar. Calacatta, Statuario ve Arabescato mermerlerinden ilham alınan damarlı serileri mimari projelerinin gözdesidir. NSF/ANSI 51 Gıda Güvenliği ve Greenguard Gold çevre sertifikalarına sahiptir. Yurt içi ve yurt dışında 40'tan fazla ülkeye ihracat yapmaktadır.",
     materials: ["Kuvars"],
     colorsCount: 45,
     origin: "Yerli",
     tier: "Premium",
-    advantages: ["Yüksek darbe ve darbe dayanıklılığı", "Lüks damarlı mermer görünümleri", "Uluslararası hijyen sertifikaları (NSF)"],
-    disadvantages: ["Ultraviyole (UV) ışınlarına karşı dış mekanda renk değişebilir", "Dikiş/ek yeri birleşimleri bazı desenlerde hafif belli olabilir"],
-    maintenance: "pH nötr temizleyiciler kullanılması önerilir. Ağartıcı ve aşındırıcı toz deterjanlardan uzak durulmalıdır.",
+    advantages: [
+      "Gerçekçi Calacatta ve Statuario mermer görünümlü seriler",
+      "NSF/ANSI 51 Gıda Güvenliği & Greenguard Gold sertifikası",
+      "Mohs 7 sertlik — yüksek çizilme direnci",
+      "Islak alan ve mutfak için antibakteriyel onaylı",
+      "40'tan fazla ülkeye ihracat — küresel kalite standardı"
+    ],
+    disadvantages: [
+      "Dış mekanda uzun süreli UV maruziyetinde renk değişimi riski",
+      "Bazı açık damarlı desenlerde birleşim noktası hafif görünebilir"
+    ],
+    maintenance: "pH nötr sıvı deterjan ve ıslak bezle silinir. Çamaşır suyu, asit ve aşındırıcı ovma bezleri kullanılmamalıdır. Güçlü lekeler için Belenco onaylı temizleyici önerilir.",
+    websiteUrl: "https://www.belenco.com",
+    colorsUrl: "https://www.belenco.com/tr/collection",
     documents: [
-      { title: "Belenco Trend & Tasarım Kitabı", size: "18.6 MB" },
-      { title: "Kullanım ve Koruma Rehberi", size: "1.8 MB" }
+      { title: "Belenco Genel Katalog 2025", size: "—", url: "/catalogs/belenco-katalog.pdf" },
+      { title: "Bakım & Kullanım Rehberi", size: "—", url: "/catalogs/belenco-bakim.pdf" }
     ]
   },
   {
     id: "coante",
     name: "Coante",
     logo: "C",
-    description: "En gelişmiş Breton teknolojisiyle donatılmış, yüksek estetik standartlara sahip yeni nesil kuvars plakalar.",
-    longDescription: "Coante, dünyanın en gelişmiş Breton teknolojisini kullanarak doğal kuvarsı estetik çizgiyle harmanlar. İnce damar geçişleri ve derinlik hissi veren yüzey tasarımlarıyla modern mutfaklarda sanatsal bir dokunuş sunar.",
+    logoSrc: "/logos/coante.png",
+    logoScale: 1.6,
+    description: "Breton teknolojisiyle üretilen yerli kuvars; derin cila parlaklığı ve fiyat-performans dengesiyle öne çıkan yüzeyler.",
+    longDescription: "Coante, İtalyan Breton ekipmanlarıyla üretilen, %93 doğal kuvars içerikli Türk kuvars yüzey markasıdır. İnce damar geçişleri ve yüksek cila parlaklığıyla özellikle modern mutfak ve banyo projelerinde tercih edilir. Düşük gözenek yapısı sayesinde hijyenik ve kolay bakımlıdır. Fiyat-performans dengesinde üst sıralarda yer alır.",
     materials: ["Kuvars"],
     colorsCount: 28,
     origin: "Yerli",
     tier: "Standart",
-    advantages: ["Mükemmel cila parlaklığı ve derinlik", "Düşük su emme oranı ile yüksek hijyen", "Fiyat-performans dengesi"],
-    disadvantages: ["Direkt ısıtılmış döküm tencerelere karşı koruma plakası gerektirir"],
-    maintenance: "Yumuşak bez ve krem içermeyen sıvı temizleyicilerle günde bir kere silmek ilk günkü parlaklığı korur.",
+    advantages: [
+      "Yüksek cila parlaklığı ve renk derinliği",
+      "Düşük su emme oranı — hijyenik kullanım",
+      "Fiyat-performans açısından rekabetçi",
+      "Geniş yerli servis ve kesim ağı"
+    ],
+    disadvantages: [
+      "Doğrudan yüksek ısı temasına karşı koruyucu altlık önerilir",
+      "Renk koleksiyonu diğer markalara kıyasla daha sınırlı"
+    ],
+    maintenance: "Krem deterjan içermeyen ıslak bezle günlük silme yeterlidir. Kireç birikintileri için seyreltik sirke yerine kireç çözücü sıvı tercih edilmelidir.",
     documents: [
-      { title: "Coante Koleksiyon Kataloğu", size: "12.1 MB" },
-      { title: "Teknik Şartname ve Detaylar", size: "3.2 MB" }
+      { title: "Coante Koleksiyon Kataloğu", size: "—", url: "/catalogs/coante-katalog.pdf" },
+      { title: "Teknik Şartname", size: "—", url: "/catalogs/coante-teknik.pdf" }
     ]
   },
   {
     id: "silestone",
     name: "Silestone",
     logo: "S",
-    description: "Cosentino'nun dünya devi kuvars markası; HybriQ teknolojisiyle sürdürülebilir, inovatif ve renkli.",
-    longDescription: "İspanyol Cosentino grubu tarafından üretilen Silestone, %100 yenilenebilir elektrik ve %99 geri dönüştürülmüş su içeren inovatif HybriQ+ teknolojisi ile üretilir. Hibrit mineral ve mineral dışı bileşen formülüyle üst düzey mekanlar yaratır.",
+    logoSrc: "/logos/silestone.png",
+    logoScale: 1.6,
+    description: "Cosentino'nun küresel kuvars markası; HybriQ+ teknolojisi, 25 yıl garanti ve 60+ renk koleksiyonu.",
+    longDescription: "1990'da İspanya'da kurulan Silestone, Cosentino grubunun amiral gemisi kuvars markasıdır. 2021'de tanıtılan HybriQ+ teknolojisiyle artık %100 yenilenebilir enerji ve %99 geri dönüştürülmüş su kullanılarak üretilmektedir. Klasik Polished'dan dokuya dokunuşlu Suede ve volkanik görünümlü Volcano yüzey seçenekleriyle farklı estetik tercihlere cevap verir. 25 yıllık üretici garantisiyle sektörün en uzun garantisini sunar. Türkiye dahil 110'dan fazla ülkede satılmaktadır.",
     materials: ["Kuvars", "Hibrit Yüzey"],
     colorsCount: 60,
     origin: "Global",
     tier: "Premium",
-    advantages: ["HybriQ+ ile ultra düşük silika ve sürdürülebilirlik", "Geniş kalınlık ve doku seçenekleri (Suede, Polished, Volcano)", "25 yıla kadar üretici garantisi"],
-    disadvantages: ["Yüksek fiyat grubu", "Yetkili usta sertifikasyonu gerektirir"],
-    maintenance: "Silestone temizliği son derece pratiktir. Q-Action temizleyici veya hafif bulaşık deterjanları önerilir.",
+    advantages: [
+      "HybriQ+ — %100 yenilenebilir enerjiyle sürdürülebilir üretim",
+      "25 yıl üretici garantisi — sektörün en uzun garantisi",
+      "Polished / Suede / Volcano — 3 farklı yüzey dokusu",
+      "N-Boost teknolojisi — renkleri daha parlak ve derin gösterir",
+      "NSF/ANSI 51 Gıda Güvenliği sertifikası"
+    ],
+    disadvantages: [
+      "Premium fiyat segmentinde yer alır",
+      "Yetkili Cosentino ustası ile montaj önerilir"
+    ],
+    maintenance: "Günlük temizlik için ıslak bez ve hafif bulaşık deterjanı yeterlidir. Cosentino'nun özel Q-Action temizleyicisi derin temizlik için idealdir. Asit ve aşındırıcılardan kaçınılmalıdır.",
+    websiteUrl: "https://www.silestone.com/tr",
+    colorsUrl: "https://www.silestone.com/tr/renk-koleksiyonu/",
     documents: [
-      { title: "Silestone Global Koleksiyon 2026", size: "22.4 MB" },
-      { title: "HybriQ Teknolojisi Sürdürülebilirlik Raporu", size: "5.1 MB" }
+      { title: "Silestone Koleksiyon Kataloğu 2025", size: "—", url: "/catalogs/silestone-katalog.pdf" },
+      { title: "HybriQ+ Sürdürülebilirlik Raporu", size: "—", url: "/catalogs/silestone-hybriq.pdf" }
     ]
   },
   {
     id: "dekton",
     name: "Dekton",
     logo: "D",
-    description: "Cosentino'nun ultra kompakt sintre porselen yüzeyi. Isıya, çizilmeye ve UV ışınlarına mutlak direnç.",
-    longDescription: "Dekton, cam, porselen ve kuvars yüzeylerin yapımında kullanılan hammaddelerin sofistike bir karışımıdır. Özel TSP (Sinterlenmiş Parçacık Teknolojisi) ile üretilir. Sınırsız mimari özgürlük, sıfır gözeneklilik ve üstün dış mekan performansı sunar.",
-    materials: ["Porselen", "Dekton / Sintered Stone"],
+    logoSrc: "/logos/dekton.png",
+    logoScale: 1.6,
+    description: "Cosentino'nun ultra kompakt sinterlenmiş yüzeyi; ısı, çizilme ve UV'ye mutlak direnç, iç ve dış mekan mükemmelliği.",
+    longDescription: "2013'te piyasaya sürülen Dekton, cam, porselen ve kuvarsın hammaddelerini Cosentino'nun özel TSP (Tecnología de Sinterización de Partículas) yöntemiyle 1.200°C'de birleştirerek üretilir. Sıfır gözenekli ve sıfır su emişli yapısı onu dış cephe, terasa ve profesyonel mutfaklarda benzersiz kılar. 4mm'den 30mm'ye kadar farklı kalınlıklarda üretilir. 600 cm'ye varan uzunluklardaki büyük format plakalarıyla minimum derzli kesintisiz yüzeyler oluşturulabilir.",
+    materials: ["Sinterlenmiş Taş", "Ultra Kompakt Yüzey"],
     colorsCount: 55,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Ateşe ve yüksek ısıya tam dayanım (sıcak tencere konabilir)", "Sıfır UV hassasiyeti (asla solmaz, dış mekana mükemmel)", "Leke, asit ve darbelere karşı tam koruma"],
-    disadvantages: ["Sert darbelere bağlı köşe kırılması hassasiyeti", "Kesim ve montaj için özel yüksek teknoloji elmas bıçaklar gerektirir"],
-    maintenance: "Zorlu lekeler dahil hiçbir şey lekeleyemez. Çamaşır suyu veya asitli temizleyiciler bile yüzeye zarar vermez.",
+    advantages: [
+      "300°C anlık ısıya tam dayanım — sıcak tencere doğrudan konulabilir",
+      "Sıfır UV hassasiyeti — dış mekanda hiç solmaz",
+      "Asit, leke ve çizilmeye karşı üstün koruma",
+      "4mm ince plakadan 30mm kalına geniş kalınlık seçeneği",
+      "600 cm uzunluğa kadar büyük format — minimum derz"
+    ],
+    disadvantages: [
+      "Köşe ve kenarlarda keskin darbe kırılma riski",
+      "Kesim için özel elmas bıçak ve uzman işçilik gerektirir"
+    ],
+    maintenance: "Neredeyse hiçbir şey lekeleyemez. Kireç, çamaşır suyu veya asit bazlı ürünler bile yüzeye zarar vermez. Günlük temizlik için ıslak bez yeterlidir.",
+    websiteUrl: "https://www.cosentino.com/tr-tr/dekton/",
+    colorsUrl: "https://www.cosentino.com/tr-tr/dekton/koleksiyonlari/",
     documents: [
-      { title: "Dekton Mimari ve İç Mekan Fırsatları", size: "28.3 MB" },
-      { title: "Uygulama ve Teknik Kesim Kılavuzu", size: "9.7 MB" }
+      { title: "Dekton Genel Katalog 2025", size: "—", url: "/catalogs/dekton-katalog.pdf" },
+      { title: "Teknik Uygulama Kılavuzu", size: "—", url: "/catalogs/dekton-teknik.pdf" }
     ]
   },
   {
     id: "neolith",
     name: "Neolith",
     logo: "N",
-    description: "Doğal minerallerin yüksek basınç ve sıcaklıkta fırınlanmasıyla elde edilen olağanüstü hafif porselen.",
-    longDescription: "Sinterlenmiş taş kategorisinin mucitlerinden Neolith, sürdürülebilir yöntemlerle üretilen geniş formatlı porselen plakaları ile bilinir. Mutfaklardan cephe kaplamalarına kadar lüks mimarinin tüm ihtiyaçlarına cevap verir.",
-    materials: ["Porselen", "Seramik Yüzeyler"],
+    logoSrc: "/logos/neolith.png",
+    logoScale: 1.6,
+    description: "Sinterlenmiş taşın mucidi İspanyol marka; doğal mineral içerikli, ultra hafif ve geniş formatlı porselen plakalar.",
+    longDescription: "2012'de İspanya'da kurulan The Size Group bünyesindeki Neolith, sinterlenmiş taş kategorisinin öncü markalarından biridir. Feldspat, kuvars, cam ve doğal pigmentlerden oluşan %100 doğal hammadde içeriğiyle reçine ve polimerden tamamen arındırılmıştır. 3200×1500 mm'ye ulaşan büyük format plakaları sayesinde mutfak tezgahı, banyo, duvar ve yer kaplamasında minimum derzli tasarımlar mümkün olur. Silika tozuna minimum maruz kalma özelliğiyle çevre ve işçi sağlığına duyarlı üretim anlayışı öne çıkar.",
+    materials: ["Sinterlenmiş Taş", "Porselen"],
     colorsCount: 50,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Tamamen doğal bileşenler, reçinesiz üretim", "Yüksek ısı direnci ve mutlak yanmazlık", "Çok hafif ve ince kalınlık alternatifleri (3mm, 6mm, 12mm, 20mm)"],
-    disadvantages: ["Köşe detaylarında uzman işçilik gereksinimi", "Plaka kenar darbe hassasiyeti"],
-    maintenance: "Nemli bez ve sirke gibi organik asitler ya da standart deterjanlarla anında temizlenir.",
+    advantages: [
+      "%100 doğal mineral — reçine, polimer ve plastik içermez",
+      "Düşük silika emisyonu — işçi ve kullanıcı sağlığı için güvenli",
+      "3mm'den 20mm'ye geniş kalınlık skalası",
+      "UV dayanımlı — dış cephe ve teras için ideal",
+      "Yüksek ısı direnci — doğrudan ısı temasına dayanır"
+    ],
+    disadvantages: [
+      "Köşe ve kenarlarda uzman işçilik gerektirir",
+      "Büyük format plakalar nakliyede kırılgandır"
+    ],
+    maintenance: "Sıradan ıslak bezle silinir. Kireç birikintileri için seyreltik asetik asit kullanılabilir. Ağır lekeler için nötr deterjan önerilir.",
+    websiteUrl: "https://neolith.com/tr/",
+    colorsUrl: "https://neolith.com/tr/koleksiyon/",
     documents: [
-      { title: "Neolith Master Katalog", size: "31.5 MB" },
-      { title: "Kurulum ve Derz Detayları", size: "4.5 MB" }
+      { title: "Neolith Koleksiyon Kataloğu 2025", size: "—", url: "/catalogs/neolith-katalog.pdf" },
+      { title: "Teknik Bilgi & Montaj Rehberi", size: "—", url: "/catalogs/neolith-teknik.pdf" }
     ]
   },
   {
     id: "laminam",
     name: "Laminam",
     logo: "L",
-    description: "İtalyan estetiğini devasa plakalarla buluşturan, mimari tasarımın öncüsü porselen kaplama lideri.",
-    longDescription: "İtalya'da üretilen Laminam, geniş yüzeyleri mimari ve iç tasarım dünyasına armağan eder. Çok yönlülük, üst düzey dayanıklılık ve benzersiz İtalyan mermer replikasyonları sunmaktadır.",
-    materials: ["Porselen", "Seramik Yüzeyler"],
+    logoSrc: "/logos/laminam.png",
+    logoScale: 1.6,
+    description: "İtalyan mimari porselen lideri; 3mm ultra ince ve 1620×3240mm dev formatlı plakalarıyla minimum derzli yüzeyler.",
+    longDescription: "2001'de İtalya'da kurulan Laminam, ultra ince büyük formatlı porselen plakaların dünya lideridir. 1620×3240 mm'ye ulaşan plaka boyutları ve 3mm'ye inen kalınlığıyla iç mimariye eşsiz esneklik sağlar. Doğal İtalyan mermer ve breş desenleri, beton ve metal efektleri mükemmel hassasiyetle üretilmektedir. Mutfak tezgahının yanı sıra duvar, zemin, dış cephe ve mobilya kaplamada kullanılır. Leed ve Greenguard Gold sertifikalarına sahiptir.",
+    materials: ["Porselen", "Seramik"],
     colorsCount: 40,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Sıra dışı İtari mermer ve beton dokuları", "Büyük boy plaka ölçüleri sayesinde minimum derz", "Dış cephe ve ıslak hacimler için ideal"],
-    disadvantages: ["Maliyetlidir", "Nakliye ve taşıma uzmanlık gerektirir"],
-    maintenance: "Hafif deterjanlarla temizlenmesi, metalik serilerde aşındırıcı ped kullanılmaması önerilir.",
+    advantages: [
+      "3mm ultra ince — mevcut yüzey üzerine uygulama imkânı",
+      "1620×3240 mm dev format — neredeyse sıfır derz",
+      "İtalyan mermer, breş ve beton serilerinde mükemmel doku replikasyonu",
+      "Greenguard Gold & LEED sertifikalı — iç hava kalitesine katkı",
+      "Isı, leke ve UV'ye yüksek direnç"
+    ],
+    disadvantages: [
+      "Büyük format nakliye ve taşıma özel ekipman gerektirir",
+      "Premium fiyat segmentinde yer alır"
+    ],
+    maintenance: "pH nötr deterjan ve ıslak bezle kolayca temizlenir. Metalik ve mat yüzeylerde aşındırıcı temizleyici kullanılmamalıdır.",
+    websiteUrl: "https://laminam.com/en/",
+    colorsUrl: "https://laminam.com/en/products/",
     documents: [
-      { title: "Laminam İtalyan Yüzeyler Koleksiyonu", size: "24.1 MB" }
+      { title: "Laminam Genel Katalog 2025", size: "—", url: "/catalogs/laminam-katalog.pdf" },
+      { title: "Teknik Uygulama Rehberi", size: "—", url: "/catalogs/laminam-teknik.pdf" }
     ]
   },
   {
     id: "corian",
     name: "Corian (DuPont)",
     logo: "Co",
-    description: "DuPont'un akrilik katı yüzeyi. Ek yeri belli olmayan, kavisli ve organik tasarımlar için tek seçenek.",
-    longDescription: "DuPont firmasının tescilli markası Corian, akrilik reçine ve doğal minerallerden oluşur. Termoform (ısı ile şekillenme) özelliği sayesinde kıvrımlı, yekpare, kendinden lavabolu tezgahlar tasarlanmasına olanak sağlar. Ek yeri asla belli olmaz.",
+    logoSrc: "/logos/corian.png",
+    logoScale: 1.6,
+    description: "DuPont'un ikonik akrilik solid surface markası; dikişsiz birleşim, termoform esnekliği ve sahada tamir edilebilirlik.",
+    longDescription: "1967'de DuPont tarafından icat edilen Corian, %33 akrilik polimer ve %67 doğal mineral dolgudan oluşur. Isıyla şekillendirilebilir (termoform) yapısı sayesinde kavisli kenarlar, entegre lavabolar ve kesintisiz yüzeyler üretmek mümkündür. Renk, kütlenin tümüne işlendiğinden yüzey çizilse bile zımparalanarak ilk günkü görünümüne kavuşturulabilir. 100'den fazla renk seçeneği ve 3 yüzey dokusuyla (gloss, matte, satin) geniş estetik seçenek sunar. Mutfak dışında sağlık, eğitim ve ticari mobilya sektöründe de yaygın kullanılmaktadır.",
     materials: ["Akrilik / Solid Surface"],
-    colorsCount: 48,
+    colorsCount: 100,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Tamamen ek yersiz, dikişsiz birleşimler", "Isıyla istenen her şekle girebilme", "Çizilirse yerinde zımparalanıp sıfır gibi tamir edilebilme"],
-    disadvantages: ["Sıcak tencerelerle temasta erime yapabilir (ısı direnci düşüktür)", "Bıçak darbeleri ile nispeten kolay çizilir (kolay tamir edilse de)"],
-    maintenance: "Dairesel hareketlerle ovulabilir, mat yüzeyler ince aşındırıcı bezlerle (Scotch-brite vb.) çiziklerinden arındırılabilir.",
+    advantages: [
+      "Tam dikişsiz birleşim — ek yeri görünmez",
+      "Termoform — kavis, kıvrım ve entegre lavabo tasarımı",
+      "Çizilme olursa sahada zımparalanarak tamiri mümkün",
+      "Renk kütlenin tümüne işli — yüzey aşınsa bile renk değişmez",
+      "100+ renk ve 3 yüzey dokusu (Gloss / Matte / Satin)"
+    ],
+    disadvantages: [
+      "Doğrudan yüksek ısı temasında iz ve deformasyon riski",
+      "Sert ve sivri darbelerde çizilme olabilir (kolayca tamir edilse de)"
+    ],
+    maintenance: "Günlük temizlikte ıslak bez ve birkaç damla bulaşık deterjanı yeterlidir. Mat yüzeylerde Scotch-Brite gibi hafif aşındırıcı süngerle dairesel ovma ile çizikler giderilebilir.",
+    websiteUrl: "https://www.corian.com",
+    colorsUrl: "https://www.corian.com/en/products/colors",
     documents: [
-      { title: "Corian Solid Surface Tasarım El Kitabı", size: "15.7 MB" },
-      { title: "Renk ve Transparanlık Rehberi", size: "6.3 MB" }
+      { title: "Corian Tasarım & Renk Kataloğu 2025", size: "—", url: "/catalogs/corian-katalog.pdf" },
+      { title: "Teknik Uygulama Kılavuzu", size: "—", url: "/catalogs/corian-teknik.pdf" }
     ]
   },
   {
     id: "himacs",
     name: "HI-MACS (LX Hausys)",
     logo: "H",
-    description: "LX Hausys kalitesiyle esnek formlar, ışık geçirgen desenler ve hijyenik akrilik solid surface kaplamalar.",
-    longDescription: "Eski adıyla LG Hausys, yeni adıyla LX Hausys üretimi olan HI-MACS, akrilik doğallığını modern polimer teknolojisiyle birleştirir. Işığı geçiren transparan renkleri ve mükemmel termoform mimarisi ile geleceğin tezgah tasarımlarını kurar.",
+    logoSrc: "/logos/himacs.png",
+    logoScale: 1.6,
+    description: "LX Hausys'in akrilik solid surface markası; ışık geçirgen seriler, antibakteriyel yapı ve mükemmel termoform kabiliyeti.",
+    longDescription: "Güney Koreli LX Hausys (eski adıyla LG Hausys) tarafından üretilen HI-MACS, %100 gözeneksiz akrilik solid surface yapısıyla Corian ile aynı kategoride yer alır. Dünyada eşi olmayan Alpine White serisiyle birlikte ışığı içinden geçiren yarı şeffaf renk seçenekleri sunar. Isıyla kolayca şekillendirilebilir yapısı; kavisli kenarlar, entegre lavabolar ve organik formlar için idealdir. NSF/ANSI 51 Gıda Güvenliği, Greenguard Gold ve İsviçre Hijyen Enstitüsü sertifikalarına sahiptir.",
     materials: ["Akrilik / Solid Surface"],
-    colorsCount: 42,
+    colorsCount: 110,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Yumuşacık ipeksi dokunuş hissi", "%100 gözeneksiz ve bakterisiz antibakteriyel yapı", "Zengin 3D kıvrım tasarımı yeteneği"],
-    disadvantages: ["Yumuşak yüzey sertliği, sert cisimlerle kolayca çizilebilir"],
-    maintenance: "Krem deterjan ve mikrofiber bez ile hafifçe dairesel silinerek tüm lekeler arındırılır.",
+    advantages: [
+      "Işık geçirgen (translucent) renk seçenekleri — eşsiz iç aydınlatma efekti",
+      "NSF, Greenguard Gold & İsviçre Hijyen Enstitüsü sertifikası",
+      "%100 gözeneksiz — bakteri ve mantar üremez",
+      "Termoform ile kavisli ve organik form tasarımı",
+      "Çizilme tamiri sahada zımparayla mümkün"
+    ],
+    disadvantages: [
+      "Sert cisimlerle çizilme riski (doğası gereği yumuşak polimer yüzey)",
+      "Doğrudan ısı temasında iz bırakabilir"
+    ],
+    maintenance: "Günlük kullanımda ıslak bez ve pH nötr deterjan yeterlidir. Çizikler ince Scotch-Brite sünger ile dairesel hareketlerle giderilebilir. Çamaşır suyu ve asit kullanılmamalıdır.",
+    websiteUrl: "https://www.himacs.eu",
+    colorsUrl: "https://www.himacs.eu/en/colours/",
     documents: [
-      { title: "LX HI-MACS Genel Kataloğu", size: "20.9 MB" },
-      { title: "Termoform Şekillendirme Detayları", size: "4.1 MB" }
+      { title: "HI-MACS Genel Katalog 2025", size: "—", url: "/catalogs/himacs-katalog.pdf" },
+      { title: "Teknik Uygulama & Garanti Rehberi", size: "—", url: "/catalogs/himacs-teknik.pdf" }
     ]
   },
   {
     id: "naturalstone",
     name: "Doğal Taş Koleksiyonu",
     logo: "DT",
-    description: "Mermer, kuvarsit ve granitlerin zamansız şıklığı. Her plakası doğa tarafından tasarlanmış tek ve benzersiz tablolar.",
-    longDescription: "Doğal Taş Koleksiyonu, dünyanın çeşitli ocaklarından çıkarılan en lüks mermer, granit, kuvarsit, traverten ve oniks plakalarını bir araya getirir. Teknoloji ile değil, milyonlarca yıllık jeolojik süreçlerle üretilmiş eşsiz sanat eserleridir.",
-    materials: ["Mermer", "Granit", "Doğal Taş"],
-    colorsCount: 50,
+    logoSrc: "/logos/naturalstone.png",
+    logoScale: 1.6,
+    description: "Dünya ocaklarından özenle seçilmiş mermer, kuvarsit, granit ve oniks; her plaka tek ve benzersiz bir sanat eseri.",
+    longDescription: "Decoryap Doğal Taş Koleksiyonu, İtalya, Türkiye, Brezilya, Hindistan ve Portekiz başta olmak üzere dünyanın önde gelen mermer ve doğal taş ocaklarından temin edilen özel plakaları bir araya getirir. Calacatta Gold, Statuario Venato ve Arabescato gibi İtalyan mermerlerin yanı sıra Taj Mahal Kuvarsiti, Van Gölü Traverten ve Ege Mermer serilerini bünyesinde barındırır. Her plaka; yüzlerce milyon yıllık jeolojik sürecin ürünü olduğundan renk, damar ve doku açısından tektir. Doğallık ve lüksün doruk noktasını simgeler.",
+    materials: ["Mermer", "Granit", "Kuvarsit", "Traverten", "Oniks"],
+    colorsCount: 60,
     origin: "Global",
     tier: "Premium",
-    advantages: ["Benzersiz lüks ve prestijli görünüm", "Zamana meydan okuyan derin ve doğal kristalli doku", "Tekrarı olmayan damar dünyası"],
-    disadvantages: ["Limon, sirke gibi asitlerle lekelenir ve matlaşır (mermer için)", "Periyodik olarak koruyucu cila/emprenye uygulaması gerektirir"],
-    maintenance: "Kesinlikle kimyasal içermeyen sadece saf su bazlı taş sabunları ile silinmelidir. Yılda 1 koruyucu solvent sürülmelidir.",
+    advantages: [
+      "Her plaka eşsiz — birebir aynı iki plaka yoktur",
+      "Milyonlarca yıllık jeolojik sürecin ürünü — doğal lüks",
+      "Yüksek yeniden satış değeri — gayrimenkul değer artışına katkı",
+      "Geniş menşei seçeneği: İtalya, Türkiye, Brezilya, Hindistan",
+      "Zemin, duvar ve tezgah için çok yönlü kullanım"
+    ],
+    disadvantages: [
+      "Asit ve sirke gibi pH düşük maddeler mermer yüzeyini matlaştırabilir",
+      "Yılda 1 kez koruyucu emprenye uygulaması gerektirir",
+      "Granit ve poroz taşlarda leke emme riski — erken müdahale şart"
+    ],
+    maintenance: "Yalnızca pH nötr taş sabunu ve yumuşak bezle silinmelidir. Limon suyu, sirke ve asitli ürünlerden kesinlikle kaçınılmalıdır. Yılda bir kez uzman tarafından koruyucu emprenye uygulanması önerilir.",
     documents: [
       { title: "Özel Mermer ve Kuvarsit Koleksiyon Kitabı", size: "35.2 MB" }
     ]

@@ -115,10 +115,7 @@ export default function App() {
     localStorage.setItem('tezgahstudio_cart', JSON.stringify(quoteCart));
   }, [quoteCart]);
 
-  // Brand Page Filters
-  const [brandSearch, setBrandSearch] = useState('');
-  const [brandOriginFilter, setBrandOriginFilter] = useState<'Tümü' | 'Yerli' | 'Global'>('Tümü');
-  const [brandMaterialFilter, setBrandMaterialFilter] = useState<string>('Tümü');
+  // Brand Page (no filters)
 
   // Color Page Filters
   const [colorSearch, setColorSearch] = useState('');
@@ -178,16 +175,10 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Filtered Brands
+  // All Brands (no filter)
   const filteredBrands = useMemo(() => {
-    return BRANDS.filter(brand => {
-      const matchesSearch = brand.name.toLowerCase().includes(brandSearch.toLowerCase()) || 
-                            brand.description.toLowerCase().includes(brandSearch.toLowerCase());
-      const matchesOrigin = brandOriginFilter === 'Tümü' || brand.origin === brandOriginFilter;
-      const matchesMaterial = brandMaterialFilter === 'Tümü' || brand.materials.includes(brandMaterialFilter);
-      return matchesSearch && matchesOrigin && matchesMaterial;
-    });
-  }, [brandSearch, brandOriginFilter, brandMaterialFilter]);
+    return BRANDS;
+  }, []);
 
   // Filtered Colors
   const filteredColors = useMemo(() => {
@@ -418,10 +409,10 @@ export default function App() {
                   </p>
                   <div className="pt-2">
                     <button
-                      onClick={() => handleNavigate('tech-info')}
+                      onClick={() => handleNavigate('brands')}
                       className="group inline-flex items-center space-x-2 border-b border-gold-500 pb-1 text-xs font-semibold tracking-widest text-neutral-950 uppercase hover:text-gold-600 hover:border-gold-600 transition-colors"
                     >
-                      <span>Malzemeleri Karşılaştır</span>
+                      <span>Markalarımızı İncele</span>
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                     </button>
                   </div>
@@ -529,161 +520,87 @@ export default function App() {
         {activePage === 'brands' && (
           <motion.div variants={pageContainerVariants} initial="hidden" animate="visible" exit="hidden" className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 space-y-10" id="brands-page">
             <motion.div variants={pageItemVariants} className="text-center md:text-left space-y-2">
-              <span className="font-mono text-xs text-gold-600 uppercase tracking-widest block">Koleksiyonlar</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">Anlaşmalı Markalarımız</h2>
+              <span className="font-mono text-xs text-amber-600 uppercase tracking-widest block">Anlaşmalı Tedarikçiler</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">Markalarımız</h2>
               <p className="text-xs sm:text-sm text-stone-500 font-light max-w-2xl">
-                Dilediğiniz markanın fiziksel dayanıklılık, menşei ve koleksiyon detaylarını inceleyin.
+                Çalıştığımız dünya ve Türkiye markalarından teklif alın, koleksiyonları inceleyin.
               </p>
             </motion.div>
 
-            {/* Clean Filter Panel for Brands */}
-            <motion.div variants={pageItemVariants} className="bg-white border border-stone-200/60 rounded-2xl p-6 shadow-xs grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-              {/* Filter 1: Search */}
-              <div className="space-y-1 md:col-span-2">
-                <label className="block text-[10px] font-bold text-neutral-600 uppercase tracking-wider">Arama</label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-stone-400" />
-                  <input
-                    type="text"
-                    placeholder="Marka adı veya malzeme yazın..."
-                    value={brandSearch}
-                    onChange={(e) => setBrandSearch(e.target.value)}
-                    className="w-full text-xs pl-9 pr-4 py-2 bg-stone-50 border border-stone-300 rounded-lg outline-none focus:bg-white focus:border-gold-500 transition-colors"
-                    id="brand-search-input"
-                  />
-                </div>
-              </div>
-
-              {/* Filter 2: Origin */}
-              <div className="space-y-1">
-                <label className="block text-[10px] font-bold text-neutral-600 uppercase tracking-wider">Menşei</label>
-                <div className="flex space-x-1">
-                  {(['Tümü', 'Yerli', 'Global'] as const).map((origin) => (
-                    <button
-                      key={origin}
-                      onClick={() => setBrandOriginFilter(origin)}
-                      className={`text-[10px] font-semibold tracking-wider uppercase flex-1 py-2 text-center rounded-lg border transition-all ${
-                        brandOriginFilter === origin
-                          ? 'bg-neutral-950 text-white border-neutral-950'
-                          : 'bg-stone-50 border-stone-200 text-stone-600 hover:border-stone-400'
-                      }`}
-                      id={`filter-origin-${origin}`}
-                    >
-                      {origin}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Filter 3: Material Category */}
-              <div className="space-y-1">
-                <label className="block text-[10px] font-bold text-neutral-600 uppercase tracking-wider">Malzeme Türü</label>
-                <select
-                  value={brandMaterialFilter}
-                  onChange={(e) => setBrandMaterialFilter(e.target.value)}
-                  className="w-full text-xs py-2 px-3 border border-stone-300 bg-stone-50 rounded-lg outline-none focus:bg-white focus:border-gold-500"
-                  id="filter-brand-material"
-                >
-                  <option value="Tümü">Tümü</option>
-                  <option value="Kuvars">Kuvars</option>
-                  <option value="Porselen">Porselen</option>
-                  <option value="Akrilik / Solid Surface">Akrilik / Solid Surface</option>
-                  <option value="Mermer">Mermer</option>
-                  <option value="Doğal Taş">Doğal Taş</option>
-                </select>
-              </div>
-            </motion.div>
-
-            {/* Brands Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Brands Grid — logo odaklı */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {filteredBrands.map((brand) => (
                 <motion.div
                   key={brand.id}
                   variants={pageItemVariants}
-                  className="group bg-white border border-stone-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-luxury flex flex-col justify-between interactive-card hover-gold-glow"
+                  className="group bg-white border border-stone-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col"
                   id={`brand-card-${brand.id}`}
                 >
-                  <div className="p-6 space-y-4">
-                    {/* Upper */}
-                    <div className="flex items-center justify-between border-b border-stone-100 pb-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="h-11 w-11 rounded-full bg-neutral-950 text-white flex items-center justify-center font-serif font-bold text-sm">
-                          {brand.logo}
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-neutral-900 tracking-wide text-sm uppercase">{brand.name}</h3>
-                          <span className="text-[10px] text-stone-500 font-mono tracking-widest block">{brand.origin} Üretim</span>
-                        </div>
-                      </div>
-                      <span className={`text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full border ${
-                        brand.tier === 'Premium' ? 'border-amber-200 bg-amber-50/50 text-amber-800' : 'border-stone-200 bg-stone-50/50 text-stone-600'
-                      }`}>
-                        {brand.tier}
-                      </span>
-                    </div>
-
-                    <p className="text-xs text-neutral-600 leading-relaxed font-light min-h-[50px]">
-                      {brand.description}
-                    </p>
-
-                    {/* Tag highlights */}
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {brand.materials.map((m) => (
-                        <span key={m} className="bg-stone-100 text-stone-600 text-[9px] font-medium px-2 py-0.5 rounded">
-                          {m}
-                        </span>
-                      ))}
-                      <span className="bg-gold-50 text-gold-800 text-[9px] font-semibold px-2 py-0.5 rounded">
-                        {brand.colorsCount} Renk Koleksiyonu
-                      </span>
+                  {/* Logo alanı */}
+                  <div
+                    className="flex items-center justify-center bg-stone-50 border-b border-stone-100 cursor-pointer"
+                    style={{ height: '120px' }}
+                    onClick={() => setSelectedBrand(brand)}
+                  >
+                    {brand.logoSrc ? (
+                      <img
+                        src={brand.logoSrc}
+                        alt={brand.name}
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
+                        style={{ width: `${(brand.logoScale ?? 1) * 140}px`, height: `${(brand.logoScale ?? 1) * 64}px`, objectFit: 'contain' }}
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = 'none';
+                          (e.currentTarget.nextElementSibling as HTMLElement | null)?.style.setProperty('display', 'flex');
+                        }}
+                      />
+                    ) : null}
+                    {/* Fallback harf */}
+                    <div
+                      className="h-14 w-14 rounded-full bg-neutral-950 text-white flex items-center justify-center font-serif font-bold text-lg"
+                      style={{ display: brand.logoSrc ? 'none' : 'flex' }}
+                    >
+                      {brand.logo}
                     </div>
                   </div>
 
-                  {/* CTA Footer */}
-                  <div className="bg-stone-warm border-t border-stone-100 p-4 grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => {
-                        setSelectedBrand(brand);
-                      }}
-                      className="text-center border border-stone-300 py-2.5 text-[10px] font-semibold tracking-wider text-stone-700 bg-white hover:bg-neutral-50 rounded-lg uppercase"
-                      id={`brand-btn-details-${brand.id}`}
-                    >
-                      Koleksiyonu Gör
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSelectedCategoryForWizard(null);
-                        setSelectedBrand(brand.name);
-                        setActivePage('quote-wizard');
-                      }}
-                      className="text-center bg-neutral-950 text-white hover:bg-gold-600 py-2.5 text-[10px] font-semibold tracking-wider rounded-lg uppercase transition-colors"
-                      id={`brand-btn-quote-${brand.id}`}
-                    >
-                      Teklif Al
-                    </button>
+                  {/* Bilgi */}
+                  <div className="p-3 flex flex-col gap-2 flex-1">
+                    <div>
+                      <h3 className="font-bold text-neutral-900 text-xs leading-tight">{brand.name}</h3>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        {brand.materials.slice(0, 2).map((m) => (
+                          <span key={m} className="bg-stone-100 text-stone-600 text-[9px] font-medium px-1.5 py-0.5 rounded">
+                            {m}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Butonlar */}
+                    <div className="mt-auto grid grid-cols-2 gap-1.5 pt-1">
+                      <button
+                        onClick={() => setSelectedBrand(brand)}
+                        className="text-center border border-stone-200 py-1.5 text-[9px] font-semibold text-stone-600 bg-stone-50 hover:bg-stone-100 rounded-lg transition-colors"
+                        id={`brand-btn-details-${brand.id}`}
+                      >
+                        Detay
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedCategoryForWizard(null);
+                          setSelectedBrand(brand.name);
+                          setActivePage('quote-wizard');
+                        }}
+                        className="text-center bg-amber-500 text-white hover:bg-amber-600 py-1.5 text-[9px] font-semibold rounded-lg transition-colors"
+                        id={`brand-btn-quote-${brand.id}`}
+                      >
+                        Teklif Al
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-
-            {filteredBrands.length === 0 && (
-              <div className="text-center py-16 bg-white border border-stone-200/60 rounded-2xl space-y-2">
-                <AlertCircle className="h-8 w-8 text-stone-400 mx-auto" />
-                <h4 className="text-sm font-semibold text-neutral-800">Aramanıza Uygun Marka Bulunamadı</h4>
-                <p className="text-xs text-stone-500 max-w-sm mx-auto font-light">Lütfen filtreleri sıfırlayarak tekrar arama yapınız.</p>
-                <button
-                  onClick={() => {
-                    setBrandSearch('');
-                    setBrandOriginFilter('Tümü');
-                    setBrandMaterialFilter('Tümü');
-                  }}
-                  className="rounded-full bg-neutral-950 px-5 py-2 text-[10px] tracking-widest text-white uppercase font-semibold mt-3"
-                  id="reset-brand-filters"
-                >
-                  Filtreleri Sıfırla
-                </button>
-              </div>
-            )}
           </motion.div>
         )}
 
@@ -773,125 +690,6 @@ export default function App() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-        )}
-
-        {/* 6. TECHNICAL COMPARISON TABLE */}
-        {activePage === 'tech-info' && (
-          <motion.div variants={pageContainerVariants} initial="hidden" animate="visible" exit="hidden" className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 space-y-10" id="tech-page">
-            <motion.div variants={pageItemVariants} className="text-center md:text-left space-y-2">
-              <span className="font-mono text-xs text-gold-600 uppercase tracking-widest block">Karşılaştırma Laboratuvarı</span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-neutral-900">Malzeme Karşılaştırma Matrisi</h2>
-              <p className="text-xs sm:text-sm text-stone-500 font-light max-w-2xl">
-                Projenize yönelik en doğru kimyasal bileşimi seçebilmeniz için malzemelerin zorluk dirençlerini sayılarla analiz edin.
-              </p>
-            </motion.div>
-
-            {/* Desktop Table View */}
-            <motion.div variants={pageItemVariants} className="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-xs hidden md:block">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="bg-neutral-950 text-white font-mono text-[10px] uppercase tracking-wider">
-                    <th className="p-4 pl-6">Tezgah Materyali</th>
-                    <th className="p-4 text-center">Çizilme Dayanımı</th>
-                    <th className="p-4 text-center">Leke Direnci</th>
-                    <th className="p-4 text-center">Yüksek Isı Direnci</th>
-                    <th className="p-4 text-center">Bakım Kolaylığı</th>
-                    <th className="p-4 text-center">Dış Mekan Uygunluğu</th>
-                    <th className="p-4 text-center">Maliyet Segmenti</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-stone-100 text-xs">
-                  {TECHNICAL_COMPARISONS.map((row) => (
-                    <React.Fragment key={row.material}>
-                      <tr className="hover:bg-stone-50/50 transition-colors font-medium">
-                        <td className="p-4 pl-6 text-neutral-900 font-serif text-sm font-bold">{row.material}</td>
-                        {/* Star render helper */}
-                        <td className="p-4 text-center text-amber-500 font-bold">
-                          {"★".repeat(row.durability) + "☆".repeat(5-row.durability)}
-                        </td>
-                        <td className="p-4 text-center text-amber-500 font-bold">
-                          {"★".repeat(row.stainResistance) + "☆".repeat(5-row.stainResistance)}
-                        </td>
-                        <td className="p-4 text-center text-amber-500 font-bold">
-                          {"★".repeat(row.heatResistance) + "☆".repeat(5-row.heatResistance)}
-                        </td>
-                        <td className="p-4 text-center text-amber-500 font-bold">
-                          {"★".repeat(row.maintenanceEase) + "☆".repeat(5-row.maintenanceEase)}
-                        </td>
-                        <td className="p-4 text-center">
-                          {row.outdoorSuitability ? (
-                            <span className="inline-block bg-emerald-50 text-emerald-800 text-[10px] font-semibold px-2 py-0.5 rounded border border-emerald-100 uppercase">Mükemmel</span>
-                          ) : (
-                            <span className="inline-block bg-red-50 text-red-800 text-[10px] font-semibold px-2 py-0.5 rounded border border-red-100 uppercase">Tavsiye Edilmez</span>
-                          )}
-                        </td>
-                        <td className="p-4 text-center font-bold font-mono tracking-widest text-neutral-950 bg-gold-50/20">{row.priceLevel}</td>
-                      </tr>
-                      {/* Secondary row with text guidance */}
-                      <tr className="bg-stone-50/20 text-stone-500 text-[11px] font-light italic">
-                        <td colSpan={7} className="p-3 pl-6 border-b border-stone-200/50 leading-relaxed">
-                          <span className="not-italic font-bold text-neutral-700">Görsel Karakter: </span> {row.visualImpact} <span className="mx-2">|</span> 
-                          <span className="not-italic font-bold text-neutral-700">Doğru Uygulama: </span> {row.recommendedUse}
-                        </td>
-                      </tr>
-                    </React.Fragment>
-                  ))}
-                </tbody>
-              </table>
-            </motion.div>
-
-            {/* Mobile Cards for Info of Matrix */}
-            <div className="grid grid-cols-1 gap-4 md:hidden">
-              {TECHNICAL_COMPARISONS.map((row) => (
-                <motion.div key={row.material} variants={pageItemVariants} className="bg-white border border-stone-200 rounded-2xl p-5 space-y-4 shadow-xs">
-                  <div className="flex justify-between items-center border-b border-stone-100 pb-3">
-                    <h4 className="font-serif text-base font-bold text-neutral-900">{row.material}</h4>
-                    <span className="font-mono text-xs font-bold bg-gold-100 text-gold-800 px-2.5 py-0.5 rounded">
-                      Fiyat: {row.priceLevel}
-                    </span>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-2 text-xs font-light">
-                    <div>
-                      <span className="text-stone-400 block">Çizilme Dayanımı:</span>
-                      <span className="text-amber-500 font-bold">{"★".repeat(row.durability)}</span>
-                    </div>
-                    <div>
-                      <span className="text-stone-400 block">Leke Direnci:</span>
-                      <span className="text-amber-500 font-bold">{"★".repeat(row.stainResistance)}</span>
-                    </div>
-                    <div>
-                      <span className="text-stone-400 block">Yüksek Isı Direnci:</span>
-                      <span className="text-amber-500 font-bold">{"★".repeat(row.heatResistance)}</span>
-                    </div>
-                    <div>
-                      <span className="text-stone-400 block">Bakım Kolaylığı:</span>
-                      <span className="text-amber-500 font-bold">{"★".repeat(row.maintenanceEase)}</span>
-                    </div>
-                    <div className="col-span-2 pt-2">
-                      <span className="text-stone-400 block">Dış Mekan Uyumu:</span>
-                      <span className="font-medium text-neutral-800">
-                        {row.outdoorSuitability ? "✅ Güneş/UV Işınlarına Dayanıklı" : "❌ Sadece İç Mekan Önerilir"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-stone-100 pt-3 text-[11px] text-stone-600 font-light space-y-1 leading-relaxed">
-                    <p><strong>Görsel Etki:</strong> {row.visualImpact}</p>
-                    <p><strong>Doğru Kullanım:</strong> {row.recommendedUse}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Quick Warning Advice */}
-            <motion.div variants={pageItemVariants} className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start space-x-3 text-amber-900 text-xs leading-relaxed font-light">
-              <Info className="h-5 w-5 shrink-0 text-amber-800 mt-0.5" />
-              <div>
-                <strong>Profesyonel Mimar Tavsiyesi:</strong> Tezgahlarımızın ömrü sadece seçilen malzemenin sertliğine bağlı değildir. Köşe birleşimlerinin pürüzsüzlüğü, evye alttan yapıştırma kesimlerindeki elmas payları ve süpürgeliklerin silikon yalıtımı toplam kalitenin %60'ını oluşturur. Tezgah Studio olarak tüm montaj işçiliklerinde 2 yıl resmi garanti ve sızdırmazlık sertifikası sunuyoruz.
-              </div>
-            </motion.div>
           </motion.div>
         )}
 
@@ -1077,8 +875,24 @@ export default function App() {
                 {/* Left brand card segment */}
                 <div className="md:col-span-4 bg-neutral-950 text-stone-200 p-8 flex flex-col justify-between">
                   <div className="space-y-6 pt-4">
-                    <div className="h-16 w-16 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-white font-serif font-black text-xl shadow-lg">
-                      {selectedBrand.logo}
+                    <div className="flex items-center">
+                      {selectedBrand.logoSrc ? (
+                        <img
+                          src={selectedBrand.logoSrc}
+                          alt={selectedBrand.name}
+                          style={{ maxHeight: `${(selectedBrand.logoScale ?? 1) * 56}px`, maxWidth: `${(selectedBrand.logoScale ?? 1) * 160}px`, objectFit: 'contain' }}
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).style.display = 'none';
+                            (e.currentTarget.nextElementSibling as HTMLElement | null)?.style.setProperty('display', 'flex');
+                          }}
+                        />
+                      ) : null}
+                      <div
+                        className="items-center justify-center text-white font-serif font-black text-2xl"
+                        style={{ display: selectedBrand.logoSrc ? 'none' : 'flex' }}
+                      >
+                        {selectedBrand.logo}
+                      </div>
                     </div>
                     <div>
                       <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-mono">{selectedBrand.origin} Lüks Malzemesi</span>
@@ -1089,21 +903,47 @@ export default function App() {
                     </p>
                   </div>
 
-                  <div className="pt-10 border-t border-white/10 space-y-4">
-                    <div className="text-[10px] font-mono tracking-widest text-gold-400 uppercase">Hızlı Bilgiler</div>
+                  <div className="pt-6 border-t border-white/10 space-y-4">
+                    <div className="text-[10px] font-mono tracking-widest text-amber-400 uppercase">Hızlı Bilgiler</div>
                     <div className="text-xs space-y-2.5 font-light">
                       <div className="flex justify-between">
-                        <span className="text-neutral-500">Üretim Menşei:</span>
+                        <span className="text-neutral-500">Menşei:</span>
                         <span className="font-medium text-white">{selectedBrand.origin}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-neutral-500">Koleksiyon Sayısı:</span>
-                        <span className="font-medium text-stone-200">{selectedBrand.colorsCount} Seçkin Desen</span>
+                        <span className="text-neutral-500">Koleksiyon:</span>
+                        <span className="font-medium text-stone-200">{selectedBrand.colorsCount}+ Desen & Renk</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-neutral-500">Temizlik Bakımı:</span>
-                        <span className="font-medium text-stone-200">Son Derece Kolay</span>
+                        <span className="text-neutral-500">Segment:</span>
+                        <span className={`font-semibold ${selectedBrand.tier === 'Premium' ? 'text-amber-400' : 'text-stone-300'}`}>{selectedBrand.tier}</span>
                       </div>
+                    </div>
+
+                    {/* Dış bağlantı butonları */}
+                    <div className="space-y-2 pt-2">
+                      {selectedBrand.colorsUrl && (
+                        <a
+                          href={selectedBrand.colorsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full rounded-xl bg-amber-500 hover:bg-amber-400 text-white text-[11px] font-semibold py-2.5 transition-colors"
+                        >
+                          <span>🎨</span>
+                          <span>Renk Koleksiyonunu Gör</span>
+                        </a>
+                      )}
+                      {selectedBrand.websiteUrl && (
+                        <a
+                          href={selectedBrand.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 hover:bg-white/10 text-stone-300 text-[11px] font-medium py-2.5 transition-colors"
+                        >
+                          <span>🌐</span>
+                          <span>Resmi Web Sitesi</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1145,30 +985,48 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Brand specific catalog documents download list */}
-                  <div className="space-y-4">
-                    <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Dökümanlar & Sertifikalar</span>
+                  {/* Bakım bilgisi */}
+                  {selectedBrand.maintenance && (
+                    <div className="bg-blue-50/60 border border-blue-100 rounded-xl p-4 space-y-1.5">
+                      <span className="font-mono text-[10px] text-blue-700 uppercase tracking-widest font-bold">Bakım & Temizlik</span>
+                      <p className="text-xs text-blue-900 leading-relaxed">{selectedBrand.maintenance}</p>
+                    </div>
+                  )}
+
+                  {/* PDF Kataloglar */}
+                  <div className="space-y-3">
+                    <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest font-bold">PDF Kataloglar & Belgeler</span>
                     <div className="space-y-2">
                       {selectedBrand.documents.map((doc, idx) => (
                         <div key={idx} className="border border-stone-200 rounded-xl p-3 flex items-center justify-between hover:bg-stone-50 transition-colors">
-                          <div className="flex items-center space-x-2.5 text-stone-600">
-                            <FileText className="h-5 w-5 text-gold-500 shrink-0" />
-                            <div className="text-left">
+                          <div className="flex items-center gap-2.5">
+                            <div className="h-8 w-8 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center shrink-0">
+                              <FileText className="h-4 w-4 text-red-500" />
+                            </div>
+                            <div>
                               <span className="text-xs font-semibold text-neutral-900 block">{doc.title}</span>
-                              <span className="text-[10px] text-stone-400 font-mono block">PDF • {doc.size}</span>
+                              <span className="text-[10px] text-stone-400 font-mono">PDF Katalog</span>
                             </div>
                           </div>
-                          
-                          <button 
-                            onClick={() => alert(`"${doc.title}" kataloğu indirilmeye başlandı.`)} 
-                            className="bg-neutral-100 hover:bg-neutral-900 hover:text-white p-2 rounded-lg transition-colors text-neutral-700"
-                            title="İndir"
-                          >
-                            <Download className="h-4 w-4" />
-                          </button>
+                          {doc.url ? (
+                            <a
+                              href={doc.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1.5 bg-neutral-900 hover:bg-amber-500 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                            >
+                              <Download className="h-3.5 w-3.5" />
+                              <span>İndir</span>
+                            </a>
+                          ) : (
+                            <span className="text-[10px] text-stone-400 italic px-3">Yakında</span>
+                          )}
                         </div>
                       ))}
                     </div>
+                    <p className="text-[10px] text-stone-400 leading-relaxed">
+                      PDF katalog yüklemek için dosyalarınızı <code className="bg-stone-100 px-1 rounded">public/catalogs/</code> klasörüne ekleyin.
+                    </p>
                   </div>
 
                   {/* Brand colors show dynamic */}

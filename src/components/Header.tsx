@@ -34,7 +34,6 @@ export default function Header({
     { id: 'home', label: 'Ana Sayfa' },
     { id: 'brands', label: 'Markalar' },
     { id: 'projects', label: 'Projeler' },
-    { id: 'tech-info', label: 'Teknik' },
     { id: 'randevu', label: 'Randevu' },
   ];
 
