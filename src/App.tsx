@@ -622,8 +622,9 @@ export default function App() {
                       <button
                         onClick={() => {
                           setSelectedCategoryForWizard(null);
-                          setSelectedBrand(brand.name);
+                          setSelectedBrandForWizard(brand.name);
                           setActivePage('quote-wizard');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                         className="text-center bg-amber-500 text-white hover:bg-amber-600 py-1.5 text-[9px] font-semibold rounded-lg transition-colors"
                         id={`brand-btn-quote-${brand.id}`}
@@ -1091,8 +1092,9 @@ export default function App() {
                         const brandName = selectedBrand.name;
                         setSelectedBrand(null);
                         setSelectedCategoryForWizard(null);
-                        setSelectedBrand(brandName);
+                        setSelectedBrandForWizard(brandName);
                         setActivePage('quote-wizard');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
                       className="bg-neutral-950 hover:bg-gold-600 py-2.5 px-6 rounded-full text-xs font-semibold text-white tracking-widest uppercase transition-colors"
                       id="brand-modal-quote-btn"
