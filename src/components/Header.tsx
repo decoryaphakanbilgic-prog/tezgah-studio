@@ -57,7 +57,7 @@ export default function Header({
           <span className="font-serif text-xl font-bold tracking-tight text-neutral-900 group-hover:text-amber-500 transition-colors duration-300">
             Tezgah<span className="text-amber-500 font-light"> Studio</span>
           </span>
-          <span className="font-mono text-[8px] tracking-[0.28em] text-stone-400 uppercase">
+          <span className="font-mono text-[10px] tracking-[0.28em] text-stone-400 uppercase">
             Lüks Tezgah Platformu
           </span>
         </button>
@@ -88,7 +88,7 @@ export default function Header({
           {/* Phone */}
           <a
             href="tel:+902126502220"
-            className="hidden xl:flex items-center gap-2 text-[11px] text-stone-500 hover:text-amber-600 transition-colors"
+            className="hidden xl:flex items-center gap-2 text-[13px] text-stone-500 hover:text-amber-600 transition-colors"
           >
             <Phone className="h-3.5 w-3.5" />
             <span className="font-medium">+90 (212) 650 22 20</span>
@@ -116,7 +116,7 @@ export default function Header({
                 <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl border border-stone-100 shadow-xl py-2 z-50">
                   <div className="px-4 py-2 border-b border-stone-100">
                     <p className="text-xs font-semibold text-neutral-800 truncate">{user.displayName}</p>
-                    <p className="text-[10px] text-stone-400 truncate">{user.email}</p>
+                    <p className="text-xs text-stone-400 truncate">{user.email}</p>
                   </div>
                   {isAdmin && (
                     <button
@@ -150,7 +150,7 @@ export default function Header({
           {/* CTA */}
           <button
             onClick={onStartQuote}
-            className="flex items-center gap-1.5 rounded-full bg-amber-500 px-5 py-2.5 text-[11px] font-semibold tracking-wide text-white shadow-sm hover:bg-amber-600 transition-all duration-200"
+            className="flex items-center gap-1.5 rounded-full bg-amber-500 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-sm hover:bg-amber-600 transition-all duration-200"
             id="quick-quote-button"
           >
             <span>Teklif Al</span>

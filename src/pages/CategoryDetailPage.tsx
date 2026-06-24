@@ -35,7 +35,7 @@ function BrandCard({ brand, onQuote }: { brand: BrandDetail; onQuote: () => void
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
               <h3 className="font-bold text-neutral-900 text-lg">{brand.name}</h3>
-              <span className="text-[11px] text-stone-400 bg-stone-100 px-2 py-0.5 rounded-full font-medium">{brand.origin}</span>
+              <span className="text-[13px] text-stone-400 bg-stone-100 px-2 py-0.5 rounded-full font-medium">{brand.origin}</span>
             </div>
             <p className="text-xs text-amber-600 font-medium italic mb-3">{brand.tagline}</p>
             <p className="text-sm text-stone-600 leading-relaxed">{brand.description}</p>
@@ -111,9 +111,9 @@ function BrandCard({ brand, onQuote }: { brand: BrandDetail; onQuote: () => void
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <p className="text-[11px] font-semibold text-neutral-800 leading-tight">{color.name}</p>
-                  {color.code && <p className="text-[10px] text-stone-400 font-mono">{color.code}</p>}
-                  {color.finish && <p className="text-[10px] text-stone-400">{color.finish}</p>}
+                  <p className="text-[13px] font-semibold text-neutral-800 leading-tight">{color.name}</p>
+                  {color.code && <p className="text-xs text-stone-400 font-mono">{color.code}</p>}
+                  {color.finish && <p className="text-xs text-stone-400">{color.finish}</p>}
                 </div>
               ))}
             </div>

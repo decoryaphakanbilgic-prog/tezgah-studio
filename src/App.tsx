@@ -238,7 +238,7 @@ export default function App() {
     <div className={`relative min-h-screen flex flex-col justify-between selection:bg-amber-200 theme-${theme}`}>
       
       {/* Top Banner Message for Premium Vibe */}
-      <div className="bg-neutral-950 text-stone-200 text-[10px] font-mono tracking-[0.2em] py-2 px-6 text-center uppercase border-b border-[var(--border-color)]">
+      <div className="bg-neutral-950 text-stone-200 text-xs font-mono tracking-[0.2em] py-2 px-6 text-center uppercase border-b border-[var(--border-color)]">
         <span className="flex items-center justify-center gap-3">
           <span>Türkiye'nin En Seçkin Mimari Yüzey ve Lüks Tezgah Platformu</span>
           <span>•</span>
@@ -314,7 +314,7 @@ export default function App() {
 
                 {/* Subtitle instructions */}
                 <div className="mt-12 w-full max-w-5xl">
-                  <div className="mb-4 text-gold-400 font-mono text-[10px] uppercase tracking-[0.25em] flex items-center justify-center space-x-2">
+                  <div className="mb-4 text-gold-400 font-mono text-xs uppercase tracking-[0.25em] flex items-center justify-center space-x-2">
                     <span className="w-10 h-[1.5px] bg-gold-500/50"></span>
                     <span>Projeniz İçin Hangi Kategoride Hizmet Almak İstiyorsunuz?</span>
                     <span className="w-10 h-[1.5px] bg-gold-500/50"></span>
@@ -331,12 +331,12 @@ export default function App() {
                       <div className="absolute top-4 right-4 h-6 w-6 rounded-full border border-white/10 flex items-center justify-center text-white/50 group-hover:bg-gold-500 group-hover:text-white group-hover:border-gold-500 transition-all">
                         <ChevronRight className="h-4 w-4" />
                       </div>
-                      <span className="font-mono text-[10px] text-gold-400 uppercase tracking-widest block mb-1">Seçenek 01</span>
+                      <span className="font-mono text-xs text-gold-400 uppercase tracking-widest block mb-1">Seçenek 01</span>
                       <h4 className="font-serif text-lg font-bold text-white tracking-wide">Perakende Konut</h4>
-                      <p className="text-[11px] text-stone-300 font-light mt-1.5 leading-relaxed">
+                      <p className="text-[13px] text-stone-300 font-light mt-1.5 leading-relaxed">
                         Ev, mutfak, banyo, ada banyosu ve küçük bireysel mülk yerleşimli mutfak yenileme işleriniz için.
                       </p>
-                      <span className="inline-block pt-3 text-[9px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="inline-block pt-3 text-[11px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
                         Fiyat Teklifi Gör →
                       </span>
                     </button>
@@ -350,12 +350,12 @@ export default function App() {
                       <div className="absolute top-4 right-4 h-6 w-6 rounded-full border border-white/10 flex items-center justify-center text-white/50 group-hover:bg-gold-500 group-hover:text-white group-hover:border-gold-500 transition-all">
                         <ChevronRight className="h-4 w-4" />
                       </div>
-                      <span className="font-mono text-[10px] text-gold-400 uppercase tracking-widest block mb-1">Seçenek 02</span>
+                      <span className="font-mono text-xs text-gold-400 uppercase tracking-widest block mb-1">Seçenek 02</span>
                       <h4 className="font-serif text-lg font-bold text-white tracking-wide">Butik Tasarım Proje</h4>
-                      <p className="text-[11px] text-stone-300 font-light mt-1.5 leading-relaxed">
+                      <p className="text-[13px] text-stone-300 font-light mt-1.5 leading-relaxed">
                         Villa, özel tasarım mutfaklar, restoran, cafe barları, prestijli mimari iç mekan projeleri.
                       </p>
-                      <span className="inline-block pt-3 text-[9px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="inline-block pt-3 text-[11px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
                         Keşif & Teklif Al →
                       </span>
                     </button>
@@ -369,12 +369,12 @@ export default function App() {
                       <div className="absolute top-4 right-4 h-6 w-6 rounded-full border border-white/10 flex items-center justify-center text-white/50 group-hover:bg-gold-500 group-hover:text-white group-hover:border-gold-500 transition-all">
                         <ChevronRight className="h-4 w-4" />
                       </div>
-                      <span className="font-mono text-[10px] text-gold-400 uppercase tracking-widest block mb-1">Seçenek 03</span>
+                      <span className="font-mono text-xs text-gold-400 uppercase tracking-widest block mb-1">Seçenek 03</span>
                       <h4 className="font-serif text-lg font-bold text-white tracking-wide">Toplu Kurumsal / Taahhüt</h4>
-                      <p className="text-[11px] text-stone-300 font-light mt-1.5 leading-relaxed">
+                      <p className="text-[13px] text-stone-300 font-light mt-1.5 leading-relaxed">
                         Otel, lüks rezidans, toplu konut mutfakları, mimari ofis ve müteahhitlik özel siparişleri.
                       </p>
-                      <span className="inline-block pt-3 text-[9px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="inline-block pt-3 text-[11px] font-mono tracking-widest text-gold-200 uppercase opacity-0 group-hover:opacity-100 transition-opacity">
                         İş Ortağı Fiyatı Al →
                       </span>
                     </button>
@@ -474,7 +474,7 @@ export default function App() {
                 {/* Başlık alanı */}
                 <div className="mb-4">
                   <h2 className="font-mono text-sm font-bold text-neutral-800 tracking-[0.2em] uppercase">Tezgah Kategorileri</h2>
-                  <p className="text-[11px] text-amber-800/70 font-medium italic mt-1 leading-relaxed">Doğal taştan akrilik yüzeylere, her kullanım alanı ve bütçeye özel premium tezgah çözümleri</p>
+                  <p className="text-[13px] text-amber-800/70 font-medium italic mt-1 leading-relaxed">Doğal taştan akrilik yüzeylere, her kullanım alanı ve bütçeye özel premium tezgah çözümleri</p>
                 </div>
 
                 {/* Kategori listesi */}
@@ -494,11 +494,11 @@ export default function App() {
                       <div className="shrink-0 h-11 w-11 rounded-full overflow-hidden ring-2 ring-stone-300 group-hover:ring-amber-400 transition-all duration-200 shadow-sm">
                         <img src={cat.image} alt={cat.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" referrerPolicy="no-referrer" />
                       </div>
-                      <span className="shrink-0 font-mono text-[11px] font-semibold text-stone-600 tracking-widest w-5">{cat.num}</span>
+                      <span className="shrink-0 font-mono text-[13px] font-semibold text-stone-600 tracking-widest w-5">{cat.num}</span>
                       <div className="shrink-0 h-5 w-px bg-stone-300" />
                       <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-6">
                         <h4 className="text-sm font-bold text-neutral-900 tracking-tight group-hover:text-amber-600 transition-colors duration-200">{cat.title}</h4>
-                        <p className="text-[11px] text-stone-700 sm:text-right">{cat.desc}</p>
+                        <p className="text-[13px] text-stone-700 sm:text-right">{cat.desc}</p>
                       </div>
                       <ArrowRight className="shrink-0 h-4 w-4 text-stone-500 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-200" />
                     </div>
@@ -591,8 +591,8 @@ export default function App() {
                   <div className="p-2.5 flex flex-col gap-1.5 flex-1">
                     {/* İsim + origin */}
                     <div className="flex items-start justify-between gap-1">
-                      <h3 className="font-bold text-neutral-900 text-[11px] leading-tight">{brand.name}</h3>
-                      <span className={`shrink-0 text-[8px] font-semibold px-1.5 py-0.5 rounded-full leading-none ${
+                      <h3 className="font-bold text-neutral-900 text-[13px] leading-tight">{brand.name}</h3>
+                      <span className={`shrink-0 text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none ${
                         brand.origin === 'Yerli' ? 'bg-green-50 text-green-700' : 'bg-blue-50 text-blue-700'
                       }`}>
                         {brand.origin}
@@ -600,12 +600,12 @@ export default function App() {
                     </div>
 
                     {/* Kısa açıklama */}
-                    <p className="text-[11px] text-stone-600 leading-relaxed">{brand.description}</p>
+                    <p className="text-[13px] text-stone-600 leading-relaxed">{brand.description}</p>
 
                     {/* Öne çıkan avantajlar */}
                     <ul className="space-y-0.5">
                       {brand.advantages.slice(0, 2).map((adv) => (
-                        <li key={adv} className="flex items-start gap-1.5 text-[10px] text-stone-500 leading-snug">
+                        <li key={adv} className="flex items-start gap-1.5 text-xs text-stone-500 leading-snug">
                           <span className="text-amber-500 mt-0.5 shrink-0">›</span>
                           <span>{adv}</span>
                         </li>
@@ -614,19 +614,19 @@ export default function App() {
 
                     {/* Tier + renk sayısı */}
                     <div className="flex items-center gap-1.5">
-                      <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full ${
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                         brand.tier === 'Premium' ? 'bg-amber-50 text-amber-600 border border-amber-100' : 'bg-stone-100 text-stone-500'
                       }`}>
                         {brand.tier}
                       </span>
-                      <span className="text-stone-300 text-[9px]">·</span>
-                      <span className="text-[9px] text-stone-500 font-medium">{brand.colorsCount}+ renk</span>
+                      <span className="text-stone-300 text-[11px]">·</span>
+                      <span className="text-[11px] text-stone-500 font-medium">{brand.colorsCount}+ renk</span>
                     </div>
 
                     {/* Malzeme etiketleri */}
                     <div className="flex flex-wrap gap-1">
                       {brand.materials.slice(0, 2).map((m) => (
-                        <span key={m} className="bg-stone-100 text-stone-600 text-[8px] font-medium px-1.5 py-0.5 rounded">
+                        <span key={m} className="bg-stone-100 text-stone-600 text-[10px] font-medium px-1.5 py-0.5 rounded">
                           {m}
                         </span>
                       ))}
@@ -636,7 +636,7 @@ export default function App() {
                     <div className="mt-auto grid grid-cols-2 gap-1.5 pt-1">
                       <button
                         onClick={() => setSelectedBrand(brand)}
-                        className="text-center border border-stone-200 py-1.5 text-[9px] font-semibold text-stone-600 bg-stone-50 hover:bg-stone-100 rounded-lg transition-colors"
+                        className="text-center border border-stone-200 py-1.5 text-[11px] font-semibold text-stone-600 bg-stone-50 hover:bg-stone-100 rounded-lg transition-colors"
                         id={`brand-btn-details-${brand.id}`}
                       >
                         Detay
@@ -648,7 +648,7 @@ export default function App() {
                           setActivePage('quote-wizard');
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        className="text-center bg-amber-500 text-white hover:bg-amber-600 py-1.5 text-[9px] font-semibold rounded-lg transition-colors"
+                        className="text-center bg-amber-500 text-white hover:bg-amber-600 py-1.5 text-[11px] font-semibold rounded-lg transition-colors"
                         id={`brand-btn-quote-${brand.id}`}
                       >
                         Teklif Al
@@ -708,14 +708,14 @@ export default function App() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-neutral-850 px-3 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase border border-white/20">
+                    <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md text-neutral-850 px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase border border-white/20">
                       {proj.category}
                     </div>
                   </div>
                   
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-1">
-                      <span className="font-mono text-[9px] text-stone-400 tracking-wider block uppercase">{proj.location}</span>
+                      <span className="font-mono text-[11px] text-stone-400 tracking-wider block uppercase">{proj.location}</span>
                       <h4 className="font-serif text-lg font-bold text-neutral-900 group-hover:text-gold-600 transition-colors">
                         {proj.title}
                       </h4>
@@ -726,7 +726,7 @@ export default function App() {
 
                     <div className="border-t border-stone-100 pt-3 flex items-center justify-between">
                       <div>
-                        <span className="text-[9px] text-stone-400 uppercase font-bold block mb-0.5">Kullanılan Malzeme</span>
+                        <span className="text-[11px] text-stone-400 uppercase font-bold block mb-0.5">Kullanılan Malzeme</span>
                         <span className="text-xs font-medium text-neutral-850">{proj.materialUsed}</span>
                       </div>
 
@@ -737,7 +737,7 @@ export default function App() {
                           setSelectedBrandForWizard(null);
                           setActivePage('quote-wizard');
                         }}
-                        className="text-[10px] font-bold text-white bg-neutral-950 hover:bg-gold-600 px-3 py-1.5 rounded transition-colors uppercase"
+                        className="text-xs font-bold text-white bg-neutral-950 hover:bg-gold-600 px-3 py-1.5 rounded transition-colors uppercase"
                         id={`proj-cta-${proj.id}`}
                       >
                         Benzer Teklif Al
@@ -835,7 +835,7 @@ export default function App() {
                   <div className="text-center py-20 space-y-3">
                     <HeartOff className="h-10 w-10 text-stone-400 mx-auto" strokeWidth={1} />
                     <h4 className="text-xs font-semibold text-neutral-800">Favori Listeniz Boş</h4>
-                    <p className="text-[11px] text-stone-500 font-light max-w-xs mx-auto leading-relaxed">
+                    <p className="text-[13px] text-stone-500 font-light max-w-xs mx-auto leading-relaxed">
                       Ürünler sayfasında hoşunuza giden kuvars, porselen veya doğal mermer serilerinin üzerindeki kalp ikonuna tıklayarak buraya kaydedebilirsiniz.
                     </p>
                     <button
@@ -843,7 +843,7 @@ export default function App() {
                         setIsFavoritesDrawerOpen(false);
                         handleNavigate('colors');
                       }}
-                      className="text-[10px] font-bold text-gold-600 border border-gold-300 rounded-lg px-4 py-2 hover:bg-gold-50/30 transition-colors"
+                      className="text-xs font-bold text-gold-600 border border-gold-300 rounded-lg px-4 py-2 hover:bg-gold-50/30 transition-colors"
                       id="drawer-browse-colors"
                     >
                       Renkleri İncele
@@ -860,9 +860,9 @@ export default function App() {
                         <img src={col.image} alt={col.name} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                       </div>
                       <div className="flex-1 text-left">
-                        <span className="text-[9px] font-bold text-gold-600 block uppercase tracking-wider">{col.brand} • {col.materialType}</span>
+                        <span className="text-[11px] font-bold text-gold-600 block uppercase tracking-wider">{col.brand} • {col.materialType}</span>
                         <h4 className="font-semibold text-neutral-900 text-xs tracking-wide">{col.name}</h4>
-                        <span className="text-[10px] text-stone-400 font-light block">{col.finish} Yüzey</span>
+                        <span className="text-xs text-stone-400 font-light block">{col.finish} Yüzey</span>
                       </div>
                       
                       {/* Delete option */}
@@ -960,7 +960,7 @@ export default function App() {
                       </div>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-mono">{selectedBrand.origin} Lüks Malzemesi</span>
+                      <span className="text-xs uppercase tracking-[0.2em] text-neutral-400 font-mono">{selectedBrand.origin} Lüks Malzemesi</span>
                       <h3 className="font-serif text-3xl font-bold tracking-tight text-white mt-1">{selectedBrand.name}</h3>
                     </div>
                     <p className="text-xs text-neutral-400 leading-relaxed font-light">
@@ -969,7 +969,7 @@ export default function App() {
                   </div>
 
                   <div className="pt-6 border-t border-white/10 space-y-4">
-                    <div className="text-[10px] font-mono tracking-widest text-amber-400 uppercase">Hızlı Bilgiler</div>
+                    <div className="text-xs font-mono tracking-widest text-amber-400 uppercase">Hızlı Bilgiler</div>
                     <div className="text-xs space-y-2.5 font-light">
                       <div className="flex justify-between">
                         <span className="text-neutral-500">Menşei:</span>
@@ -992,7 +992,7 @@ export default function App() {
                           href={selectedBrand.colorsUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 w-full rounded-xl bg-amber-500 hover:bg-amber-400 text-white text-[11px] font-semibold py-2.5 transition-colors"
+                          className="flex items-center justify-center gap-2 w-full rounded-xl bg-amber-500 hover:bg-amber-400 text-white text-[13px] font-semibold py-2.5 transition-colors"
                         >
                           <span>🎨</span>
                           <span>Renk Koleksiyonunu Gör</span>
@@ -1003,7 +1003,7 @@ export default function App() {
                           href={selectedBrand.websiteUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 hover:bg-white/10 text-stone-300 text-[11px] font-medium py-2.5 transition-colors"
+                          className="flex items-center justify-center gap-2 w-full rounded-xl border border-white/20 hover:bg-white/10 text-stone-300 text-[13px] font-medium py-2.5 transition-colors"
                         >
                           <span>🌐</span>
                           <span>Resmi Web Sitesi</span>
@@ -1018,7 +1018,7 @@ export default function App() {
                   
                   {/* Detailed summary */}
                   <div className="space-y-3">
-                    <span className="font-mono text-[10px] text-gold-600 uppercase tracking-widest font-bold">Zanaat Hikayesi</span>
+                    <span className="font-mono text-xs text-gold-600 uppercase tracking-widest font-bold">Zanaat Hikayesi</span>
                     <h4 className="font-serif text-lg font-bold text-neutral-950">Mükemmele Ulaşan Teknoloji</h4>
                     <p className="text-xs text-stone-600 leading-relaxed font-light">{selectedBrand.longDescription}</p>
                   </div>
@@ -1053,14 +1053,14 @@ export default function App() {
                   {/* Bakım bilgisi */}
                   {selectedBrand.maintenance && (
                     <div className="bg-blue-50/60 border border-blue-100 rounded-xl p-4 space-y-1.5">
-                      <span className="font-mono text-[10px] text-blue-700 uppercase tracking-widest font-bold">Bakım & Temizlik</span>
+                      <span className="font-mono text-xs text-blue-700 uppercase tracking-widest font-bold">Bakım & Temizlik</span>
                       <p className="text-xs text-blue-900 leading-relaxed">{selectedBrand.maintenance}</p>
                     </div>
                   )}
 
                   {/* PDF Kataloglar */}
                   <div className="space-y-3">
-                    <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest font-bold">PDF Kataloglar & Belgeler</span>
+                    <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest font-bold">PDF Kataloglar & Belgeler</span>
                     <div className="space-y-2">
                       {selectedBrand.documents.map((doc, idx) => (
                         <div key={idx} className="border border-stone-200 rounded-xl p-3 flex items-center justify-between hover:bg-stone-50 transition-colors">
@@ -1070,39 +1070,39 @@ export default function App() {
                             </div>
                             <div>
                               <span className="text-xs font-semibold text-neutral-900 block">{doc.title}</span>
-                              <span className="text-[10px] text-stone-400 font-mono">PDF Katalog</span>
+                              <span className="text-xs text-stone-400 font-mono">PDF Katalog</span>
                             </div>
                           </div>
                           {doc.url ? (
                             <button
                               onClick={() => setPdfViewer({ url: doc.url!, title: doc.title })}
-                              className="flex items-center gap-1.5 bg-neutral-900 hover:bg-amber-500 text-white text-[10px] font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                              className="flex items-center gap-1.5 bg-neutral-900 hover:bg-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors"
                             >
                               <Eye className="h-3.5 w-3.5" />
                               <span>Görüntüle</span>
                             </button>
                           ) : (
-                            <span className="text-[10px] text-stone-400 italic px-3">Yakında</span>
+                            <span className="text-xs text-stone-400 italic px-3">Yakında</span>
                           )}
                         </div>
                       ))}
                     </div>
-                    <p className="text-[10px] text-stone-400 leading-relaxed">
+                    <p className="text-xs text-stone-400 leading-relaxed">
                       PDF katalog yüklemek için dosyalarınızı <code className="bg-stone-100 px-1 rounded">public/catalogs/</code> klasörüne ekleyin.
                     </p>
                   </div>
 
                   {/* Brand colors show dynamic */}
                   <div className="space-y-4 pt-2">
-                    <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Popüler {selectedBrand.name} Renkleri</span>
+                    <span className="font-mono text-xs text-neutral-500 uppercase tracking-widest font-bold">Popüler {selectedBrand.name} Renkleri</span>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {COUNTERTOP_COLORS.filter(col => col.brandId === selectedBrand.id).map(col => (
                         <div key={col.id} className="border border-stone-200/50 rounded-xl p-2 bg-stone-warm/50 text-center space-y-1.5">
                           <div className="h-16 w-full rounded-lg overflow-hidden bg-stone-200">
                             <img src={col.image} className="w-full h-full object-cover" alt={col.name} referrerPolicy="no-referrer" />
                           </div>
-                          <span className="text-[10px] font-bold text-neutral-900 block truncate px-1">{col.name}</span>
-                          <span className="text-[9px] text-stone-500 block">{col.finish} Yüzey</span>
+                          <span className="text-xs font-bold text-neutral-900 block truncate px-1">{col.name}</span>
+                          <span className="text-[11px] text-stone-500 block">{col.finish} Yüzey</span>
                         </div>
                       ))}
                     </div>

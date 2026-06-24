@@ -230,21 +230,21 @@ export default function QuoteWizard({
               <ClipboardCheck className="h-4 w-4" />
               <span>1. Teknik Analiz</span>
             </div>
-            <p className="font-light text-[11px]">Ölçüler ve seçilen malzeme bazında en verimli plaka optimizasyonu yapılır.</p>
+            <p className="font-light text-[13px]">Ölçüler ve seçilen malzeme bazında en verimli plaka optimizasyonu yapılır.</p>
           </div>
           <div className="space-y-1">
             <div className="flex items-center space-x-1.5 text-gold-600 font-medium">
               <Ruler className="h-4 w-4" />
               <span>2. Keşif & Detay</span>
             </div>
-            <p className="font-light text-[11px]">Gerekmesi halinde yerinde ücretsiz lazer ölçümü ile şablon çıkartılır.</p>
+            <p className="font-light text-[13px]">Gerekmesi halinde yerinde ücretsiz lazer ölçümü ile şablon çıkartılır.</p>
           </div>
           <div className="space-y-1">
             <div className="flex items-center space-x-1.5 text-gold-600 font-medium">
               <HardHat className="h-4 w-4" />
               <span>3. Kusursuz Montaj</span>
             </div>
-            <p className="font-light text-[11px]">Usta zanaatkarlarımız tarafından kesimi yapılan tezgahınız titizlikle monte edilir.</p>
+            <p className="font-light text-[13px]">Usta zanaatkarlarımız tarafından kesimi yapılan tezgahınız titizlikle monte edilir.</p>
           </div>
         </div>
 
@@ -264,7 +264,7 @@ export default function QuoteWizard({
       {/* Header of Wizard */}
       <div className="bg-neutral-950 px-8 py-6 text-white flex items-center justify-between">
         <div>
-          <span className="text-[10px] uppercase font-mono tracking-[0.25em] text-neutral-400">Teklif İsteme Sihirbazı</span>
+          <span className="text-xs uppercase font-mono tracking-[0.25em] text-neutral-400">Teklif İsteme Sihirbazı</span>
           <h2 className="font-serif text-xl sm:text-2xl font-bold tracking-tight mt-1 flex items-center">
             Adım Adım Fiyat Taslağı
             <Sparkles className="h-4 w-4 text-gold-400 ml-2 animate-pulse" />
@@ -281,7 +281,7 @@ export default function QuoteWizard({
 
       {/* Real-time Step Progress Bar */}
       <div className="border-b border-stone-200 bg-white/70 px-8 py-4">
-        <div className="flex items-center justify-between text-[11px] font-mono tracking-wider text-stone-500 uppercase">
+        <div className="flex items-center justify-between text-[13px] font-mono tracking-wider text-stone-500 uppercase">
           <span className={step >= 1 ? "text-gold-700 font-bold" : ""}>1. Proje Türü</span>
           <ArrowRight className="h-3 w-3 text-stone-300" />
           <span className={step >= 2 ? "text-gold-700 font-bold" : ""}>2. Malzeme</span>
@@ -326,7 +326,7 @@ export default function QuoteWizard({
                     Ev, yazlık, villa mutfaklarında tezgah yenileme, ada mutfak modülleri ve bireysel banyo bankoları.
                   </p>
                 </div>
-                <div className="flex items-center text-[10px] font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
+                <div className="flex items-center text-xs font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
                   Seç ve Devam Et <ArrowRight className="h-3.5 w-3.5 ml-1" />
                 </div>
               </button>
@@ -345,7 +345,7 @@ export default function QuoteWizard({
                     Özel restoran tezgahları, mağaza karşılama bankoları, cafe tasarımları ve mimari iç mekan çözümleri.
                   </p>
                 </div>
-                <div className="flex items-center text-[10px] font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
+                <div className="flex items-center text-xs font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
                   Seç ve Devam Et <ArrowRight className="h-3.5 w-3.5 ml-1" />
                 </div>
               </button>
@@ -364,7 +364,7 @@ export default function QuoteWizard({
                     Müteahhitlik projeleri, çok daireli konutlar, oteller, rezidanslar ve yüksek adetli mutfak / banyo siparişleri.
                   </p>
                 </div>
-                <div className="flex items-center text-[10px] font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
+                <div className="flex items-center text-xs font-mono tracking-widest text-gold-600 uppercase group-hover:translate-x-1.5 transition-transform mt-3">
                   Seç ve Devam Et <ArrowRight className="h-3.5 w-3.5 ml-1" />
                 </div>
               </button>
@@ -398,7 +398,7 @@ export default function QuoteWizard({
                 >
                   <div className="pr-3">
                     <h4 className="text-xs font-semibold text-neutral-900 tracking-wide uppercase">{mat.name}</h4>
-                    <p className="text-[11px] text-neutral-500 mt-1 font-light leading-snug">{mat.detail}</p>
+                    <p className="text-[13px] text-neutral-500 mt-1 font-light leading-snug">{mat.detail}</p>
                   </div>
                   <div className={`h-4 w-4 shrink-0 rounded-full border flex items-center justify-center ${selectedMaterial === mat.name ? 'border-gold-500 bg-gold-500 text-white' : 'border-stone-300'}`}>
                     {selectedMaterial === mat.name && <Check className="h-2.5 w-2.5" />}
@@ -434,7 +434,7 @@ export default function QuoteWizard({
                     {br.logo}
                   </div>
                   <span className="text-xs font-medium text-neutral-900">{br.name}</span>
-                  <span className="text-[9px] font-mono tracking-widest text-neutral-500 uppercase">{br.origin}</span>
+                  <span className="text-[11px] font-mono tracking-widest text-neutral-500 uppercase">{br.origin}</span>
                 </button>
               ))}
               <button
@@ -451,7 +451,7 @@ export default function QuoteWizard({
                   ?
                 </div>
                 <span className="text-xs font-medium text-neutral-900">Farketmez</span>
-                <span className="text-[9px] font-mono tracking-widest text-neutral-500 uppercase">Öneri Al</span>
+                <span className="text-[11px] font-mono tracking-widest text-neutral-500 uppercase">Öneri Al</span>
               </button>
             </div>
           </div>
@@ -481,7 +481,7 @@ export default function QuoteWizard({
                   <div className={`h-8 w-8 rounded-lg shrink-0 border shadow-inner ${group.code}`} />
                   <div className="flex-1">
                     <h4 className="text-xs font-semibold text-neutral-900 uppercase tracking-wider">{group.name}</h4>
-                    <p className="text-[11px] text-neutral-500 mt-0.5 font-light">{group.desc}</p>
+                    <p className="text-[13px] text-neutral-500 mt-0.5 font-light">{group.desc}</p>
                   </div>
                   <div className={`h-4.5 w-4.5 rounded-full border flex items-center justify-center ${selectedColorGroup === group.name ? 'border-gold-500 bg-gold-500 text-white' : 'border-stone-300'}`}>
                     {selectedColorGroup === group.name && <Check className="h-3 w-3" />}
@@ -504,7 +504,7 @@ export default function QuoteWizard({
               {/* Left col */}
               <div className="space-y-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Adınız Soyadınız *</label>
+                  <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Adınız Soyadınız *</label>
                   <div className="relative">
                     <input
                       type="text"
@@ -514,13 +514,13 @@ export default function QuoteWizard({
                       className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.fullName ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-fullname"
                     />
-                    {errors.fullName && <p className="text-[10px] text-red-500 mt-0.5">{errors.fullName}</p>}
+                    {errors.fullName && <p className="text-xs text-red-500 mt-0.5">{errors.fullName}</p>}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Telefon No *</label>
+                    <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Telefon No *</label>
                     <input
                       type="tel"
                       placeholder="0532..."
@@ -529,10 +529,10 @@ export default function QuoteWizard({
                       className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.phone ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-phone"
                     />
-                    {errors.phone && <p className="text-[10px] text-red-500 mt-0.5">{errors.phone}</p>}
+                    {errors.phone && <p className="text-xs text-red-500 mt-0.5">{errors.phone}</p>}
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">E-posta Adresi *</label>
+                    <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">E-posta Adresi *</label>
                     <input
                       type="email"
                       placeholder="ahmet@example.com"
@@ -541,13 +541,13 @@ export default function QuoteWizard({
                       className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.email ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-email"
                     />
-                    {errors.email && <p className="text-[10px] text-red-500 mt-0.5">{errors.email}</p>}
+                    {errors.email && <p className="text-xs text-red-500 mt-0.5">{errors.email}</p>}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Şehir *</label>
+                    <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Şehir *</label>
                     <select
                       value={formData.city}
                       onChange={(e) => setFormData({...formData, city: e.target.value})}
@@ -564,7 +564,7 @@ export default function QuoteWizard({
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">İlçe *</label>
+                    <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">İlçe *</label>
                     <input
                       type="text"
                       placeholder="Örn: Beşiktaş"
@@ -573,12 +573,12 @@ export default function QuoteWizard({
                       className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.district ? 'border-red-400' : 'border-stone-300'}`}
                       id="input-district"
                     />
-                    {errors.district && <p className="text-[10px] text-red-500 mt-0.5">{errors.district}</p>}
+                    {errors.district && <p className="text-xs text-red-500 mt-0.5">{errors.district}</p>}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Uygulama Alanı</label>
+                  <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Uygulama Alanı</label>
                   <select
                     value={formData.applicationArea}
                     onChange={(e) => setFormData({...formData, applicationArea: e.target.value})}
@@ -598,7 +598,7 @@ export default function QuoteWizard({
               {/* Right col */}
               <div className="space-y-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Yaklaşık Metraj / Ölçü *</label>
+                  <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Yaklaşık Metraj / Ölçü *</label>
                   <input
                     type="text"
                     placeholder="Örn: 3.5 Metretül veya L mutfak (60x320 cm + 60x150 cm)"
@@ -607,13 +607,13 @@ export default function QuoteWizard({
                     className={`w-full text-xs text-neutral-900 border bg-stone-50 rounded-lg px-3 py-2.5 outline-none transition-colors focus:bg-white focus:border-gold-500 ${errors.approxMeasure ? 'border-red-400' : 'border-stone-300'}`}
                     id="input-measure"
                   />
-                  {errors.approxMeasure && <p className="text-[10px] text-red-500 mt-0.5">{errors.approxMeasure}</p>}
-                  <span className="text-[9px] text-stone-500 font-light block mt-1">Önemli: Net ölçü olmasa da yaklaşık tahmininiz plaka optimizasyonunu hesaplamamıza yardım eder.</span>
+                  {errors.approxMeasure && <p className="text-xs text-red-500 mt-0.5">{errors.approxMeasure}</p>}
+                  <span className="text-[11px] text-stone-500 font-light block mt-1">Önemli: Net ölçü olmasa da yaklaşık tahmininiz plaka optimizasyonunu hesaplamamıza yardım eder.</span>
                 </div>
 
                 {/* Additional services Checkboxes */}
                 <div className="space-y-1.5 pt-2">
-                  <span className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider">Ek Hizmet İstekleri</span>
+                  <span className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider">Ek Hizmet İstekleri</span>
                   
                   <label className="flex items-center space-x-2.5 cursor-pointer py-1 text-xs select-none">
                     <input
@@ -640,7 +640,7 @@ export default function QuoteWizard({
 
                 {/* File Upload Simulation */}
                 <div>
-                  <span className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Proje Çizimi / El Çizimi / Karalama PDF</span>
+                  <span className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Proje Çizimi / El Çizimi / Karalama PDF</span>
                   <div className="relative border border-dashed border-stone-300 bg-stone-50/50 rounded-lg p-3 text-center hover:border-gold-400 transition-colors cursor-pointer">
                     <input
                       type="file"
@@ -650,7 +650,7 @@ export default function QuoteWizard({
                       id="input-file-upload"
                     />
                     <UploadCloud className="h-5 w-5 text-stone-400 mx-auto mb-1" />
-                    <span className="text-[10px] text-stone-600 font-light block">
+                    <span className="text-xs text-stone-600 font-light block">
                       {formData.attachmentName ? formData.attachmentName : "PDF, JPG, PNG, DWG, DXF, SKP ve diğerleri"}
                     </span>
                   </div>
@@ -659,7 +659,7 @@ export default function QuoteWizard({
 
               {/* Full width element */}
               <div className="md:col-span-2 pt-1">
-                <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Eklemek İstediğiniz Notlar veya Detaylar</label>
+                <label className="block text-[13px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Eklemek İstediğiniz Notlar veya Detaylar</label>
                 <textarea
                   placeholder="Lavabo tipi (alttan yapıştırma / tezgahüstü), evye markası, süpürgelik yüksekliği veya özel kenar pahı isteklerinizi buraya yazabilirsiniz..."
                   value={formData.notes}
@@ -672,7 +672,7 @@ export default function QuoteWizard({
 
             <div className="pt-2 flex items-start space-x-2 border-t border-stone-100">
               <ShieldAlert className="h-4.5 w-4.5 text-gold-600 shrink-0 mt-0.5" />
-              <p className="text-[10px] text-stone-500 font-light leading-relaxed">
+              <p className="text-xs text-stone-500 font-light leading-relaxed">
                 <strong>Güvenli Bilgi Paylaşımı:</strong> Talebiniz uzman ekibimiz tarafından incelenir. Kişisel verileriniz KVKK kapsamında korunmakta olup, sadece teklif sürecinin yürütülmesi amacıyla kullanılmaktadır.
               </p>
             </div>

@@ -133,11 +133,11 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
           {/* Top header spec row */}
           <div className="relative z-25 flex items-center justify-between border-b border-white/10 pb-4">
             <div className="space-y-1">
-              <span className="text-[10px] uppercase font-mono tracking-widest text-gold-400">Aktif Kombinasyon</span>
+              <span className="text-xs uppercase font-mono tracking-widest text-gold-400">Aktif Kombinasyon</span>
               <h3 className="font-serif text-lg font-bold text-white tracking-wide">{countertop.name}</h3>
             </div>
             <div className="bg-neutral-900/90 border border-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl text-center">
-              <span className="text-[9px] text-stone-400 block uppercase font-bold">Stil Uyumu</span>
+              <span className="text-[11px] text-stone-400 block uppercase font-bold">Stil Uyumu</span>
               <span className="text-xs font-semibold text-emerald-400">Mükemmel (%98)</span>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                   <div className={`w-12 h-1 rounded-sm shadow-sm transition-all duration-500`} style={{ backgroundColor: fixture.color }} />
                 </div>
 
-                <div className="relative z-10 px-3 py-1 bg-neutral-950/40 rounded backdrop-blur-xs text-[9px] uppercase tracking-widest text-white/90">
+                <div className="relative z-10 px-3 py-1 bg-neutral-950/40 rounded backdrop-blur-xs text-[11px] uppercase tracking-widest text-white/90">
                   {cabinet.name} Dolaplar
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                   <div className="w-3 h-1 mt-3 ml-2 transition-all duration-500" style={{ backgroundColor: fixture.color }} />
                 </div>
 
-                <div className="relative z-30 font-serif text-[10px] font-bold px-3 py-0.5 rounded-full bg-neutral-950 text-gold-400 border border-gold-500/30 uppercase tracking-widest">
+                <div className="relative z-30 font-serif text-xs font-bold px-3 py-0.5 rounded-full bg-neutral-950 text-gold-400 border border-gold-500/30 uppercase tracking-widest">
                   {countertop.name} Thickness Profile (20mm)
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                   backgroundImage: flooring.pattern
                 }}
               >
-                <span className="relative z-10 px-3 py-1 bg-neutral-950/60 rounded backdrop-blur-xs text-[9px] uppercase tracking-widest text-white/90">
+                <span className="relative z-10 px-3 py-1 bg-neutral-950/60 rounded backdrop-blur-xs text-[11px] uppercase tracking-widest text-white/90">
                   {flooring.name} Zemin
                 </span>
               </div>
@@ -232,7 +232,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
 
             {/* Simulated environment properties badges */}
             <div className="absolute right-4 bottom-4 z-30 flex space-x-1.5">
-              <span className="bg-neutral-900/90 border border-white/10 px-2 py-0.5 rounded text-[8px] tracking-wider uppercase">
+              <span className="bg-neutral-900/90 border border-white/10 px-2 py-0.5 rounded text-[10px] tracking-wider uppercase">
                 Batarya: {fixture.name.split(' (')[0]}
               </span>
             </div>
@@ -243,7 +243,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
             <Palette className="h-5 w-5 text-gold-400 shrink-0 mt-0.5 animate-pulse" />
             <div className="space-y-1">
               <h5 className="text-xs font-bold text-neutral-100 uppercase tracking-wider">Mimar Tasarım Notu</h5>
-              <p className="text-[11px] text-stone-300 font-light leading-relaxed">
+              <p className="text-[13px] text-stone-300 font-light leading-relaxed">
                 <strong>{cabinet.name}</strong> dolaplar ile <strong>{countertop.name}</strong> birlikteliği derin kontrastlı, yüksek görsel etkiye sahip modern-lüks bir atmosfer yaratır. <strong>{fixture.name.split(' (')[0]}</strong> kulp ve batarya seçimi ile tasarımı asilce taçlandırdınız.
               </p>
             </div>
@@ -277,7 +277,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                     id={`tab-sim-${tab.id}`}
                   >
                     <IconComponent className="h-4.5 w-4.5 mb-1" />
-                    <span className="text-[9px] font-bold uppercase tracking-wider leading-none block whitespace-pre-line">{tab.label}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider leading-none block whitespace-pre-line">{tab.label}</span>
                   </button>
                 );
               })}
@@ -295,7 +295,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                     transition={{ duration: 0.2 }}
                     className="space-y-3"
                   >
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block">Mevcut Tezgah Seçenekleri ({COUNTERTOPS.length})</span>
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest block">Mevcut Tezgah Seçenekleri ({COUNTERTOPS.length})</span>
                     <div className="grid grid-cols-1 gap-2.5">
                       {COUNTERTOPS.map((option) => (
                         <button
@@ -314,7 +314,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                             </div>
                             <div>
                               <h5 className="text-xs font-bold text-neutral-900 tracking-wide">{option.name}</h5>
-                              <span className="text-[10px] text-stone-500 font-light block">{option.desc}</span>
+                              <span className="text-xs text-stone-500 font-light block">{option.desc}</span>
                             </div>
                           </div>
                           {countertop.id === option.id && (
@@ -337,7 +337,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                     transition={{ duration: 0.2 }}
                     className="space-y-3"
                   >
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block">Kapak Lake/Kaplama Seçenekleri ({CABINETS.length})</span>
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest block">Kapak Lake/Kaplama Seçenekleri ({CABINETS.length})</span>
                     <div className="grid grid-cols-1 gap-2.5">
                       {CABINETS.map((option) => (
                         <button
@@ -354,7 +354,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                             <div className={`h-8 w-8 rounded-lg shadow-inner ${option.bgClass} shrink-0 border border-stone-300`} />
                             <div>
                               <h5 className="text-xs font-bold text-neutral-900 tracking-wide">{option.name}</h5>
-                              <span className="text-[10px] text-stone-500 font-light block">{option.desc}</span>
+                              <span className="text-xs text-stone-500 font-light block">{option.desc}</span>
                             </div>
                           </div>
                           {cabinet.id === option.id && (
@@ -377,7 +377,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                     transition={{ duration: 0.2 }}
                     className="space-y-3"
                   >
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block">Zemin Kaplaması ({FLOORINGS.length})</span>
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest block">Zemin Kaplaması ({FLOORINGS.length})</span>
                     <div className="grid grid-cols-1 gap-2.5">
                       {FLOORINGS.map((option) => (
                         <button
@@ -397,7 +397,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                             />
                             <div>
                               <h5 className="text-xs font-bold text-neutral-900 tracking-wide">{option.name}</h5>
-                              <span className="text-[10px] text-stone-500 font-light block">Zemin uyumu ve derinlik kurgusu oluşturur.</span>
+                              <span className="text-xs text-stone-500 font-light block">Zemin uyumu ve derinlik kurgusu oluşturur.</span>
                             </div>
                           </div>
                           {flooring.id === option.id && (
@@ -420,7 +420,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                     transition={{ duration: 0.2 }}
                     className="space-y-3"
                   >
-                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block">Aksesuar Metal Bitiş Reflektörü ({FIXTURES.length})</span>
+                    <span className="text-xs font-bold text-stone-400 uppercase tracking-widest block">Aksesuar Metal Bitiş Reflektörü ({FIXTURES.length})</span>
                     <div className="grid grid-cols-1 gap-2.5">
                       {FIXTURES.map((option) => (
                         <button
@@ -437,7 +437,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
                             <div className={`h-8 w-8 rounded-full shadow-md shrink-0 border ${option.borderClass}`} style={{ backgroundColor: option.color }} />
                             <div>
                               <h5 className="text-xs font-bold text-neutral-900 tracking-wide">{option.name}</h5>
-                              <span className="text-[10px] text-stone-500 font-light block">Kulp, batarya ve aydınlatma armatürlerinde seçilen bitiş.</span>
+                              <span className="text-xs text-stone-500 font-light block">Kulp, batarya ve aydınlatma armatürlerinde seçilen bitiş.</span>
                             </div>
                           </div>
                           {fixture.id === option.id && (
@@ -459,7 +459,7 @@ export default function Simulator({ onSelectCombination }: SimulatorProps) {
             
             {/* Technical analysis list */}
             <div className="bg-stone-50 border border-stone-200/50 rounded-2xl p-4 space-y-2.5 text-xs">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-neutral-600 block">Seçilen Malzeme Kimyasal Değerleri</span>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-600 block">Seçilen Malzeme Kimyasal Değerleri</span>
               <div className="grid grid-cols-2 gap-3 font-light text-stone-600">
                 <div className="flex justify-between items-center border-b border-stone-150 pb-1.5">
                   <span>Marka:</span>

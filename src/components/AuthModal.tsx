@@ -78,7 +78,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
 
         {/* Footer */}
         <div className="px-6 pb-6">
-          <p className="text-center text-[11px] text-stone-400 leading-relaxed">
+          <p className="text-center text-[13px] text-stone-400 leading-relaxed">
             Giriş yaparak{' '}
             <span className="underline cursor-pointer hover:text-stone-600">Gizlilik Politikası</span>
             {' '}ve{' '}

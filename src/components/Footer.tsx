@@ -21,14 +21,14 @@ export default function Footer({ onNavigate, onLegal }: FooterProps) {
               <span className="font-serif text-2xl font-bold tracking-tight text-white">
                 Tezgah<span className="text-gold-400"> Studio</span>
               </span>
-              <span className="font-mono text-[9px] tracking-[0.25em] text-neutral-500 uppercase">
+              <span className="font-mono text-[11px] tracking-[0.25em] text-neutral-500 uppercase">
                 Lüks Tezgah Platformu
               </span>
             </div>
             <p className="text-sm text-neutral-400 leading-relaxed font-light">
               Mermer, kuvars, porselen, akrilik ve doğal taş yüzeyler için en lüks markaları ve renkleri dijital showroom kalitesinde bir araya getiren premium seçim ve fiyat rehberliği platformu.
             </p>
-            <div className="flex items-center space-x-1.5 text-[11px] font-mono tracking-wider text-gold-400 uppercase">
+            <div className="flex items-center space-x-1.5 text-[13px] font-mono tracking-wider text-gold-400 uppercase">
               <Award className="h-4 w-4" />
               <span>Seçkin Yapı Malzemeleri Ortağı</span>
             </div>
@@ -57,7 +57,7 @@ export default function Footer({ onNavigate, onLegal }: FooterProps) {
               </div>
             </div>
             <div className="pt-2">
-              <p className="text-[10px] text-neutral-500 italic">
+              <p className="text-xs text-neutral-500 italic">
                 *Çalışma Saatleri: H.İçi 08:30 - 18:30 | Cumartesi 08:30 - 13:00
               </p>
             </div>

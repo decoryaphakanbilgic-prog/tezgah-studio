@@ -67,7 +67,7 @@ export default function TemplateStudio({ currentTheme, onThemeChange }: Template
                   <h4 className="font-serif text-sm font-semibold tracking-wide text-neutral-900 dark:text-stone-100">
                     Stüdyo Stil Laboratuvarı
                   </h4>
-                  <p className="font-mono text-[9px] tracking-widest text-neutral-400 uppercase">
+                  <p className="font-mono text-[11px] tracking-widest text-neutral-400 uppercase">
                     Şablon Test Konsolu
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export default function TemplateStudio({ currentTheme, onThemeChange }: Template
               </button>
             </div>
 
-            <p className="text-[11px] text-neutral-500 dark:text-stone-400 leading-relaxed font-light mb-4">
+            <p className="text-[13px] text-neutral-500 dark:text-stone-400 leading-relaxed font-light mb-4">
               Tezgah Studio platformunu size en uygun tasarımla deneyimleyin. Şablonlar arasında geçiş yaparak renklerin ve plakaların sergilenme biçimini canlı olarak karşılaştırın:
             </p>
 
@@ -101,7 +101,7 @@ export default function TemplateStudio({ currentTheme, onThemeChange }: Template
                   >
                     {/* Badge */}
                     <span 
-                      className={`absolute top-3 right-3 font-mono text-[8px] tracking-wider px-2 py-0.5 rounded-full uppercase ${
+                      className={`absolute top-3 right-3 font-mono text-[10px] tracking-wider px-2 py-0.5 rounded-full uppercase ${
                         isActive 
                           ? 'bg-amber-500 text-white font-bold' 
                           : 'bg-stone-200/60 dark:bg-stone-800 text-neutral-500 dark:text-stone-400'
@@ -119,12 +119,12 @@ export default function TemplateStudio({ currentTheme, onThemeChange }: Template
                           {tpl.name}
                         </h5>
                       </div>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">
+                      <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
                         {tpl.subtitle}
                       </span>
                     </div>
 
-                    <p className="text-[10px] text-neutral-500 dark:text-stone-400 leading-normal font-light mt-2">
+                    <p className="text-xs text-neutral-500 dark:text-stone-400 leading-normal font-light mt-2">
                       {tpl.desc}
                     </p>
 
@@ -142,7 +142,7 @@ export default function TemplateStudio({ currentTheme, onThemeChange }: Template
             {/* Hint for decision maker */}
             <div className="mt-4 bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 flex items-start space-x-2.5">
               <Sparkles className="h-4 w-4 text-amber-500 dark:text-amber-400 shrink-0 mt-0.5" />
-              <div className="text-[10px] text-amber-800 dark:text-amber-400 leading-normal font-light">
+              <div className="text-xs text-amber-800 dark:text-amber-400 leading-normal font-light">
                 <strong>Hakan Bey'in Dikkatine:</strong> Seçtiğiniz <strong>Seçenek 3 (Obsidian Noir)</strong>, plakaların renk tonlarını ve damarlarını kuyumcu vitrinindeki pırlantalar gibi ön plana çıkaran ultra-lüks bir stildir.
               </div>
             </div>

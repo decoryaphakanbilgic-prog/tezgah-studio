@@ -99,7 +99,7 @@ export default function RandevuPage({ onNavigate }: Props) {
       {/* Hero */}
       <div className="bg-neutral-950 py-12 px-6">
         <div className="max-w-3xl mx-auto text-center space-y-3">
-          <span className="font-mono text-[10px] text-amber-400 uppercase tracking-[0.3em]">Ücretsiz</span>
+          <span className="font-mono text-xs text-amber-400 uppercase tracking-[0.3em]">Ücretsiz</span>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Randevu Oluştur</h1>
           <p className="text-stone-400 text-sm font-light max-w-lg mx-auto leading-relaxed">
             Keşif, ölçü veya toplantı için size uygun gün ve saati seçin, talebinizi gönderin.
@@ -126,7 +126,7 @@ export default function RandevuPage({ onNavigate }: Props) {
                   }`}
                 >
                   <p className={`text-sm font-semibold ${selectedTur === tur.id ? 'text-amber-700' : 'text-neutral-800'}`}>{tur.label}</p>
-                  <p className="text-[11px] text-stone-400 mt-0.5">{tur.desc}</p>
+                  <p className="text-[13px] text-stone-400 mt-0.5">{tur.desc}</p>
                 </button>
               ))}
             </div>
@@ -260,7 +260,7 @@ export default function RandevuPage({ onNavigate }: Props) {
             {status === 'sending' ? 'Gönderiliyor...' : 'Randevu Talebi Gönder'}
           </button>
 
-          <p className="text-center text-[11px] text-stone-400">
+          <p className="text-center text-[13px] text-stone-400">
             Randevunuz onaylandıktan sonra tarafınıza bilgi verilecektir.<br />
             Çalışma saatleri: H.İçi 08:30–18:30 | Cumartesi 08:30–13:00
           </p>

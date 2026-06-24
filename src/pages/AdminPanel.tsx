@@ -89,7 +89,7 @@ export default function AdminPanel({ onNavigate }: { onNavigate: (p: string) => 
           </div>
           <div>
             <p className="text-sm font-bold text-neutral-900">Tezgah Studio — Admin</p>
-            <p className="text-[11px] text-stone-400">{user?.email}</p>
+            <p className="text-[13px] text-stone-400">{user?.email}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ export default function AdminPanel({ onNavigate }: { onNavigate: (p: string) => 
               </div>
               <div>
                 <p className="text-2xl font-bold text-neutral-900">{s.value}</p>
-                <p className="text-[11px] text-stone-400">{s.label}</p>
+                <p className="text-[13px] text-stone-400">{s.label}</p>
               </div>
             </div>
           ))}
@@ -164,20 +164,20 @@ export default function AdminPanel({ onNavigate }: { onNavigate: (p: string) => 
                     )}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-neutral-800 truncate">{u.name ?? '—'}</p>
-                      <p className="text-[11px] text-stone-400 truncate">{u.email}</p>
+                      <p className="text-[13px] text-stone-400 truncate">{u.email}</p>
                     </div>
                     <div className="shrink-0 text-right space-y-0.5">
                       {u.role === 'admin' ? (
-                        <span className="inline-block px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 text-[10px] font-semibold">Admin</span>
+                        <span className="inline-block px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 text-xs font-semibold">Admin</span>
                       ) : (
                         <button
                           onClick={() => makeAdmin(u.uid)}
-                          className="text-[10px] text-stone-400 hover:text-amber-600 underline transition-colors"
+                          className="text-xs text-stone-400 hover:text-amber-600 underline transition-colors"
                         >
                           Admin yap
                         </button>
                       )}
-                      <p className="text-[10px] text-stone-300">{fmt(u.createdAt)}</p>
+                      <p className="text-xs text-stone-300">{fmt(u.createdAt)}</p>
                     </div>
                   </div>
                 ))}
@@ -192,7 +192,7 @@ export default function AdminPanel({ onNavigate }: { onNavigate: (p: string) => 
                 <Bell className="h-4 w-4 text-amber-500" />
                 <h3 className="font-semibold text-neutral-900 text-sm">Bildirim Gönder</h3>
               </div>
-              <p className="text-[11px] text-stone-400">Tüm üyelere e-posta ve push bildirimi gönderin.</p>
+              <p className="text-[13px] text-stone-400">Tüm üyelere e-posta ve push bildirimi gönderin.</p>
               <div className="space-y-2">
                 <input
                   type="text"
@@ -226,7 +226,7 @@ export default function AdminPanel({ onNavigate }: { onNavigate: (p: string) => 
             {/* Hızlı bilgi */}
             <div className="bg-amber-50 rounded-2xl border border-amber-100 p-5 space-y-2">
               <p className="text-xs font-semibold text-amber-800">Push Bildirimleri</p>
-              <p className="text-[11px] text-amber-700 leading-relaxed">
+              <p className="text-[13px] text-amber-700 leading-relaxed">
                 Gerçek push bildirimi için Firebase Cloud Messaging (FCM) backend servisi aktif edilmesi gerekir.
                 Şu an e-posta bildirimleri hazır durumda.
               </p>
