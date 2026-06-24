@@ -585,10 +585,10 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
 
                   {/* Semi-transparent details bar — 50% opacity */}
                   <div className="bg-white/50 backdrop-blur-sm border-t border-stone-200/50 px-4 py-3">
-                    <p className="text-[11px] font-semibold text-neutral-900 uppercase tracking-wider truncate">
+                    <p className="text-[13px] font-semibold text-amber-600 uppercase tracking-wider truncate">
                       {proj.client}
                     </p>
-                    <h3 className="font-bold text-amber-600 text-[13px] leading-snug mt-0.5">
+                    <h3 className="font-bold text-neutral-900 text-[11px] leading-snug mt-0.5">
                       {proj.title}
                     </h3>
                     <p className="text-[11px] text-stone-500 leading-relaxed mt-1">
