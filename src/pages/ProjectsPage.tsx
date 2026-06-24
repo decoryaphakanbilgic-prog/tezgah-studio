@@ -37,7 +37,7 @@ const SECTIONS: Section[] = [
       {
         id: 's1',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
-        logoClass: 'max-h-[52px]',
+        logoClass: 'max-h-[36px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Atakent Halkalı Hastanesi',
         location: 'Halkalı, İstanbul',
@@ -62,7 +62,7 @@ const SECTIONS: Section[] = [
       {
         id: 's4',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
-        logoClass: 'max-h-[52px]',
+        logoClass: 'max-h-[36px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Bakırköy Klinik',
         location: 'Bakırköy, İstanbul',
@@ -79,7 +79,7 @@ const SECTIONS: Section[] = [
       {
         id: 's6',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
-        logoClass: 'max-h-[52px]',
+        logoClass: 'max-h-[36px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Zekeriyaköy',
         location: 'Zekeriyaköy, İstanbul',
@@ -96,7 +96,7 @@ const SECTIONS: Section[] = [
       {
         id: 's8',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
-        logoClass: 'max-h-[52px]',
+        logoClass: 'max-h-[36px]',
         client: 'Acıbadem Üniversitesi',
         title: 'Kerem Aydınlar Kampüsü',
         location: 'İstanbul',
