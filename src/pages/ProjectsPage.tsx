@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, MessageSquare, ChevronRight } from 'lucide-react';
+import { MessageSquare, ChevronRight } from 'lucide-react';
 
 // ── Wix CDN logo URLs (from akriliktezgah.net/referans) ──────────────────────
 const W = 'https://static.wixstatic.com/media/';
@@ -594,9 +594,6 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
                     <h3 className="font-semibold text-neutral-900 text-sm leading-snug">
                       {proj.title}
                     </h3>
-                    <p className="text-xs text-stone-500 flex items-center gap-1 mt-0.5">
-                      <MapPin className="h-3 w-3 shrink-0" />{proj.location}
-                    </p>
                     <p className="text-xs text-stone-500 leading-relaxed mt-1 flex-1">
                       {proj.description}
                     </p>
