@@ -1,256 +1,469 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, MapPin, Building2, MessageSquare, ChevronRight } from 'lucide-react';
+import { MapPin, MessageSquare, ChevronRight } from 'lucide-react';
+
+// ── Wix CDN logo URLs (from akriliktezgah.net/referans) ──────────────────────
+const W = 'https://static.wixstatic.com/media/';
 
 interface Project {
   id: string;
+  logo: string;
   client: string;
   title: string;
-  category: 'saglik' | 'konut' | 'metro' | 'ticari';
   location: string;
   description: string;
-  image: string;
-  featured?: boolean;
-  scale?: string;
 }
 
-const PROJECTS: Project[] = [
-  // ── SAĞLIK ──────────────────────────────────────────────────────────────────
+interface Section {
+  key: string;
+  label: string;
+  projects: Project[];
+}
+
+const SECTIONS: Section[] = [
   {
-    id: 's1', client: 'Acıbadem Sağlık Grubu', title: 'Acıbadem Atakent Halkalı Hastanesi',
-    category: 'saglik', location: 'Halkalı, İstanbul',
-    description: 'Hasta odası tezgahları, termoform banyo duvar kaplamaları ve yoğun bakım ünitesi uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=900&q=80', featured: true,
-  },
-  {
-    id: 's2', client: 'Memorial Sağlık Grubu', title: 'Memorial Okmeydanı Hastanesi',
-    category: 'saglik', location: 'Okmeydanı, İstanbul',
-    description: 'Hasta masa tezgahları, duş tekneleri ve giriş karşılama bankosu uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's3', client: 'Acıbadem Sağlık Grubu', title: 'Acıbadem Bakırköy Klinik',
-    category: 'saglik', location: 'Bakırköy, İstanbul',
-    description: 'Hasta tezgahları, lavabolar ve resepsiyon bankosu akrilik uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's4', client: 'Memorial Sağlık Grubu', title: 'Memorial Wellness — Zorlu Center',
-    category: 'saglik', location: 'Zorlu Center, İstanbul',
-    description: 'Wellness merkezi akrilik tezgah ve kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's5', client: 'Acıbadem Sağlık Grubu', title: 'Acıbadem Zekeriyaköy',
-    category: 'saglik', location: 'Zekeriyaköy, İstanbul',
-    description: 'Hasta masaları, lavabolu tezgahlar ve resepsiyon unsurları.',
-    image: 'https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's6', client: 'Medicine Hospital', title: 'Medicine Hospital Güneşli',
-    category: 'saglik', location: 'Güneşli, İstanbul',
-    description: 'Tesis genelinde kapsamlı akrilik solid surface uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's7', client: 'Florence Nightingale', title: 'Florence Nightingale Ataşehir',
-    category: 'saglik', location: 'Ataşehir, İstanbul',
-    description: 'Hasta masaları, duş tekneleri ve giriş bankosu uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's8', client: 'Acıbadem Üniversitesi', title: 'Kerem Aydınlar Kampüsü',
-    category: 'saglik', location: 'İstanbul',
-    description: 'Üniversite kampüsü laboratuvar tezgahları ve ıslak hacim uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's9', client: 'Medipol Acıbadem', title: 'Medipol Acıbadem Hastanesi',
-    category: 'saglik', location: 'İstanbul',
-    description: 'Hasta odası banyo tezgahları akrilik solid surface uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 's10', client: 'Ulus İnfinity Clinic', title: 'Ulus İnfinity Regenerative Clinic',
-    category: 'saglik', location: 'Ulus, İstanbul',
-    description: 'Resepsiyon tezgahları, doktor masaları ve laboratuvar yüzeyleri.',
-    image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=900&q=80',
+    key: 'saglik',
+    label: 'Sağlık Alanı Referansları',
+    projects: [
+      {
+        id: 's1',
+        logo: W + '8d8965_f9f15484adf44d958cbc9941b8345f3d~mv2.png/v1/fill/w_312,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/acibadem-saglik-grubu-1200x675.png',
+        client: 'Acıbadem Sağlık Grubu',
+        title: 'Acıbadem Atakent Halkalı Hastanesi',
+        location: 'Halkalı, İstanbul',
+        description: 'Termoform banyo duvar kaplamaları ve hasta odası tezgah uygulamaları.',
+      },
+      {
+        id: 's2',
+        logo: W + '8d8965_c205190f26d54b9c9d78a174eaee376f~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(1).png',
+        client: 'Memorial Sağlık Grubu',
+        title: 'Memorial Okmeydanı Hastanesi',
+        location: 'Okmeydanı, İstanbul',
+        description: 'Hasta masaları, duş tekneleri ve giriş bankosu akrilik uygulamaları.',
+      },
+      {
+        id: 's3',
+        logo: W + '8d8965_edc70854eb9441918cba24d5746f50c0~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/hizmet_hastanesi_logo.png',
+        client: 'Bakırköy Hizmet Hastanesi',
+        title: 'Bakırköy Hizmet Hastanesi',
+        location: 'Bakırköy, İstanbul',
+        description: 'Islak hacim akrilik tezgah ve kaplama uygulamaları.',
+      },
+      {
+        id: 's4',
+        logo: W + '8d8965_0b7fb6ca1db9495a9900dd55b4c64601~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo2.png',
+        client: 'Acıbadem Sağlık Grubu',
+        title: 'Acıbadem Bakırköy Klinik',
+        location: 'Bakırköy, İstanbul',
+        description: 'Hasta tezgahları, lavabolar ve resepsiyon bankosu uygulamaları.',
+      },
+      {
+        id: 's5',
+        logo: W + '8d8965_c205190f26d54b9c9d78a174eaee376f~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(1).png',
+        client: 'Memorial Sağlık Grubu',
+        title: 'Memorial Wellness — Zorlu Center',
+        location: 'Zorlu Center, İstanbul',
+        description: 'Wellness merkezi akrilik tezgah ve yüzey kaplama uygulamaları.',
+      },
+      {
+        id: 's6',
+        logo: W + '8d8965_f9f15484adf44d958cbc9941b8345f3d~mv2.png/v1/fill/w_312,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/acibadem-saglik-grubu-1200x675.png',
+        client: 'Acıbadem Sağlık Grubu',
+        title: 'Acıbadem Zekeriyaköy',
+        location: 'Zekeriyaköy, İstanbul',
+        description: 'Hasta masaları, lavabolu tezgahlar ve resepsiyon unsurları.',
+      },
+      {
+        id: 's7',
+        logo: W + '8d8965_70999ea9d3c7435bba363b691db7cd3c~mv2.jpg/v1/fill/w_267,h_140,al_c,q_80,enc_avif,quality_auto/Ekran%20Al%C4%B1nt%C4%B1s%C4%B1_JPG.jpg',
+        client: 'Medicine Hospital',
+        title: 'Medicine Hospital Güneşli',
+        location: 'Güneşli, İstanbul',
+        description: 'Tesis genelinde kapsamlı akrilik solid surface uygulamaları.',
+      },
+      {
+        id: 's8',
+        logo: W + '8d8965_94d26eaa43d847909bb655266b935dc7~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/960_acibadem_universitesi.jpg',
+        client: 'Acıbadem Üniversitesi',
+        title: 'Kerem Aydınlar Kampüsü',
+        location: 'İstanbul',
+        description: 'Üniversite kampüsü laboratuvar tezgahları ve ıslak hacim uygulamaları.',
+      },
+      {
+        id: 's9',
+        logo: W + '8d8965_3a2424f6bb9440b1a85487f24d0bb8e8~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/medipol-saglik-beyaz-30ba23d4-c6b5-4ab1-99df-c3fac8cb9e6f.png',
+        client: 'Medipol Acıbadem',
+        title: 'Medipol Acıbadem Hastanesi',
+        location: 'İstanbul',
+        description: 'Hasta odası banyo tezgahları akrilik solid surface uygulamaları.',
+      },
+      {
+        id: 's10',
+        logo: W + '8d8965_c205190f26d54b9c9d78a174eaee376f~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(1).png',
+        client: 'Memorial Sağlık Grubu',
+        title: 'Memorial Ataşehir',
+        location: 'Ataşehir, İstanbul',
+        description: 'Resepsiyon, doktor masaları, ıslak hacim ve laboratuvar tezgahları.',
+      },
+      {
+        id: 's11',
+        logo: W + '8d8965_ea8bf2b4d32545f78127d71b508610b6~mv2.png/v1/fill/w_312,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir.png',
+        client: 'Florence Nightingale',
+        title: 'Florence Nightingale Ataşehir',
+        location: 'Ataşehir, İstanbul',
+        description: 'Hasta masaları, duş tekneleri ve giriş bankosu uygulamaları.',
+      },
+      {
+        id: 's12',
+        logo: W + '8d8965_c6aba242634849dcb9839c4802ee899a~mv2.png/v1/fill/w_287,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir%20(2).png',
+        client: 'Ulus İnfinity Clinic',
+        title: 'Ulus İnfinity Regenerative Clinic',
+        location: 'Ulus, İstanbul',
+        description: 'Resepsiyon tezgahları, doktor masaları ve laboratuvar yüzeyleri.',
+      },
+    ],
   },
 
-  // ── TOPLU KONUT ─────────────────────────────────────────────────────────────
   {
-    id: 'k1', client: 'Tahincioğlu', title: 'Nida Park Kayaşehir',
-    category: 'konut', location: 'Kayaşehir, İstanbul',
-    description: 'Toplu konut projesi; mutfak ve banyo akrilik tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80', featured: true,
-  },
-  {
-    id: 'k2', client: 'Artaş', title: 'Vadi İstanbul Park',
-    category: 'konut', location: 'Kâğıthane, İstanbul',
-    description: 'Çok katlı rezidans; mutfak ve banyo tezgah kaplamaları.',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k3', client: 'Artaş', title: 'Avrupa Konutları Atakent 4',
-    category: 'konut', location: 'Atakent, İstanbul',
-    description: 'Avrupa Konutları serisinde mutfak ve banyo akrilik tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k4', client: 'INNSA Tower', title: 'Zeytindalı Konakları Zekeriyaköy',
-    category: 'konut', location: 'Zekeriyaköy, İstanbul',
-    description: 'Gizli sifon sistemli akrilik banyo lavabolu tezgah ve çamaşırlık ünitesi.',
-    image: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k5', client: 'Nuhoğlu', title: 'Yenitepe Kadıköy',
-    category: 'konut', location: 'Kadıköy, İstanbul',
-    description: 'Mutfak ve banyo akrilik solid surface tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k6', client: 'İTÜ', title: 'İTÜ Gölet Yurtları',
-    category: 'konut', location: 'Maslak, İstanbul',
-    description: 'Üniversite öğrenci yurdu ortak mutfak tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k7', client: 'Koç Üniversitesi', title: 'Koç Üniversitesi Yurtları',
-    category: 'konut', location: 'Sarıyer, İstanbul',
-    description: 'Toplu konut projesinde mutfak akrilik solid surface tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'k8', client: 'Mesa', title: 'Mesa Cadde Projesi',
-    category: 'konut', location: 'İstanbul',
-    description: 'Rezidans dairelerinde mutfak ve banyo akrilik tezgah kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=900&q=80',
+    key: 'konut',
+    label: 'Toplu Konut Referansları',
+    projects: [
+      {
+        id: 'k1',
+        logo: W + '8d8965_9a6ae218bbbf43bc9159216e66de2698~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/find_2018623_41621406.jpg',
+        client: 'Timur İnşaat / Nef',
+        title: 'Timur İnşaat Nef Projeleri',
+        location: 'İstanbul',
+        description: 'Sosyal alan ve ıslak hacim akrilik solid surface uygulamaları.',
+      },
+      {
+        id: 'k2',
+        logo: W + '8d8965_dad892ef1e9648a7ae18a16a20afdb42~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo.jpg',
+        client: 'Tahincioğlu',
+        title: 'Nida Park Kayaşehir',
+        location: 'Kayaşehir, İstanbul',
+        description: 'Akrilik banyo tezgahları ve kaplama uygulamaları.',
+      },
+      {
+        id: 'k3',
+        logo: W + '8d8965_ef1b5fe8b7a643a5a5c12c8c11177d01~mv2.png/v1/fill/w_252,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/logo.png',
+        client: 'Nuhoğlu',
+        title: 'Yenitepe Kadıköy',
+        location: 'Kadıköy, İstanbul',
+        description: 'Mutfak ve banyo akrilik solid surface tezgah uygulamaları.',
+      },
+      {
+        id: 'k4',
+        logo: W + '8d8965_65fee1df94fc429db21df8c493df0f25~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/MUxUe2NZ_400x400.jpg',
+        client: 'İnvest',
+        title: 'Vadi Koru',
+        location: 'İstanbul',
+        description: 'Mutfak ve banyo akrilik tezgah uygulamaları.',
+      },
+      {
+        id: 'k5',
+        logo: W + '8d8965_11150d597a244498988b3c26e33e244c~mv2.jpg/v1/fill/w_244,h_140,al_c,q_80,enc_avif,quality_auto/tim-towers.jpg',
+        client: 'Timtaş',
+        title: 'Tim Towers İncek',
+        location: 'İncek, Ankara',
+        description: 'Mutfak ve banyo tezgah kaplama uygulamaları.',
+      },
+      {
+        id: 'k6',
+        logo: W + '8d8965_21de3fc3ad28401f82153def587c7b12~mv2.png/v1/fill/w_251,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir.png',
+        client: 'Mesa',
+        title: 'Mesa Cadde Projesi',
+        location: 'İstanbul',
+        description: 'Mutfak ve banyo akrilik solid surface kaplama uygulamaları.',
+      },
+      {
+        id: 'k7',
+        logo: W + '8d8965_fed1dfbb31944531b032c21d14d4dea2~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo-vadistanbulbahce.jpg',
+        client: 'Artaş',
+        title: 'Vadi İstanbul Park',
+        location: 'Kâğıthane, İstanbul',
+        description: 'Çok katlı rezidanslarda mutfak ve banyo tezgah kaplamaları.',
+      },
+      {
+        id: 'k8',
+        logo: W + '8d8965_35ddc86cf2904ec7811bca31b861b5da~mv2.jpg/v1/fill/w_202,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/cengelkoy-park-logo.jpg',
+        client: 'Dossa Dossi Grup',
+        title: 'Çengelköy Park Evler',
+        location: 'Çengelköy, İstanbul',
+        description: 'Akrilik banyo tezgah uygulamaları.',
+      },
+      {
+        id: 'k9',
+        logo: W + '8d8965_7a7eca2617254360a13924d78b5fd1a3~mv2.jpeg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir.jpeg',
+        client: 'İstanbul Teknik Üniversitesi',
+        title: 'İTÜ Gölet Yurtları',
+        location: 'Maslak, İstanbul',
+        description: 'Öğrenci yurdu ortak mutfak akrilik tezgah uygulamaları.',
+      },
+      {
+        id: 'k10',
+        logo: W + '8d8965_5b262eac9a1c457dafa4b5466151d563~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/g%C3%B6kdeniz_PNG.png',
+        client: 'Gülsa & Bay Yapı',
+        title: 'Gökdeniz Kartal Projesi',
+        location: 'Kartal, İstanbul',
+        description: 'Mutfak ve banyo akrilik solid surface uygulamaları.',
+      },
+      {
+        id: 'k11',
+        logo: W + '8d8965_3ef45c7925ce45fd901b4171793860c2~mv2.jpg/v1/fill/w_410,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/cd1a2169-63e1-4e7c-b25e-cad70ec14bcb_edited.jpg',
+        client: 'INNSA Tower',
+        title: 'Zeytindalı Konakları Zekeriyaköy',
+        location: 'Zekeriyaköy, İstanbul',
+        description: 'Gizli sifon sistemli akrilik banyo lavabolu tezgah ve çamaşırlık ünitesi.',
+      },
+      {
+        id: 'k12',
+        logo: W + '8d8965_e011e4d6d97940f3988eb648655b735b~mv2.jpeg/v1/fill/w_234,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/images%20(1).jpeg',
+        client: 'Artaş',
+        title: 'Avrupa Konutları Atakent 4',
+        location: 'Atakent, İstanbul',
+        description: 'Rezidans dairelerinde mutfak ve banyo akrilik tezgah uygulamaları.',
+      },
+      {
+        id: 'k13',
+        logo: W + '8d8965_18b58d15b5954039969a0f3fde2333e8~mv2.png/v1/fill/w_210,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/logo-menu.png',
+        client: 'Artaş',
+        title: 'Avrupa Konutları Başakşehir',
+        location: 'Başakşehir, İstanbul',
+        description: 'Mutfak ve banyo tezgah kaplama uygulamaları.',
+      },
+      {
+        id: 'k14',
+        logo: W + '8d8965_c3c1842bc9544253abbf703cfcc70118~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(5).png',
+        client: 'Koç Üniversitesi',
+        title: 'Koç Üniversitesi Yurtları',
+        location: 'Sarıyer, İstanbul',
+        description: 'Toplu konut projesinde mutfak akrilik solid surface tezgah uygulamaları.',
+      },
+    ],
   },
 
-  // ── METRO ────────────────────────────────────────────────────────────────────
   {
-    id: 'm1', client: 'İstanbul Büyükşehir Belediyesi', title: 'M7 Mecidiyeköy-Mahmutbey Hattı — 15 İstasyon',
-    category: 'metro', location: 'İstanbul Metro Ağı',
-    description: 'İstasyona özel tasarımlı akrilik duvar kaplamaları; 20.000 m²\'yi aşan uygulama alanı.',
-    image: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=900&q=80',
-    featured: true, scale: '20.000+ m²',
-  },
-  {
-    id: 'm2', client: 'İstanbul Büyükşehir Belediyesi', title: 'M7 Yıldız & Fulya İstasyonları',
-    category: 'metro', location: 'Beşiktaş, İstanbul',
-    description: 'M7 hattı Yıldız ve Fulya istasyonlarında akrilik duvar kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1555207655-47bf26a35d1b?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'm3', client: 'İstanbul Büyükşehir Belediyesi', title: 'M9 Masko & Bahariye İstasyonları',
-    category: 'metro', location: 'İstanbul',
-    description: 'M9 metro hattı iki istasyonunda özel tasarımlı akrilik kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'm4', client: 'İstanbul Havalimanı', title: 'Sabiha Gökçen Havalimanı Metro İstasyonu',
-    category: 'metro', location: 'Pendik, İstanbul',
-    description: 'Havalimanı metro istasyonu akrilik duvar panel prototip ve numune uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80',
+    key: 'metro',
+    label: 'Metro İstasyon Referansları',
+    projects: [
+      {
+        id: 'm1',
+        logo: W + '8d8965_e296ee97fbc24352a89d53acfc7f4043~mv2.jpg/v1/fill/w_213,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5c8c0a1807291c1d74f8d4d0.jpg',
+        client: 'İstanbul Büyükşehir Belediyesi',
+        title: 'M7 Mecidiyeköy–Mahmutbey Hattı',
+        location: 'İstanbul Metro Ağı',
+        description: '15 istasyonda istasyona özel tasarımlı akrilik duvar kaplamaları — 20.000 m²\'yi aşan uygulama.',
+      },
+      {
+        id: 'm2',
+        logo: W + '8d8965_d598668526f04e199304154b08bf3213~mv2.png/v1/fill/w_354,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/alarko-kombi.png',
+        client: 'Alarko (Ana Yüklenici)',
+        title: 'M7 Hattı İstasyon Uygulamaları',
+        location: 'İstanbul',
+        description: 'M7 metro hattı ana yüklenicisi kapsamında akrilik duvar kaplama uygulamaları.',
+      },
+      {
+        id: 'm3',
+        logo: W + '8d8965_95d344270a0d4efca4850ea945855af9~mv2.jpg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-03-10%20074408.jpg',
+        client: 'İBB Ulaşım',
+        title: 'M7 Yıldız & Fulya İstasyonları',
+        location: 'Beşiktaş, İstanbul',
+        description: 'M7 metro hattı ek istasyonlarında özel tasarımlı akrilik kaplama uygulamaları.',
+      },
+      {
+        id: 'm4',
+        logo: W + '8d8965_04039fbb023148de9afe95ccf1647189~mv2.jpg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-03-10%20074714.jpg',
+        client: 'İBB Ulaşım',
+        title: 'M9 Masko & Bahariye İstasyonları',
+        location: 'İstanbul',
+        description: 'M9 metro hattında iki istasyon akrilik duvar kaplama uygulamaları.',
+      },
+      {
+        id: 'm5',
+        logo: W + '8d8965_2416d64d715748f4b1fa14a29cb6e9d7~mv2.jpg/v1/fill/w_213,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/tc-turkiye-cumhuriyeti-ulastirma-ve-altyapi-bakanligi1903.jpg',
+        client: 'T.C. Ulaştırma ve Altyapı Bakanlığı',
+        title: 'Sabiha Gökçen Havalimanı Metro İstasyonu',
+        location: 'Pendik, İstanbul',
+        description: 'Havalimanı metro istasyonu akrilik duvar panel prototip ve numune uygulamaları.',
+      },
+      {
+        id: 'm6',
+        logo: W + '8d8965_4b045ec3a9b3460abae0e7bb0ba7dc97~mv2.jpeg/v1/fill/w_312,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/202210041515161-img.jpeg',
+        client: 'İBB Ulaşım',
+        title: 'M9 Hattı Devam İstasyonları',
+        location: 'İstanbul',
+        description: 'M9 hattı ek istasyon akrilik kaplama tasarım ve uygulama çalışmaları.',
+      },
+    ],
   },
 
-  // ── TİCARİ & ÖZEL ────────────────────────────────────────────────────────────
   {
-    id: 't1', client: 'Türk Hava Yolları', title: 'THY Satış Gişe Tezgahları',
-    category: 'ticari', location: 'Dünya Geneli',
-    description: 'Türk Hava Yolları\'nın küresel satış ofislerinde kullanılan gişe ve satış tezgahı uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80',
-    featured: true, scale: 'Dünya Geneli',
-  },
-  {
-    id: 't2', client: 'İstanbul Havalimanı', title: 'İstanbul Havalimanı Bakım & Onarım',
-    category: 'ticari', location: 'Arnavutköy, İstanbul',
-    description: 'Havalimanı içi akrilik ürün bakım, onarım ve yenileme uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't3', client: 'Kanyon AVM', title: 'Kanyon Alışveriş Merkezi',
-    category: 'ticari', location: 'Levent, İstanbul',
-    description: 'Termoform silindirik ve kare kolon kaplamaları ile mağaza cephe duvar uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't4', client: 'İstanbul Modern', title: 'İstanbul Modern Antrepo Müzesi',
-    category: 'ticari', location: 'Beşiktaş, İstanbul',
-    description: 'Restore edilmiş antrepo yapısında termoform ıslak hacim tezgahları ve duvar kaplamaları.',
-    image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=900&q=80',
-    featured: true,
-  },
-  {
-    id: 't5', client: 'Al Hallab 1881', title: 'Al Hallab Restoran — Fişekhane',
-    category: 'ticari', location: 'Eminönü, İstanbul',
-    description: 'Resepsiyon bankosu, duvar kaplamaları ve mutfak tezgah bölümleri akrilik uygulaması.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't6', client: 'Garanti BBVA', title: 'Garanti BBVA Şubeleri',
-    category: 'ticari', location: 'Türkiye Geneli',
-    description: 'Numaratör kiosk akrilik kaplamaları ve şube tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't7', client: 'Ziraat Bankası', title: 'Ziraat Bankası Şubeleri',
-    category: 'ticari', location: 'Türkiye Geneli',
-    description: 'Banka şubesi tezgah ve resepsiyon bankosu akrilik kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't8', client: 'Malpas Hotel', title: 'Malpas Hotel Girne',
-    category: 'ticari', location: 'Girne, Kuzey Kıbrıs',
-    description: 'Yemek alanları, tezgahlar ve büfe üniteleri dahil otel geneli akrilik uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't9', client: 'Havelsan', title: 'Havelsan Genel Merkezi',
-    category: 'ticari', location: 'Ankara',
-    description: 'VIP karşılama tezgahları ve genel merkez mutfak tezgah uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't10', client: 'Zorlu Center', title: 'Zorlu Center Sinema',
-    category: 'ticari', location: 'Zorlu Center, İstanbul',
-    description: 'Sinema girişi bankosu ve çeşitli kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't11', client: 'Sabiha Gökçen Havalimanı', title: 'SGH "Yöresel Tatlar" Dükkanı',
-    category: 'ticari', location: 'Pendik, İstanbul',
-    description: 'Satış tezgahı, raf sistemi, servis bankosu, bar tezgahı ve kasiyer alanı uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 't12', client: 'Vakıfbank', title: 'Vakıfbank Şubeleri',
-    category: 'ticari', location: 'Türkiye Geneli',
-    description: 'Şube tezgah ve resepsiyon bankosu akrilik solid surface kaplama uygulamaları.',
-    image: 'https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?auto=format&fit=crop&w=900&q=80',
+    key: 'ozel',
+    label: 'Özel Proje Referansları',
+    projects: [
+      {
+        id: 'o1',
+        logo: W + '8d8965_a1bc5120552a457393bd1b93a17bd7d2~mv2.webp/v1/fill/w_250,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/i.webp',
+        client: 'Türk Hava Yolları',
+        title: 'THY Satış Gişe Tezgahları',
+        location: 'Dünya Geneli',
+        description: 'Türk Hava Yolları\'nın küresel satış ofislerinde kullanılan gişe ve satış tezgahı uygulamaları.',
+      },
+      {
+        id: 'o2',
+        logo: W + '8d8965_2b8e3f1e5934472bad222c7466211f7e~mv2.png/v1/fill/w_393,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/indir%20(4).png',
+        client: 'İstanbul Havalimanı',
+        title: 'İstanbul Havalimanı',
+        location: 'Arnavutköy, İstanbul',
+        description: 'Havalimanı içi akrilik ürün bakım, onarım ve yenileme uygulamaları.',
+      },
+      {
+        id: 'o3',
+        logo: W + '8d8965_bc913b54d84240fb9439359c8e31a7d6~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/kanyon-avm-logo.jpg',
+        client: 'Kanyon AVM',
+        title: 'Kanyon Alışveriş Merkezi',
+        location: 'Levent, İstanbul',
+        description: 'Termoform silindirik ve kare kolon kaplamaları ile mağaza cephe duvar uygulamaları.',
+      },
+      {
+        id: 'o4',
+        logo: W + '8d8965_3b521a78c7bd43dcb264bbbd59fe6f83~mv2.png/v1/fill/w_239,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo-kapak%2C6224_medium.png',
+        client: 'Havelsan',
+        title: 'Havelsan Genel Merkezi',
+        location: 'Ankara',
+        description: 'VIP resepsiyon tezgahları ve genel merkez mutfak tezgah uygulamaları.',
+      },
+      {
+        id: 'o5',
+        logo: W + '8d8965_3f9eab2e0bb840e98c8d4fb527ce7aa9~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir%20(1).png',
+        client: 'Al Hallab 1881',
+        title: 'Al Hallab Restoran — Fişekhane',
+        location: 'Eminönü, İstanbul',
+        description: 'Resepsiyon bankosu, duvar kaplamaları ve mutfak tezgah bölümleri komple akrilik uygulama.',
+      },
+      {
+        id: 'o6',
+        logo: W + '8d8965_a7692a2933284a36987571c2d6f21f9a~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/index.png',
+        client: 'Garanti BBVA',
+        title: 'Garanti BBVA Şubeleri',
+        location: 'Türkiye Geneli',
+        description: 'Numaratör kiosk akrilik kaplamaları ve şube tezgah uygulamaları.',
+      },
+      {
+        id: 'o7',
+        logo: W + '8d8965_69dd69c0873945c282ed76fb84dd6433~mv2.png/v1/fill/w_480,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ziraat_Bankas%C4%B1_logo.png',
+        client: 'Ziraat Bankası',
+        title: 'Ziraat Bankası Şubeleri',
+        location: 'Türkiye Geneli',
+        description: 'Şube tezgah ve resepsiyon bankosu akrilik kaplama uygulamaları.',
+      },
+      {
+        id: 'o8',
+        logo: W + '8d8965_984230bd0e6b457f8f054697fcb91eac~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ziraat-katilim-bankasi3774.jpg',
+        client: 'Ziraat Katılım Bankası',
+        title: 'Ziraat Katılım Şubeleri',
+        location: 'Türkiye Geneli',
+        description: 'Resepsiyon bankosu akrilik kaplama uygulamaları.',
+      },
+      {
+        id: 'o9',
+        logo: W + '8d8965_11f7aede7de7493099f15c68266b094a~mv2.png/v1/fill/w_260,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/indir%20(3).png',
+        client: 'Denizbank',
+        title: 'Denizbank Genel Merkezi',
+        location: 'İstanbul',
+        description: 'Banka tezgah uygulamaları ve spor salonu akrilik kaplamaları.',
+      },
+      {
+        id: 'o10',
+        logo: W + '8d8965_1fef3899f8c54f9eb6ae207ae78d9245~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/vakifbank_logo.png',
+        client: 'Vakıfbank',
+        title: 'Vakıfbank Şubeleri',
+        location: 'Türkiye Geneli',
+        description: 'Şube tezgah ve resepsiyon bankosu akrilik solid surface kaplama uygulamaları.',
+      },
+      {
+        id: 'o11',
+        logo: W + '8d8965_aa34024e3a5d4b9f957083d922886299~mv2.png/v1/fill/w_234,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/vakifkatilimdikeysloganlilogo.png',
+        client: 'Vakıf Katılım Bankası',
+        title: 'Vakıf Katılım Şubeleri',
+        location: 'Türkiye Geneli',
+        description: 'Akrilik resepsiyon bankosu kaplama uygulamaları.',
+      },
+      {
+        id: 'o12',
+        logo: W + '8d8965_d9b0b7e552d049a4867a9d1b38062101~mv2.png/v1/fill/w_234,h_140,al_c,lg_1,q_85,enc_avif,quality_auto/malpas.png',
+        client: 'Malpas Hotel',
+        title: 'Malpas Hotel Girne',
+        location: 'Girne, Kuzey Kıbrıs',
+        description: 'Yemek alanları, tezgahlar ve büfe üniteleri dahil otel geneli akrilik uygulamaları.',
+      },
+      {
+        id: 'o13',
+        logo: W + '8d8965_270babd2dfef41768d43ded490428d63~mv2.jpg/v1/fill/w_234,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/sabiha-gokcen-uluslararasi-havaalani_7zhqy.jpg',
+        client: 'Sabiha Gökçen Havalimanı',
+        title: 'SGH "Yöresel Tatlar" Dükkanı',
+        location: 'Pendik, İstanbul',
+        description: 'Satış tezgahı, raf sistemi, servis bankosu, bar tezgahı ve kasiyer alanı uygulamaları.',
+      },
+      {
+        id: 'o14',
+        logo: W + '8d8965_49279d204c34436f9454e1d4c9cfb9ed~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/okyanus-koleji-logo.jpg',
+        client: 'Okyanus Koleji',
+        title: 'Okyanus Koleji Bahçelievler',
+        location: 'Bahçelievler, İstanbul',
+        description: 'Kantin tezgahı ve mutfak tezgah kaplama uygulamaları.',
+      },
+      {
+        id: 'o15',
+        logo: W + '8d8965_8efb030fb6d2471ba4fff62a6f7d1e3d~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/17945_I_istanbul_modern_logo.jpg',
+        client: 'İstanbul Modern',
+        title: 'İstanbul Modern Antrepo Müzesi',
+        location: 'Beşiktaş, İstanbul',
+        description: 'Restore edilmiş antrepo yapısında termoform ıslak hacim tezgahları ve duvar kaplamaları.',
+      },
+      {
+        id: 'o16',
+        logo: W + '8d8965_4a43828e00d548c7af66e40d45774655~mv2.png/v1/fill/w_540,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/header-tablet.png',
+        client: 'Mall of Istanbul',
+        title: 'Mall of Istanbul Kayseri Mutfak',
+        location: 'İstanbul',
+        description: 'Gıda dağıtım tezgahı ve tepsi kaydırma ünitesi uygulamaları.',
+      },
+      {
+        id: 'o17',
+        logo: W + '8d8965_c2f0968168884f08a8443ed103349457~mv2.jpg/v1/fill/w_234,h_140,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/ttnet-musteri-hizmetleri-direk-baglanma_2529605_414x414.jpg',
+        client: 'TTNET',
+        title: 'TTNET Genel Merkezi',
+        location: 'İstanbul',
+        description: 'Islak hacim ve kafeterya akrilik tezgah ve lavabo uygulamaları.',
+      },
+      {
+        id: 'o18',
+        logo: W + '8d8965_2f89b2a47b264496ac6adb0a5810781b.jpg/v1/fill/w_234,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/fatihotel_JPG.jpg',
+        client: 'Osmanbey Fatih Hotel',
+        title: 'Osmanbey Fatih Hotel',
+        location: 'İstanbul',
+        description: 'Tüm odalarda gizli sifon sistemli banyo tezgahları ve lavabo uygulamaları.',
+      },
+      {
+        id: 'o19',
+        logo: W + '8d8965_f53c8188ed4445668afaa3a658aa6bff.jpg/v1/fill/w_210,h_140,al_c,lg_1,q_80,enc_avif,quality_auto/1389611_611106402331128_236004199_a.jpg',
+        client: 'Venus Thermal Boutique Hotel',
+        title: 'Venus Thermal Boutique Hotel',
+        location: 'Güre, Balıkesir',
+        description: 'Tüm odalarda panelli mutfak tezgahları, banyo tezgahları ve duş tekneleri.',
+      },
+    ],
   },
 ];
 
-const CATEGORIES = [
-  { key: 'all',    label: 'Tümü',              count: PROJECTS.length },
-  { key: 'saglik', label: 'Sağlık',            count: PROJECTS.filter(p => p.category === 'saglik').length },
-  { key: 'konut',  label: 'Toplu Konut',       count: PROJECTS.filter(p => p.category === 'konut').length },
-  { key: 'metro',  label: 'Metro & Altyapı',   count: PROJECTS.filter(p => p.category === 'metro').length },
-  { key: 'ticari', label: 'Ticari & Özel',     count: PROJECTS.filter(p => p.category === 'ticari').length },
-] as const;
-
-const CATEGORY_COLORS: Record<string, string> = {
-  saglik: 'bg-blue-50 text-blue-700 border-blue-200',
-  konut:  'bg-green-50 text-green-700 border-green-200',
-  metro:  'bg-purple-50 text-purple-700 border-purple-200',
-  ticari: 'bg-amber-50 text-amber-700 border-amber-200',
-};
-
-const CATEGORY_LABELS: Record<string, string> = {
+const ALL_KEYS = ['all', ...SECTIONS.map(s => s.key)];
+const TAB_LABELS: Record<string, string> = {
+  all: 'Tümü',
   saglik: 'Sağlık',
-  konut:  'Toplu Konut',
-  metro:  'Metro & Altyapı',
-  ticari: 'Ticari & Özel',
+  konut: 'Toplu Konut',
+  metro: 'Metro & Altyapı',
+  ozel: 'Ticari & Özel',
 };
 
 interface Props {
@@ -259,190 +472,144 @@ interface Props {
 }
 
 export default function ProjectsPage({ onNavigate, onQuote }: Props) {
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeTab, setActiveTab] = useState('all');
 
-  const filtered = activeCategory === 'all'
-    ? PROJECTS
-    : PROJECTS.filter(p => p.category === activeCategory);
+  const visibleSections = activeTab === 'all'
+    ? SECTIONS
+    : SECTIONS.filter(s => s.key === activeTab);
 
-  const featured = PROJECTS.filter(p => p.featured);
+  const totalCount = SECTIONS.reduce((n, s) => n + s.projects.length, 0);
 
   return (
     <div className="min-h-screen bg-white">
 
-      {/* Hero */}
-      <div className="bg-neutral-950 py-14 px-6 sm:px-8 lg:px-12 relative overflow-hidden">
+      {/* ── Hero ─────────────────────────────────────────────────────────────── */}
+      <div className="bg-neutral-950 pt-12 pb-10 px-6 sm:px-8 lg:px-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: 'radial-gradient(circle at 30% 60%, #d97706 0%, transparent 55%)' }} />
+          style={{ backgroundImage: 'radial-gradient(circle at 25% 60%, #d97706 0%, transparent 55%)' }} />
         <button
           onClick={() => onNavigate('home')}
           className="flex items-center gap-2 text-white/50 hover:text-white text-sm mb-8 transition-colors"
         >
-          <ArrowLeft className="h-4 w-4" /> Ana Sayfa
+          ← Ana Sayfa
         </button>
         <div className="max-w-4xl">
           <span className="font-mono text-xs text-amber-400 uppercase tracking-[0.2em] block mb-3">
             Referanslarımız
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
-            Güven Veren Projeler,<br />Kanıtlanmış Kalite
+            Güven Veren İsimler,<br className="hidden sm:block" /> Kanıtlanmış Kalite
           </h1>
-          <p className="text-white/55 text-base leading-relaxed max-w-2xl">
-            Hastanelerden metro istasyonlarına, lüks rezidanslardan uluslararası havalimanlarına kadar
-            Türkiye'nin dört bir yanında tamamladığımız referans projelerimiz.
+          <p className="text-white/50 text-sm leading-relaxed max-w-2xl">
+            Hastanelerden metro istasyonlarına, büyük otellerden üniversite kampüslerine
+            kadar Türkiye'nin dört bir yanında tamamladığımız referans projelerimiz.
           </p>
         </div>
-
-        {/* Stats */}
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
+        {/* Stats row */}
+        <div className="mt-8 flex flex-wrap gap-5">
           {[
-            { num: '80+', label: 'Tamamlanan Proje' },
-            { num: '20K+', label: 'm² Uygulama' },
-            { num: '4',   label: 'Sektör' },
-            { num: '15+', label: 'Yıllık Deneyim' },
+            { n: totalCount + '+', l: 'Referans Proje' },
+            { n: '20.000+', l: 'm² Uygulama Alanı' },
+            { n: '4', l: 'Ana Sektör' },
+            { n: '15+', l: 'Yıllık Deneyim' },
           ].map(s => (
-            <div key={s.label} className="border border-white/10 rounded-xl px-4 py-3">
-              <p className="font-serif text-2xl font-bold text-amber-400">{s.num}</p>
-              <p className="text-white/45 text-xs mt-0.5">{s.label}</p>
+            <div key={s.l} className="border border-white/10 rounded-xl px-5 py-3">
+              <p className="font-serif text-2xl font-bold text-amber-400 leading-none">{s.n}</p>
+              <p className="text-white/40 text-xs mt-1">{s.l}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Featured */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-14">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-xs text-amber-600 uppercase tracking-widest">Öne Çıkan</span>
-          <div className="flex-1 h-px bg-stone-100" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featured.map((proj, i) => (
-            <motion.div
-              key={proj.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
-              style={{ height: 260 }}
-            >
-              <img
-                src={proj.image}
-                alt={proj.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/30 to-transparent" />
-              {proj.scale && (
-                <div className="absolute top-3 right-3 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                  {proj.scale}
-                </div>
-              )}
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border mb-2 ${CATEGORY_COLORS[proj.category]}`}>
-                  {CATEGORY_LABELS[proj.category]}
-                </span>
-                <h3 className="font-serif text-base font-bold text-white leading-snug mb-0.5">{proj.title}</h3>
-                <p className="text-white/55 text-xs flex items-center gap-1">
-                  <MapPin className="h-3 w-3" />{proj.location}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* All Projects */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-14">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-xs text-amber-600 uppercase tracking-widest">Tüm Referanslar</span>
-          <div className="flex-1 h-px bg-stone-100" />
-        </div>
-
-        {/* Category filter */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat.key}
-              onClick={() => setActiveCategory(cat.key)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200 ${
-                activeCategory === cat.key
-                  ? 'bg-neutral-950 text-white border-neutral-950'
-                  : 'bg-white text-stone-600 border-stone-200 hover:border-stone-400'
-              }`}
-            >
-              {cat.label}
-              <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-                activeCategory === cat.key ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
-              }`}>
-                {cat.count}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            {filtered.map((proj, i) => (
-              <motion.div
-                key={proj.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.04 }}
-                className="group bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300 flex flex-col"
+      {/* ── Filter tabs ──────────────────────────────────────────────────────── */}
+      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-sm border-b border-stone-100 px-6 sm:px-8 lg:px-12 py-3">
+        <div className="max-w-7xl mx-auto flex flex-wrap gap-2">
+          {ALL_KEYS.map(key => {
+            const count = key === 'all'
+              ? totalCount
+              : (SECTIONS.find(s => s.key === key)?.projects.length ?? 0);
+            return (
+              <button
+                key={key}
+                onClick={() => setActiveTab(key)}
+                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold border transition-all ${
+                  activeTab === key
+                    ? 'bg-neutral-950 text-white border-neutral-950'
+                    : 'bg-white text-stone-600 border-stone-200 hover:border-stone-400'
+                }`}
               >
-                {/* Image */}
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={proj.image}
-                    alt={proj.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 to-transparent" />
-                  <span className={`absolute top-3 left-3 text-[10px] font-semibold px-2.5 py-1 rounded-full border ${CATEGORY_COLORS[proj.category]}`}>
-                    {CATEGORY_LABELS[proj.category]}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="p-4 flex-1 flex flex-col gap-2">
-                  <div>
-                    <div className="flex items-center gap-1.5 text-[11px] text-stone-400 mb-1">
-                      <Building2 className="h-3 w-3 shrink-0" />
-                      <span className="font-medium">{proj.client}</span>
-                    </div>
-                    <h3 className="font-semibold text-neutral-900 text-sm leading-snug">{proj.title}</h3>
-                  </div>
-
-                  <p className="text-xs text-stone-500 leading-relaxed flex-1">{proj.description}</p>
-
-                  <div className="flex items-center justify-between pt-2 border-t border-stone-100">
-                    <span className="text-[11px] text-stone-400 flex items-center gap-1">
-                      <MapPin className="h-3 w-3" />{proj.location}
-                    </span>
-                    {proj.scale && (
-                      <span className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
-                        {proj.scale}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                {TAB_LABELS[key]}
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                  activeTab === key ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* CTA */}
-      <div className="bg-neutral-950 py-16 px-6 text-center">
+      {/* ── Sections ─────────────────────────────────────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 space-y-16">
+        {visibleSections.map(section => (
+          <div key={section.key}>
+            {/* Section header */}
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-neutral-900 whitespace-nowrap">
+                {section.label}
+              </h2>
+              <div className="flex-1 h-px bg-stone-200" />
+              <span className="text-xs text-stone-400 font-medium whitespace-nowrap">
+                {section.projects.length} referans
+              </span>
+            </div>
+
+            {/* Project cards grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {section.projects.map(proj => (
+                <div
+                  key={proj.id}
+                  className="group bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300 flex flex-col"
+                >
+                  {/* Logo area */}
+                  <div className="flex items-center justify-center bg-white px-6 py-6 h-[120px]">
+                    <img
+                      src={proj.logo}
+                      alt={proj.client}
+                      className="max-h-[80px] max-w-full object-contain"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-stone-100 mx-4" />
+
+                  {/* Details */}
+                  <div className="p-4 flex-1 flex flex-col gap-1.5">
+                    <p className="text-[11px] font-semibold text-amber-600 uppercase tracking-wider">
+                      {proj.client}
+                    </p>
+                    <h3 className="font-semibold text-neutral-900 text-sm leading-snug">
+                      {proj.title}
+                    </h3>
+                    <p className="text-xs text-stone-500 flex items-center gap-1 mt-0.5">
+                      <MapPin className="h-3 w-3 shrink-0" />{proj.location}
+                    </p>
+                    <p className="text-xs text-stone-500 leading-relaxed mt-1 flex-1">
+                      {proj.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ── CTA ──────────────────────────────────────────────────────────────── */}
+      <div className="bg-neutral-950 py-14 px-6 text-center mt-4">
         <span className="font-mono text-xs text-amber-400 uppercase tracking-widest block mb-3">Projeniz İçin</span>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
           Referanslarımıza Bir Yenisini Ekleyelim
