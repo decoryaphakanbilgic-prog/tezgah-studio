@@ -16,6 +16,7 @@ const svgLogo = (text: string, sub?: string) => {
 interface Project {
   id: string;
   logo: string;
+  logoClass?: string;
   client: string;
   title: string;
   location: string;
@@ -36,6 +37,7 @@ const SECTIONS: Section[] = [
       {
         id: 's1',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
+        logoClass: 'max-h-[52px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Atakent Halkalı Hastanesi',
         location: 'Halkalı, İstanbul',
@@ -60,6 +62,7 @@ const SECTIONS: Section[] = [
       {
         id: 's4',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
+        logoClass: 'max-h-[52px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Bakırköy Klinik',
         location: 'Bakırköy, İstanbul',
@@ -76,6 +79,7 @@ const SECTIONS: Section[] = [
       {
         id: 's6',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
+        logoClass: 'max-h-[52px]',
         client: 'Acıbadem Sağlık Grubu',
         title: 'Acıbadem Zekeriyaköy',
         location: 'Zekeriyaköy, İstanbul',
@@ -92,6 +96,7 @@ const SECTIONS: Section[] = [
       {
         id: 's8',
         logo: WM + 'commons/thumb/f/ff/Ac%C4%B1badem_Grup_logo.svg/250px-Ac%C4%B1badem_Grup_logo.svg.png',
+        logoClass: 'max-h-[52px]',
         client: 'Acıbadem Üniversitesi',
         title: 'Kerem Aydınlar Kampüsü',
         location: 'İstanbul',
@@ -582,11 +587,11 @@ export default function ProjectsPage({ onNavigate, onQuote }: Props) {
                   className="group relative bg-white border border-stone-200 rounded-2xl overflow-hidden hover:border-amber-300 hover:shadow-md transition-all duration-300"
                 >
                   {/* Logo area */}
-                  <div className="bg-white px-5 py-4 h-[130px]">
+                  <div className="bg-white px-5 py-4 h-[130px] flex items-center">
                     <img
                       src={proj.logo}
                       alt={proj.client}
-                      className="w-full h-full object-contain"
+                      className={`w-auto object-contain object-left ${proj.logoClass ?? 'max-h-full'}`}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                     />
