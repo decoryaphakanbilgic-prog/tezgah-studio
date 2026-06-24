@@ -20,6 +20,7 @@ import LegalPage from './pages/LegalPage';
 import RandevuPage from './pages/RandevuPage';
 import UsageAreasPage from './pages/UsageAreasPage';
 import BrandLogoBar from './components/BrandLogoBar';
+import CustomCursor from './components/CustomCursor';
 import { AuthProvider } from './context/AuthContext';
 import { 
   BRANDS, 
@@ -251,6 +252,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+    <CustomCursor />
     <div className={`relative min-h-screen flex flex-col justify-between selection:bg-amber-200 theme-${theme}`}>
       
       {/* Top Banner Message for Premium Vibe */}
