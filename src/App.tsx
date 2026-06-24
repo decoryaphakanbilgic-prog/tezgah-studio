@@ -58,18 +58,17 @@ export default function App() {
   const [theme, setTheme] = useState<'milano' | 'nordic' | 'obsidian'>('obsidian');
   const [activePage, setActivePage] = useState<string>('home');
 
-  // Intro video popup — sadece ilk ziyarette göster
+  // Intro video popup — her ana sayfa ziyaretinde göster
   const [showIntroVideo, setShowIntroVideo] = useState(false);
   useEffect(() => {
-    if (!localStorage.getItem('tezgahstudio_intro_seen')) {
+    if (activePage === 'home') {
       const t = setTimeout(() => setShowIntroVideo(true), 800);
       return () => clearTimeout(t);
+    } else {
+      setShowIntroVideo(false);
     }
-  }, []);
-  const closeIntroVideo = () => {
-    setShowIntroVideo(false);
-    localStorage.setItem('tezgahstudio_intro_seen', '1');
-  };
+  }, [activePage]);
+  const closeIntroVideo = () => setShowIntroVideo(false);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   
   // Favorites system saved in localStorage
