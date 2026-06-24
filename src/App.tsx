@@ -812,17 +812,11 @@ export default function App() {
           </div>
         )}
 
-        {/* Yasal Sayfalar */}
-        {activePage === 'legal' && legalPage && (
-          <div className="min-h-screen bg-neutral-50">
-            <LegalPage page={legalPage} onBack={() => { setLegalPage(null); handleNavigate('home'); }} />
-          </div>
-        )}
 
       </main>
 
       {/* FOOTER */}
-      <Footer onNavigate={handleNavigate} onLegal={(p) => { setLegalPage(p); handleNavigate('legal'); }} />
+      <Footer onNavigate={handleNavigate} onLegal={(p) => setLegalPage(p)} />
 
       {/* FAVORITES DRAWER SLIDEOUT SHEET */}
       {isFavoritesDrawerOpen && (
@@ -1238,6 +1232,14 @@ export default function App() {
         <div className="fixed inset-0 z-[100] overflow-y-auto">
           <AdminPanel onNavigate={handleNavigate} />
         </div>
+      )}
+
+      {/* Yasal Sayfalar — popup modal */}
+      {legalPage && (
+        <LegalPage
+          page={legalPage}
+          onClose={() => setLegalPage(null)}
+        />
       )}
     </div>
     </AuthProvider>

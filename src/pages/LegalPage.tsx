@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, X } from 'lucide-react';
 
 interface Props {
   page: 'gizlilik' | 'kullanim' | 'kvkk';
-  onBack: () => void;
+  onBack?: () => void;
+  onClose?: () => void;
 }
 
 const CONTENT = {
@@ -158,12 +159,57 @@ function renderBody(body: string) {
   });
 }
 
-export default function LegalPage({ page, onBack }: Props) {
+export default function LegalPage({ page, onBack, onClose }: Props) {
   const content = CONTENT[page];
+  const isModal = !!onClose;
+
+  if (isModal) {
+    return (
+      <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6">
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm"
+          onClick={onClose}
+        />
+        {/* Panel */}
+        <div className="relative z-10 w-full max-w-2xl max-h-[90vh] flex flex-col bg-white rounded-2xl shadow-2xl overflow-hidden">
+          {/* Modal header */}
+          <div className="bg-neutral-900 text-white px-6 py-5 flex items-start justify-between gap-4 shrink-0">
+            <div>
+              <h2 className="text-xl font-serif font-bold text-white">{content.title}</h2>
+              <p className="text-white/40 text-xs mt-0.5">Son güncelleme: {content.updated}</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-colors mt-0.5"
+              aria-label="Kapat"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+          {/* Scrollable content */}
+          <div className="overflow-y-auto px-6 py-6 space-y-5 bg-neutral-50">
+            {content.sections.map((section, i) => (
+              <div key={i} className="bg-white rounded-xl p-5 border border-stone-200">
+                <h3 className="font-bold text-neutral-900 text-sm mb-3 pb-2.5 border-b border-stone-100">
+                  {section.heading}
+                </h3>
+                <div className="space-y-1.5">
+                  {renderBody(section.body)}
+                </div>
+              </div>
+            ))}
+            <p className="text-center text-xs text-stone-400 pb-2">
+              © {new Date().getFullYear()} Decoryap Yapı Malzemeleri. Tüm hakları saklıdır.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header */}
       <div className="bg-neutral-900 text-white py-12 px-6">
         <div className="max-w-3xl mx-auto">
           <button
@@ -176,8 +222,6 @@ export default function LegalPage({ page, onBack }: Props) {
           <p className="text-white/40 text-sm">Son güncelleme: {content.updated}</p>
         </div>
       </div>
-
-      {/* Content */}
       <div className="max-w-3xl mx-auto px-6 py-12 space-y-10">
         {content.sections.map((section, i) => (
           <div key={i} className="bg-white rounded-2xl p-6 border border-stone-200">
@@ -189,7 +233,6 @@ export default function LegalPage({ page, onBack }: Props) {
             </div>
           </div>
         ))}
-
         <div className="text-center text-xs text-stone-400 pb-8">
           <p>© {new Date().getFullYear()} Decoryap Yapı Malzemeleri. Tüm hakları saklıdır.</p>
         </div>
