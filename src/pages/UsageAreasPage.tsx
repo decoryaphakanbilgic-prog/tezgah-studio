@@ -204,7 +204,7 @@ export default function UsageAreasPage({ onNavigate, onQuote }: Props) {
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-5">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
                     <span className="font-mono text-xs text-amber-400 tracking-[0.2em] uppercase">{area.num}</span>
                     <h2 className="font-serif text-xl font-bold text-white mt-0.5">{area.title}</h2>
                     <p className="text-white/60 text-xs mt-0.5">{area.subtitle}</p>
