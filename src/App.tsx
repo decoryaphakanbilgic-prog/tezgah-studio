@@ -18,6 +18,7 @@ import AdminPanel from './pages/AdminPanel';
 import CategoryDetailPage from './pages/CategoryDetailPage';
 import LegalPage from './pages/LegalPage';
 import RandevuPage from './pages/RandevuPage';
+import UsageAreasPage from './pages/UsageAreasPage';
 import BrandLogoBar from './components/BrandLogoBar';
 import { AuthProvider } from './context/AuthContext';
 import { 
@@ -746,6 +747,14 @@ export default function App() {
               }}
             />
           </motion.div>
+        )}
+
+        {/* Uygulama Alanları Sayfası */}
+        {activePage === 'usage-areas' && (
+          <UsageAreasPage
+            onNavigate={handleNavigate}
+            onQuote={() => handleNavigate('quote-wizard')}
+          />
         )}
 
         {/* Randevu Sayfası */}

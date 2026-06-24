@@ -33,6 +33,7 @@ export default function Header({
   const navItems = [
     { id: 'home', label: 'Ana Sayfa' },
     { id: 'brands', label: 'Markalar' },
+    { id: 'usage-areas', label: 'Uygulama Alanları' },
     { id: 'projects', label: 'Projeler' },
     { id: 'randevu', label: 'Randevu' },
   ];
