@@ -397,17 +397,16 @@ export default function App() {
             {/* Section: Showcase Video */}
             <motion.section variants={pageItemVariants} className="relative w-full bg-neutral-950 overflow-hidden">
               <div className="relative w-full overflow-hidden" style={{ paddingTop: '56.25%' }}>
-                <iframe
-                  className="absolute w-full h-full"
-                  style={{ top: '-18%', left: '-5%', width: '110%', height: '136%', transform: 'none' }}
-                  src="https://www.youtube.com/embed/hviGNsy7L-M?autoplay=1&mute=1&loop=1&playlist=hviGNsy7L-M&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0"
-                  title="Tezgah Studio Showcase"
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media; fullscreen"
-                  allowFullScreen
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  src="/showcase.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
                 {/* Tüm tıklamaları engelleyen şeffaf katman */}
-                <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default' }} />
+                <div className="absolute inset-0 z-10" style={{ background: 'transparent', cursor: 'default', pointerEvents: 'all' }} />
                 {/* Gradient geçişi */}
                 <div className="absolute inset-0 z-20 bg-gradient-to-b from-neutral-950/30 via-transparent to-neutral-950/30 pointer-events-none" />
               </div>
