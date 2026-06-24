@@ -600,7 +600,17 @@ export default function App() {
                     </div>
 
                     {/* Kısa açıklama */}
-                    <p className="text-[10px] text-stone-500 leading-relaxed line-clamp-2">{brand.description}</p>
+                    <p className="text-[11px] text-stone-600 leading-relaxed">{brand.description}</p>
+
+                    {/* Öne çıkan avantajlar */}
+                    <ul className="space-y-0.5">
+                      {brand.advantages.slice(0, 2).map((adv) => (
+                        <li key={adv} className="flex items-start gap-1.5 text-[10px] text-stone-500 leading-snug">
+                          <span className="text-amber-500 mt-0.5 shrink-0">›</span>
+                          <span>{adv}</span>
+                        </li>
+                      ))}
+                    </ul>
 
                     {/* Tier + renk sayısı */}
                     <div className="flex items-center gap-1.5">
