@@ -14,9 +14,6 @@ import BrandLogoBar from './components/BrandLogoBar';
 import CustomCursor from './components/CustomCursor';
 import SoundManager from './components/SoundManager';
 import { AuthProvider } from './context/AuthContext';
-import Simulator from './components/Simulator';
-import TemplateStudio from './components/TemplateStudio';
-
 const QuoteWizard = React.lazy(() => import('./components/QuoteWizard'));
 const AuthModal = React.lazy(() => import('./components/AuthModal'));
 const AdminPanel = React.lazy(() => import('./pages/AdminPanel'));
