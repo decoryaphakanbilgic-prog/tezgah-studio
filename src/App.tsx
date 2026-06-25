@@ -1,30 +1,37 @@
-import React, { useState, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Heart, Compass, Ruler, Award, SlidersHorizontal, Sparkles, 
-  Check, Plus, Search, ArrowRight, ChevronRight, Info, 
-  FileText, Phone, Mail, MapPin, X, HeartOff, 
-  MessageSquare, Calendar, ChevronDown, CheckCircle, 
+import {
+  Heart, Compass, Ruler, Award, SlidersHorizontal, Sparkles,
+  Check, Plus, Search, ArrowRight, ChevronRight, Info,
+  FileText, Phone, Mail, MapPin, X, HeartOff,
+  MessageSquare, Calendar, ChevronDown, CheckCircle,
   ExternalLink, Download, Sliders, LayoutGrid, Eye, HelpCircle, AlertCircle
 } from 'lucide-react';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import QuoteWizard from './components/QuoteWizard';
-import Simulator from './components/Simulator';
-import TemplateStudio from './components/TemplateStudio';
-import AuthModal from './components/AuthModal';
-import AdminPanel from './pages/AdminPanel';
-import CategoryDetailPage from './pages/CategoryDetailPage';
-import LegalPage from './pages/LegalPage';
-import RandevuPage from './pages/RandevuPage';
-import UsageAreasPage from './pages/UsageAreasPage';
-import ProjectsPage from './pages/ProjectsPage';
 import BrandLogoBar from './components/BrandLogoBar';
 import CustomCursor from './components/CustomCursor';
 import SoundManager from './components/SoundManager';
 import { AuthProvider } from './context/AuthContext';
-import { 
+import Simulator from './components/Simulator';
+import TemplateStudio from './components/TemplateStudio';
+
+const QuoteWizard = React.lazy(() => import('./components/QuoteWizard'));
+const AuthModal = React.lazy(() => import('./components/AuthModal'));
+const AdminPanel = React.lazy(() => import('./pages/AdminPanel'));
+const CategoryDetailPage = React.lazy(() => import('./pages/CategoryDetailPage'));
+const LegalPage = React.lazy(() => import('./pages/LegalPage'));
+const RandevuPage = React.lazy(() => import('./pages/RandevuPage'));
+const UsageAreasPage = React.lazy(() => import('./pages/UsageAreasPage'));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
+
+const LazyFallback = () => (
+  <div className="flex items-center justify-center min-h-[40vh]">
+    <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
+import {
   BRANDS, 
   MATERIAL_CATEGORIES, 
   COUNTERTOP_COLORS, 
@@ -254,6 +261,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+    <Suspense fallback={<LazyFallback />}>
     <CustomCursor />
     <SoundManager />
     <div className={`relative min-h-screen flex flex-col justify-between selection:bg-amber-200 theme-${theme}`}>
@@ -1166,6 +1174,7 @@ export default function App() {
         />
       )}
     </div>
+    </Suspense>
     </AuthProvider>
   );
 }

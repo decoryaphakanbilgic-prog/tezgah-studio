@@ -1,4 +1,32 @@
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Statik dosyalar
+Allow: /logos/
+Allow: /usage-areas/
+Allow: /catalogs/
+
+# Yönetim alanlarını indeksletme
+Disallow: /admin
+Disallow: /api/
+
+# Botlar
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
 
 Sitemap: https://tezgahyap.com.tr/sitemap.xml

@@ -19,7 +19,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Konutlar',
     subtitle: 'Yaşam Alanlarınız İçin',
     description: 'Mutfaktan banyoya, pencere denizliklerinden duş teknelerine kadar evinizin her noktasında estetik ve dayanıklı tezgah çözümleri sunuyoruz. Günlük kullanımın yoğunluğuna karşı yıllarca ilk günkü görünümünü koruyan yüzeyler.',
-    image: '/usage-areas/konut.jpg',
+    image: '/usage-areas/konut.webp',
     applications: [
       'Mutfak tezgahları ve arka paneller',
       'Banyo tezgahları ve lavabo bankoları',
@@ -53,7 +53,7 @@ const USAGE_AREAS: UsageArea[] = [
     title: 'Alışveriş & Eğlence Merkezleri',
     subtitle: 'Yüksek Trafik, Üstün Dayanıklılık',
     description: 'Binlerce kişinin günlük kullandığı AVM ve eğlence merkezlerinde darbe, çizik ve yoğun temizlik kimyasallarına karşı üstün direnç şarttır. Estetik görünümü uzun yıllar boyu koruyan ultra kompakt ve kuvars yüzeyleri bu ortamlar için ideal seçenektir.',
-    image: '/usage-areas/avm.jpg',
+    image: '/usage-areas/avm.webp',
     applications: [
       'Karşılama ve bilgilendirme bankoları',
       'Genel WC tezgahları',
